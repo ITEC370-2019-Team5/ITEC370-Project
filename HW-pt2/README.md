@@ -1,4 +1,7 @@
-# https://github.com/tlewis32-ru/ITEC370-Spring2019/tree/master/HW-pt2
+# https://github.com/Michael-Donaldson/ITEC370-Project
+
+#That is my gitHub username.
+#my RU username is mdonaldson.
 
 1. Edit the title of this document
    * Replace the user name (tlewis32-ru) with the user name of the team member who created shared repository
@@ -6,12 +9,13 @@
 
 2. Answer these questions
    * What are the GitHub usernames of your team members?
-       * GitHub username 1:
-       * GitHub username 2:
-       * GitHub username 3:
-       * GitHub username 4:
-       * GitHub username 5:
-   * How long did it take your team to complete this exercise? 
+       * GitHub username 1: Michael-Donaldson
+       * GitHub username 2: dwhitteker76
+       * GitHub username 3: michaelzeidan
+       * GitHub username 4: jtenaglia
+       * GitHub username 5: DonatedAR
+   * How long did it take your team to complete this exercise?
+   Approx. 1 hour, after intial setup and making sure everyone was able to clone correctly.
 
 ## Table of Contents
 1. TODO.md - contains instructions for what to do for this assignment

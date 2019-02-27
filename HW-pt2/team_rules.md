@@ -1,4 +1,4 @@
-# Team NN Rules
+# Team 05 Rules
 
 These rules establish how our team will assign tasks,
 track progress on each task, and communicate with each other 
@@ -10,19 +10,19 @@ and missed deadlines.
 
 ## How we will assign (and reassign) tasks
 
-
+Simply based on people's preferences.
 
 ## How will we will track progress (and follow-up) on completion of tasks
 
-
+Through Discord. We will notify the team when we have pushed something.
 
 ## How will communicate difficulties with a task assigned to us
 
-
+Through Discord.
 
 ## How we will back up each other to ensure that deadlines are not missed
 
-
+If we are having difficulties, we will notify the team.
 
 
 
