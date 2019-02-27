@@ -16,3 +16,5 @@ are links to some GUI's are think might be useful:
 	-https://code.google.com/p/tortoisegit/ 
   -http://try.github.io
   -https://blog.prototypr.io/git-for-beginners-12-commands-you-need-to-know-e084cce9cc94
+
+Michael Donaldson was here...
