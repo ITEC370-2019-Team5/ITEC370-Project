@@ -1,21 +1,40 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 
 public class NetworkingGame extends Game implements ApplicationListener {
 
+    private int screen = 0;
+    MainMenu mainMenu = new MainMenu(this);
     Screen stage = new Stage();
 
     @Override
     public void create () {
-        setScreen(stage);
+        setScreen(mainMenu);
     }
+
+    public void changeScreen(int setting)
+    {
+        screen = setting;
+    }
+
+    //Look for button press
 
     @Override
     public void render () {
         super.render();
+        if(screen == 0)
+        {
+            setScreen(mainMenu);
+        }
+        else if(screen == 1)
+        {
+            setScreen(stage);
+        }
+        else
+        {
+            System.out.println("something fucked up");
+        }
     }
 
     @Override

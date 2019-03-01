@@ -8,8 +8,9 @@ import com.mygdx.game.Stage;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.height = 1200;
-		config.width = 1200;
+		config.height = 900;
+		config.width = 900;
+		config.title = "N3+h@X0r";
 		new LwjglApplication(new NetworkingGame(), config);
 	}
 }
