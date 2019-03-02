@@ -1,10 +1,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
@@ -43,9 +45,11 @@ public class LeaderBoard implements Screen {
     @Override
     public void render(float delta) {
         batch.begin();
-        batch.draw(leaderboard, 150, 0);
+        batch.draw(leaderboard, 15, 0);
+
         //batch.draw(star, 55, 0);
         batch.end();
+
 
     }
 
@@ -54,7 +58,9 @@ public class LeaderBoard implements Screen {
         camera.setToOrtho(false, 600, 400);
         batch = new SpriteBatch();
         leaderboard = new Texture("core/assets/finalleaderboard.png");
-        star = new Texture("core/assets/star.png");
+        //star = new Texture("core/assets/star.png");
+        Sprite starSprite = new Sprite(new Texture("core/assets/star.png"));
+        starSprite.setSize(50f, 35f);
     }
 
     @Override
