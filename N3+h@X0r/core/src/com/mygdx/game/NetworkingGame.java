@@ -26,7 +26,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
         super.render();
         if(screen == 0)
         {
-            setScreen(mainMenu);
+            setScreen(leaderboard);
         }
         else if(screen == 1)
         {
