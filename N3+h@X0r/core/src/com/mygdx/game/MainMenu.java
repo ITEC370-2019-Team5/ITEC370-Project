@@ -38,7 +38,7 @@ public class MainMenu implements Screen
         batch.draw(next, camera.viewportWidth / 2 + 5, 60);
 
         float x = camera.viewportWidth / 2; //Halfway across x-axis
-        float y = camera.viewportHeight / 2; //Halfway across x-axis
+        float y = camera.viewportHeight / 2; //Halfway across y-axis
 
         //Play button
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200

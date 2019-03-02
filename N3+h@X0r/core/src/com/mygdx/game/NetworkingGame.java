@@ -7,6 +7,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     private int screen = 0;
     MainMenu mainMenu = new MainMenu(this);
     Screen stage = new Stage();
+    //LeaderBoard leaderboard = new LeaderBoard();
 
     @Override
     public void create () {
@@ -33,7 +34,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
         }
         else
         {
-            System.out.println("something fucked up");
+            System.out.println("Error!");
         }
     }
 
