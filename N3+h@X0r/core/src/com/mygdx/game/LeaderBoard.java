@@ -21,7 +21,7 @@ public class LeaderBoard implements Screen {
     public LeaderBoard(NetworkingGame game){
         this.game = game;
         camera = new OrthographicCamera();
-        readFile(leaderboardList);          //read the file once it's initialized
+        //readFile(leaderboardList);          //read the file once it's initialized
     }
 
     //reads in the file for fake data
@@ -43,19 +43,17 @@ public class LeaderBoard implements Screen {
     @Override
     public void render(float delta) {
         batch.begin();
-        batch.draw(leaderboard, camera.viewportWidth - 100, 0);
-        batch.draw(star, 55, 0);
+        batch.draw(leaderboard, 150, 0);
+        //batch.draw(star, 55, 0);
         batch.end();
 
-        float x = camera.viewportWidth / 2; //Halfway across x-axis
-        float y = camera.viewportHeight;
     }
 
     @Override
     public void show() {
         camera.setToOrtho(false, 600, 400);
         batch = new SpriteBatch();
-        leaderboard = new Texture("core/assets/leaderboardSEfinal.pdf");
+        leaderboard = new Texture("core/assets/finalleaderboard.png");
         star = new Texture("core/assets/star.png");
     }
 
