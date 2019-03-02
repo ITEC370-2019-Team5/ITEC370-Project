@@ -1,35 +1,31 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 
 import java.util.ArrayList;
-import java.io.*;
 
-public class LeaderBoard {
-    //private Texture leaderboard, star;
-    private FileHandle handle;          //for reading in the file of fake data
+public class LeaderBoard implements Screen {
     private ArrayList<Player> leaderboardList = new ArrayList<Player>();
+    private Texture leaderboard, star;
+    private SpriteBatch batch;
 
     //Empty Constructor
     public LeaderBoard() {
         //get the pictures
         //getPictures();
 
-        //read the file
+        //read the file once it's initialized
         readFile(leaderboardList);
     }
-    /*
-    public void getPictures() {
-        leaderboard = new Texture("core/assets/leaderboardSEfinal.pdf");
-        star = new Texture("core/assets/star.png");
-    }
-    */
 
     //reads in the file for fake data
     public void readFile(ArrayList<Player> list) {
-        handle = Gdx.files.internal("core/assets/files/Fake_Leaderboard_Data.txt");
+        FileHandle handle = Gdx.files.internal("core/assets/files/Fake_Leaderboard_Data.txt");
         String eachLine = handle.readString();
         String lineArray[] = eachLine.split(",");
 
@@ -41,5 +37,40 @@ public class LeaderBoard {
 
         Player p = new Player(playerName, beatGame, collectableCount, virusesFixed);
         list.add(p);
+    }
+
+    @Override
+    public void render(float delta) {
+        batch.begin();
+
+        batch.end();
+    }
+
+    @Override
+    public void show() {
+        leaderboard = new Texture("core/assets/leaderboardSEfinal.pdf");
+        star = new Texture("core/assets/star.png");
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+        dispose();
+    }
+
+    @Override
+    public void dispose () {
     }
 }
