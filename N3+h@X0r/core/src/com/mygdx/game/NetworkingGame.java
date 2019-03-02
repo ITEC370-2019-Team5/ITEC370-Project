@@ -6,8 +6,9 @@ public class NetworkingGame extends Game implements ApplicationListener {
 
     private int screen = 0;
     MainMenu mainMenu = new MainMenu(this);
-    Screen stage = new Stage();
+    CharacterScreen charScreen = new CharacterScreen(this);
     LeaderBoard leaderboard = new LeaderBoard(this);
+    Screen stage = new Stage();
 
     @Override
     public void create () {
@@ -26,11 +27,15 @@ public class NetworkingGame extends Game implements ApplicationListener {
         super.render();
         if(screen == 0)
         {
-            setScreen(leaderboard);
+            setScreen(mainMenu);
         }
         else if(screen == 1)
         {
             setScreen(stage);
+        }
+        else if(screen == 2)
+        {
+            setScreen(charScreen);
         }
         else
         {
