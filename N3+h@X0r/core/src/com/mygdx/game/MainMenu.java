@@ -22,6 +22,7 @@ public class MainMenu implements Screen
     private OrthographicCamera camera;
     private Texture mainMenu, play, load, next;
     private SpriteBatch batch;
+    private int countPush = 0; //Used to only click button once. -AR
 
 
     public MainMenu(NetworkingGame game){
@@ -68,7 +69,13 @@ public class MainMenu implements Screen
         {
             if(Gdx.input.isTouched() == true)
             {
-                System.out.println("NEXT");
+                countPush++;
+                if (countPush == 1)
+                {
+                    game.changeScreen(2);
+                    System.out.println("NEXT");
+                }
+                countPush = 0;
             }
         }
 
