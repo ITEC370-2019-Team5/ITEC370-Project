@@ -44,6 +44,7 @@ public class LeaderBoard implements Screen {
     public void render(float delta) {
         batch.begin();
         batch.draw(leaderboard, camera.viewportWidth - 100, 0);
+        batch.draw(star, 55, 0);
         batch.end();
 
         float x = camera.viewportWidth / 2; //Halfway across x-axis
