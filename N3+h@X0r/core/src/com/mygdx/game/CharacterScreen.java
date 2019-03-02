@@ -22,7 +22,7 @@ public class CharacterScreen implements Screen
     private OrthographicCamera camera;
     private Texture chooseChar, previous, next, returnHome;
     private SpriteBatch batch;
-    private int countPush = 0; //Used to only click button once.
+    private int countPush = 0; //Used to only click button once. -AR
 
 
     public CharacterScreen(NetworkingGame game){
