@@ -28,6 +28,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
         if(screen == 0)
         {
             setScreen(mainMenu);
+            if(Gdx.input.isKeyPressed(Input.Keys.L))
+            {
+                changeScreen(3); //shows leaderboard
+            }
         }
         else if(screen == 1)
         {
@@ -36,6 +40,14 @@ public class NetworkingGame extends Game implements ApplicationListener {
         else if(screen == 2)
         {
             setScreen(charScreen);
+        }
+        else if(screen == 3)
+        {
+            setScreen(leaderboard);
+            if(Gdx.input.isKeyPressed(Input.Keys.L))
+            {
+                changeScreen(0); //shows leaderboard
+            }
         }
         else
         {
