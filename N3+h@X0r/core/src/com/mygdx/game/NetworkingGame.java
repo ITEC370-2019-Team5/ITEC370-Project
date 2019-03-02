@@ -7,7 +7,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     private int screen = 0;
     MainMenu mainMenu = new MainMenu(this);
     Screen stage = new Stage();
-    //LeaderBoard leaderboard = new LeaderBoard();
+    LeaderBoard leaderboard = new LeaderBoard(this);
 
     @Override
     public void create () {

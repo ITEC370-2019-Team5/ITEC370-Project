@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -12,15 +13,15 @@ import java.util.ArrayList;
 public class LeaderBoard implements Screen {
     private ArrayList<Player> leaderboardList = new ArrayList<Player>();
     private Texture leaderboard, star;
+    private NetworkingGame game;
+    private OrthographicCamera camera;
     private SpriteBatch batch;
 
     //Empty Constructor
-    public LeaderBoard() {
-        //get the pictures
-        //getPictures();
-
-        //read the file once it's initialized
-        readFile(leaderboardList);
+    public LeaderBoard(NetworkingGame game){
+        this.game = game;
+        camera = new OrthographicCamera();
+        readFile(leaderboardList);          //read the file once it's initialized
     }
 
     //reads in the file for fake data
@@ -42,19 +43,26 @@ public class LeaderBoard implements Screen {
     @Override
     public void render(float delta) {
         batch.begin();
-
+        batch.draw(leaderboard, camera.viewportWidth - 100, 0);
+        batch.draw(star, 55, 0);
         batch.end();
+
+        float x = camera.viewportWidth / 2; //Halfway across x-axis
+        float y = camera.viewportHeight;
     }
 
     @Override
     public void show() {
+        camera.setToOrtho(false, 600, 400);
+        batch = new SpriteBatch();
         leaderboard = new Texture("core/assets/leaderboardSEfinal.pdf");
         star = new Texture("core/assets/star.png");
     }
 
     @Override
     public void resize(int width, int height) {
-
+        camera.viewportWidth = width;
+        camera.viewportHeight = height;
     }
 
     @Override
