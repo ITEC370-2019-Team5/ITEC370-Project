@@ -1,3 +1,10 @@
+/**
+ * CharacterScreen.java
+ *
+ * @author Alexander Rhine
+ * @since 3-2-2019
+ */
+
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
