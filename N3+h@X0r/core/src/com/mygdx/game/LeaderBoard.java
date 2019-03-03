@@ -1,7 +1,6 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -23,12 +22,13 @@ public class LeaderBoard implements Screen {
     public LeaderBoard(NetworkingGame game){
         this.game = game;
         camera = new OrthographicCamera();
-        //readFile(leaderboardList);          //read the file once it's initialized
+        readFile(leaderboardList);          //read the file once it's initialized
     }
 
     //reads in the file for fake data
     public void readFile(ArrayList<Player> list) {
-        FileHandle handle = Gdx.files.internal("core/assets/files/Fake_Leaderboard_Data.txt");
+        FileHandle handle;
+        handle = Gdx.files.internal("core/assets/files/Fake_Leaderboard_Data.txt");
         String eachLine = handle.readString();
         String lineArray[] = eachLine.split(",");
 
@@ -59,8 +59,8 @@ public class LeaderBoard implements Screen {
         batch = new SpriteBatch();
         leaderboard = new Texture("core/assets/finalleaderboard.png");
         //star = new Texture("core/assets/star.png");
-        Sprite starSprite = new Sprite(new Texture("core/assets/star.png"));
-        starSprite.setSize(50f, 35f);
+        //Sprite starSprite = new Sprite(new Texture("core/assets/star.png"));
+        //starSprite.setSize(50f, 35f);
     }
 
     @Override
