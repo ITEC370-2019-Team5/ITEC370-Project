@@ -20,7 +20,7 @@ public class CharacterScreen implements Screen
 
     private NetworkingGame game;
     private OrthographicCamera camera;
-    private Texture chooseChar, previous, next, returnHome;
+    private Texture chooseChar, randomChar, returnHome;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
 
@@ -34,9 +34,8 @@ public class CharacterScreen implements Screen
     public void render(float deltaTime){
         batch.begin();
         batch.draw(chooseChar, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
-        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 130);
-        batch.draw(previous, camera.viewportWidth / 2 - 200, 60);
-        batch.draw(next, camera.viewportWidth / 2 + 5, 60);
+        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
+        batch.draw(randomChar, camera.viewportWidth / 2 - 200, 555);
 
         float x = camera.viewportWidth / 2; //Halfway across x-axis
         float y = camera.viewportHeight / 2; //Halfway across y-axis
@@ -44,7 +43,7 @@ public class CharacterScreen implements Screen
         //Return Home button
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 190 && Gdx.input.getY() <= (y * 2) - 130)
+                Gdx.input.getY() >= (y * 2) - 685 && Gdx.input.getY() <= (y * 2) - 625)
         {
             if(Gdx.input.isTouched() == true)
             {
@@ -60,7 +59,7 @@ public class CharacterScreen implements Screen
         //Previous Character button
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x - 5
                 &&
-                Gdx.input.getY() >= (y * 2) - 120 && Gdx.input.getY() <= (y * 2) - 60)
+                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555)
         {
             if(Gdx.input.isTouched() == true)
             {
@@ -72,27 +71,8 @@ public class CharacterScreen implements Screen
                 countPush = 0;
             }
         }
-        //Next Character button
-        if(Gdx.input.getX() >= x + 5 && Gdx.input.getX() <= x + 200
-                &&
-                Gdx.input.getY() >= (y * 2) - 120 && Gdx.input.getY() <= (y * 2) - 60)
-        {
-            if(Gdx.input.isTouched() == true)
-            {
-                countPush++;
-                if (countPush == 1)
-                {
-                    System.out.println("NEXT CHARACTER BUTTON PUSHED");
-                }
-                countPush = 0;
-            }
-        }
-
-
 
         batch.end();
-
-
     }
 
     @Override
@@ -100,8 +80,7 @@ public class CharacterScreen implements Screen
         camera.setToOrtho(false, 600, 400);
         batch = new SpriteBatch();
         returnHome = new Texture("core/assets/Return_Button.png");
-        previous = new Texture("core/assets/Previous_Button.png");
-        next = new Texture("core/assets/Next_Character_Button.png");
+        randomChar = new Texture("core/assets/Random_Button.png");
         chooseChar = new Texture("core/assets/Character_Screen.png");
     }
 
