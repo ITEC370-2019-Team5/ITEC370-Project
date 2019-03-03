@@ -17,9 +17,7 @@ public class CharacterScreen implements Screen
 {
     public static final int RETURN_HOME_BUTTON_WIDTH = 400;
     public static final int RETURN_HOME_BUTTON_HEIGTH = 60;
-    public static final int PREV_BUTTON_WIDTH = 195;
-    public static final int PREV_BUTTON_HEIGHT = 60;
-    public static final int NEXT_CHAR_BUTTON_WIDTH = 195;
+    public static final int R_CHAR_BUTTON_WIDTH = 195;
     public static final int NEXT_CHAR_BUTTON_HEIGHT = 60;
 
     public static final int SCREEN_WIDTH = 0;
@@ -30,7 +28,6 @@ public class CharacterScreen implements Screen
     private Texture chooseChar, randomChar, returnHome;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
-
 
     public CharacterScreen(NetworkingGame game){
         this.game = game;
@@ -47,7 +44,7 @@ public class CharacterScreen implements Screen
         float x = camera.viewportWidth / 2; //Halfway across x-axis
         float y = camera.viewportHeight / 2; //Halfway across y-axis
 
-        //Return Home button
+        //Area where Return button is clickable.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
                 Gdx.input.getY() >= (y * 2) - 685 && Gdx.input.getY() <= (y * 2) - 625)
@@ -57,13 +54,13 @@ public class CharacterScreen implements Screen
                 countPush++;
                 if (countPush == 1)
                 {
-                    game.changeScreen(0);
+                    game.changeScreen(0); //Returns to home screen.
                     System.out.println("HOME SCREEN BUTTON PUSHED");
                 }
                 countPush = 0;
             }
         }
-        //Previous Character button
+        //Area where Previous Character button is clickable.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x - 5
                 &&
                 Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555)
@@ -86,9 +83,9 @@ public class CharacterScreen implements Screen
     public void show() {
         camera.setToOrtho(false, 600, 400);
         batch = new SpriteBatch();
-        returnHome = new Texture("core/assets/Return_Button.png");
-        randomChar = new Texture("core/assets/Random_Button.png");
-        chooseChar = new Texture("core/assets/Character_Screen.png");
+        returnHome = new Texture("core/assets/CharSelectPics/Return_Button.png");
+        randomChar = new Texture("core/assets/CharSelectPics/Random_Button.png");
+        chooseChar = new Texture("core/assets/CharSelectPics/Character_Screen.png");
     }
 
     @Override
