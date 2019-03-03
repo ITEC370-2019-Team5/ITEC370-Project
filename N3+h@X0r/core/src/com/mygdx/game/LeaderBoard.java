@@ -22,7 +22,8 @@ public class LeaderBoard implements Screen {
     public LeaderBoard(NetworkingGame game){
         this.game = game;
         camera = new OrthographicCamera();
-        readFile(leaderboardList);          //read the file once it's initialized
+        //readFile(leaderboardList);            //read the file once it's initialized
+        //sortByVirusesFixed(leaderboardList);
     }
 
     //reads in the file for fake data
@@ -40,6 +41,23 @@ public class LeaderBoard implements Screen {
 
         Player p = new Player(playerName, beatGame, collectableCount, virusesFixed);
         list.add(p);
+    }
+
+    public void sortByVirusesFixed(ArrayList<Player> list) {
+        int startVal = 0;
+
+        for(int i=1;i<list.size();i++) {
+            int virusScore = list.get(i).getVirusesFixed();
+            if(virusScore >= startVal) {
+                printPlayer(list.get(i));
+                startVal = virusScore;
+            }
+        }
+    }
+
+    public void printPlayer(Player p) {
+        System.out.println(p.getBeatGame()+"\t"+p.getPlayerName()+"\t"+
+                p.getCollectableCount()+"\t"+p.getVirusesFixed()+"\n");
     }
 
     @Override
