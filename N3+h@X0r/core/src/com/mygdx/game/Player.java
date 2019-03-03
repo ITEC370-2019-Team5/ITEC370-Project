@@ -22,4 +22,37 @@ public class Player extends Sprite {
         this.collectableCount = collectableCount;
         this.virusesFixed = virusesFixed;
     }
+
+    //getters and setters
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public boolean getBeatGame() {
+        return beatGame;
+    }
+
+    public void setBeatGame(boolean beatGame) {
+        this.beatGame = beatGame;
+    }
+
+    public int getCollectableCount() {
+        return collectableCount;
+    }
+
+    public void setCollectableCount(int collectableCount) {
+        this.collectableCount = collectableCount;
+    }
+
+    public int getVirusesFixed() {
+        return virusesFixed;
+    }
+
+    public void setVirusesFixed(int collectableCount) {
+        this.collectableCount = collectableCount;
+    }
 }
