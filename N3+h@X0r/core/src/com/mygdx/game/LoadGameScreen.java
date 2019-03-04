@@ -8,11 +8,13 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class LoadGameScreen implements Screen
 {
@@ -27,10 +29,16 @@ public class LoadGameScreen implements Screen
     private Texture loadChar, chooseFile, returnHome, coverLoad, coverNext;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
+    private Stage stage;
+    private Skin skin;
+    private TextField textField;
+    private boolean init;
 
     public LoadGameScreen(NetworkingGame game){
         this.game = game;
+
         camera = new OrthographicCamera();
+        init = false;
     }
 
     @Override
@@ -67,24 +75,39 @@ public class LoadGameScreen implements Screen
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
-                    System.out.println("LOAD BUTTON PUSHED");
+                    System.out.println(textField.getText());
                 }
                 countPush = 0;
             }
         }
-
         batch.end();
+        stage.act(deltaTime);
+        stage.draw();
     }
 
     @Override
     public void show() {
-        camera.setToOrtho(false, 600, 400);
-        batch = new SpriteBatch();
-        returnHome = new Texture("core/assets/LoadGamePics/Return_Button.png");
-        loadChar = new Texture("core/assets/CharSelectPics/Character_Screen.png");
-        chooseFile = new Texture("core/assets/LoadGamePics/Load_File.png");
-        coverLoad = new Texture("core/assets/LoadGamePics/Black_Image.png");
-        coverNext = new Texture("core/assets/LoadGamePics/Black_Image.png");
+        if(init == false) {
+            batch = new SpriteBatch();
+            stage = new Stage();
+            init = true;
+
+            skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
+
+            textField = new TextField("", skin);
+            textField.setPosition(300, 250);
+            textField.setSize(300, 40);
+
+            stage.addActor(textField);
+            Gdx.input.setInputProcessor(stage);
+
+            camera.setToOrtho(false, 600, 400);
+            returnHome = new Texture("core/assets/LoadGamePics/Return_Button.png");
+            loadChar = new Texture("core/assets/LoadGamePics/Load_Screen.png");
+            chooseFile = new Texture("core/assets/LoadGamePics/Load_File.png");
+            coverLoad = new Texture("core/assets/LoadGamePics/Black_Image.png");
+            coverNext = new Texture("core/assets/LoadGamePics/Black_Image.png");
+        }
     }
 
     @Override

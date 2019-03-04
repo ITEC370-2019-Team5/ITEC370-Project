@@ -27,10 +27,12 @@ public class CharacterScreen implements Screen
     private Texture chooseChar, randomChar, returnHome, coverLoad, coverNext;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
+    private boolean init;
 
     public CharacterScreen(NetworkingGame game){
         this.game = game;
         camera = new OrthographicCamera();
+        init = false;
     }
 
     @Override
@@ -78,13 +80,16 @@ public class CharacterScreen implements Screen
 
     @Override
     public void show() {
-        camera.setToOrtho(false, 600, 400);
-        batch = new SpriteBatch();
-        returnHome = new Texture("core/assets/CharSelectPics/Return_Button.png");
-        randomChar = new Texture("core/assets/CharSelectPics/Random_Button.png");
-        chooseChar = new Texture("core/assets/CharSelectPics/Character_Screen.png");
-        coverLoad = new Texture("core/assets/CharSelectPics/Black_Image.png");
-        coverNext = new Texture("core/assets/CharSelectPics/Black_Image.png");
+        if(init == false) {
+            init = true;
+            camera.setToOrtho(false, 600, 400);
+            batch = new SpriteBatch();
+            returnHome = new Texture("core/assets/CharSelectPics/Return_Button.png");
+            randomChar = new Texture("core/assets/CharSelectPics/Random_Button.png");
+            chooseChar = new Texture("core/assets/CharSelectPics/Character_Screen.png");
+            coverLoad = new Texture("core/assets/CharSelectPics/Black_Image.png");
+            coverNext = new Texture("core/assets/CharSelectPics/Black_Image.png");
+        }
     }
 
     @Override
