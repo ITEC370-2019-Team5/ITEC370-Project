@@ -63,7 +63,7 @@ public class LeaderBoard implements Screen {
     @Override
     public void render(float delta) {
         batch.begin();
-        batch.draw(leaderboard, 150, 300);
+        batch.draw(leaderboard, 5, 150);
 
         //batch.draw(star, 55, 0);
         batch.end();
