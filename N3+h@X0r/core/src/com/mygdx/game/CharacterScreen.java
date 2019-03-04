@@ -8,6 +8,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -63,13 +64,10 @@ public class CharacterScreen implements Screen
         //Area where Previous Character button is clickable.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x - 5
                 &&
-                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555)
-        {
-            if(Gdx.input.isTouched() == true)
-            {
+                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555) {
+            if (Gdx.input.isTouched() == true) {
                 countPush++;
-                if (countPush == 1)
-                {
+                if (countPush == 1) {
                     System.out.println("PREVIOUS BUTTON PUSHED");
                 }
                 countPush = 0;
