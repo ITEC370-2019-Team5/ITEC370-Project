@@ -18,21 +18,21 @@ public class LeaderBoard implements Screen {
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private boolean init;
+    private FileHandle handle;
 
     //Empty Constructor
     public LeaderBoard(NetworkingGame game){
         this.game = game;
         camera = new OrthographicCamera();
-        //readFile(leaderboardList);            //read the file once it's initialized
         //sortByVirusesFixed(leaderboardList);
         init = false;
     }
 
     //reads in the file for fake data
     public void readFile(ArrayList<Player> list) {
-        FileHandle handle;
         handle = Gdx.files.internal("core/assets/files/Fake_Leaderboard_Data.txt");
         String eachLine = handle.readString();
+        System.out.println(eachLine);
         String lineArray[] = eachLine.split(",");
 
         //adding split array values to ArrayList
@@ -42,24 +42,20 @@ public class LeaderBoard implements Screen {
         int virusesFixed = Integer.parseInt(lineArray[3]);
 
         Player p = new Player(playerName, beatGame, collectableCount, virusesFixed);
+        System.out.println(p.toString()); //debugging purposes
         list.add(p);
     }
 
     public void sortByVirusesFixed(ArrayList<Player> list) {
         int startVal = 0;
 
-        for(int i=1;i<list.size();i++) {
+        for(int i=0;i<list.size();i++) {
             int virusScore = list.get(i).getVirusesFixed();
             if(virusScore >= startVal) {
-                printPlayer(list.get(i));
+                System.out.println(list.get(i).toString());
                 startVal = virusScore;
             }
         }
-    }
-
-    public void printPlayer(Player p) {
-        System.out.println(p.getBeatGame()+"\t"+p.getPlayerName()+"\t"+
-                p.getCollectableCount()+"\t"+p.getVirusesFixed()+"\n");
     }
 
     @Override
@@ -84,6 +80,7 @@ public class LeaderBoard implements Screen {
             //Sprite starSprite = new Sprite(new Texture("core/assets/star.png"));
             //starSprite.setSize(50f, 35f);
             init = true;
+            readFile(leaderboardList);            //read the file once it's initialized
         }
     }
 

@@ -23,6 +23,10 @@ public class Player extends Sprite {
         this.virusesFixed = virusesFixed;
     }
 
+    public String toString() {
+        return beatGame+"\t"+playerName+"\t"+
+                        collectableCount+"\t"+virusesFixed+"\n";
+    }
     //getters and setters
     public String getPlayerName() {
         return playerName;
