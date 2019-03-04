@@ -71,6 +71,19 @@ public class LeaderBoard implements Screen {
         batch.begin();
         batch.draw(leaderboard, 5, 150);
 
+        if(lineArray[1].equals("true"))
+        {
+            batch.draw(star, 100,0);
+        }
+        if(lineArray[5].equals("true"))
+        {
+            batch.draw(star, 100,0);
+        }
+        if(lineArray[9].equals("true"))
+        {
+            batch.draw(star, 100,100);
+        }
+
         //batch.draw(star, 55, 0);
         batch.end();
         stage.act(delta);
@@ -87,9 +100,8 @@ public class LeaderBoard implements Screen {
             batch = new SpriteBatch();
             stage = new Stage();
             leaderboard = new Texture("core/assets/finalleaderboard.png");
-            //star = new Texture("core/assets/star.png");
-            //Sprite starSprite = new Sprite(new Texture("core/assets/star.png"));
-            //starSprite.setSize(50f, 35f);
+            star = new Texture("core/assets/star.png");
+
             init = true;
             readFile(leaderboardList);            //read the file once it's initialized
 
@@ -97,8 +109,8 @@ public class LeaderBoard implements Screen {
 
             //nameText1
             nameText1 = new TextField(lineArray[0], skin);
-            nameText1.setPosition(300, 250);
-            nameText1.setSize(300, 40);
+            nameText1.setPosition(300, 150);
+            nameText1.setSize(110, 20);
             stage.addActor(nameText1);
 
             //nameText2
