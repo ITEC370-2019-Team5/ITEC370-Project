@@ -18,15 +18,13 @@ public class CharacterScreen implements Screen
 {
     public static final int RETURN_HOME_BUTTON_WIDTH = 400;
     public static final int RETURN_HOME_BUTTON_HEIGTH = 60;
-    public static final int R_CHAR_BUTTON_WIDTH = 195;
+    public static final int NEXT_CHAR_BUTTON_WIDTH = 400;
     public static final int NEXT_CHAR_BUTTON_HEIGHT = 60;
 
-    public static final int SCREEN_WIDTH = 0;
-    public static final int SCREEN_HEIGHT = 0;
 
     private NetworkingGame game;
     private OrthographicCamera camera;
-    private Texture chooseChar, randomChar, returnHome;
+    private Texture chooseChar, randomChar, returnHome, coverLoad, coverNext;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
 
@@ -41,6 +39,8 @@ public class CharacterScreen implements Screen
         batch.draw(chooseChar, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
         batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
         batch.draw(randomChar, camera.viewportWidth / 2 - 200, 555);
+        batch.draw(coverLoad, camera.viewportWidth / 2 - 200, 60);
+        batch.draw(coverNext, camera.viewportWidth / 2 + 5, 60);
 
         float x = camera.viewportWidth / 2; //Halfway across x-axis
         float y = camera.viewportHeight / 2; //Halfway across y-axis
@@ -62,7 +62,7 @@ public class CharacterScreen implements Screen
             }
         }
         //Area where Previous Character button is clickable.
-        if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x - 5
+        if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
                 Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555) {
             if (Gdx.input.isTouched() == true) {
@@ -84,6 +84,8 @@ public class CharacterScreen implements Screen
         returnHome = new Texture("core/assets/CharSelectPics/Return_Button.png");
         randomChar = new Texture("core/assets/CharSelectPics/Random_Button.png");
         chooseChar = new Texture("core/assets/CharSelectPics/Character_Screen.png");
+        coverLoad = new Texture("core/assets/Black_Image.png");
+        coverNext = new Texture("core/assets/Black_Image.png");
     }
 
     @Override

@@ -15,9 +15,6 @@ public class MainMenu implements Screen
     public static final int NEXT_CHAR_BUTTON_WIDTH = 195;
     public static final int NEXT_CHAR_BUTTON_HEIGHT = 60;
 
-    public static final int SCREEN_WIDTH = 0;
-    public static final int SCREEN_HEIGHT = 0;
-
     private NetworkingGame game;
     private OrthographicCamera camera;
     private Texture mainMenu, play, load, next;
