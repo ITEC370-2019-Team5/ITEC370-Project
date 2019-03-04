@@ -9,6 +9,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     CharacterScreen charScreen = new CharacterScreen(this);
     LeaderBoard leaderboard = new LeaderBoard(this);
     Screen stage = new Stage();
+    int currentScreenNum = 0;//Keeps Track of screen number for leaderboard.
 
     @Override
     public void create () {
@@ -27,6 +28,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
         super.render();
         if(screen == 0)
         {
+            currentScreenNum = 0;
             setScreen(mainMenu);
             if(Gdx.input.isKeyPressed(Input.Keys.L))
             {
@@ -35,18 +37,28 @@ public class NetworkingGame extends Game implements ApplicationListener {
         }
         else if(screen == 1)
         {
+            currentScreenNum = 1;
             setScreen(stage);
+            if(Gdx.input.isKeyPressed(Input.Keys.L))
+            {
+                changeScreen(3); //shows leaderboard
+            }
         }
         else if(screen == 2)
         {
+            currentScreenNum = 2;
             setScreen(charScreen);
+            if(Gdx.input.isKeyPressed(Input.Keys.L))
+            {
+                changeScreen(3); //shows leaderboard
+            }
         }
         else if(screen == 3)
         {
             setScreen(leaderboard);
             if(Gdx.input.isKeyPressed(Input.Keys.L))
             {
-                changeScreen(0); //shows leaderboard
+                changeScreen(currentScreenNum); //shows leaderboard
             }
         }
         else
