@@ -69,19 +69,19 @@ public class LeaderBoard implements Screen {
     @Override
     public void render(float delta) {
         batch.begin();
-        batch.draw(leaderboard, 5, 150);
+        batch.draw(leaderboard, 300, 300);
 
         if(lineArray[1].equals("true"))
         {
-            batch.draw(star, 100,0);
+            batch.draw(star, 310,350);
         }
         if(lineArray[5].equals("true"))
         {
-            batch.draw(star, 100,0);
+            batch.draw(star, 310, 450);
         }
         if(lineArray[9].equals("true"))
         {
-            batch.draw(star, 100,100);
+            batch.draw(star, 310,400);
         }
 
         //batch.draw(star, 55, 0);
@@ -109,56 +109,56 @@ public class LeaderBoard implements Screen {
 
             //nameText1
             nameText1 = new TextField(lineArray[0], skin);
-            nameText1.setPosition(300, 150);
-            nameText1.setSize(110, 20);
+            nameText1.setPosition(345, 350);
+            nameText1.setSize(100, 20);
             stage.addActor(nameText1);
 
             //nameText2
-            nameText2 = new TextField(lineArray[5], skin);
-            nameText2.setPosition(300, 250);
-            nameText2.setSize(300, 40);
+            nameText2 = new TextField(lineArray[4], skin);
+            nameText2.setPosition(345, 450);
+            nameText2.setSize(100, 20);
             stage.addActor(nameText2);
 
             //nameText3
             nameText3 = new TextField(lineArray[8], skin);
-            nameText3.setPosition(300, 250);
-            nameText3.setSize(300, 40);
+            nameText3.setPosition(345, 400);
+            nameText3.setSize(100, 20);
             stage.addActor(nameText3);
 
             //collectableText1
-            collectableText1 = new TextField(lineArray[2], skin);
-            collectableText1.setPosition(300, 250);
-            collectableText1.setSize(300, 40);
+            collectableText1 = new TextField(lineArray[2] + "/25", skin);
+            collectableText1.setPosition(450, 350);
+            collectableText1.setSize(45, 20);
             stage.addActor(collectableText1);
 
             //collectableText2
-            colleactableText2 = new TextField(lineArray[6], skin);
-            colleactableText2.setPosition(300, 250);
-            colleactableText2.setSize(300, 40);
+            colleactableText2 = new TextField(lineArray[6] + "/25", skin);
+            colleactableText2.setPosition(450, 450);
+            colleactableText2.setSize(47, 20);
             stage.addActor(colleactableText2);
 
             //collectableText3
-            collectableText3 = new TextField(lineArray[10], skin);
-            collectableText3.setPosition(300, 250);
-            collectableText3.setSize(300, 40);
+            collectableText3 = new TextField(lineArray[10] + "/25", skin);
+            collectableText3.setPosition(450, 400);
+            collectableText3.setSize(47, 20);
             stage.addActor(collectableText3);
 
             //virusText1
             virusText1 = new TextField(lineArray[3], skin);
-            virusText1.setPosition(300, 250);
-            virusText1.setSize(300, 40);
+            virusText1.setPosition(525, 350);
+            virusText1.setSize(25, 20);
             stage.addActor(virusText1);
 
             //virusText2
             virusText2 = new TextField(lineArray[7], skin);
-            virusText2.setPosition(300, 250);
-            virusText2.setSize(300, 40);
+            virusText2.setPosition(525, 450);
+            virusText2.setSize(25, 20);
             stage.addActor(virusText2);
 
             //virusText3
             virusText3 = new TextField(lineArray[11], skin);
-            virusText3.setPosition(300, 250);
-            virusText3.setSize(300, 40);
+            virusText3.setPosition(525, 400);
+            virusText3.setSize(25, 20);
             stage.addActor(virusText3);
 
         }
