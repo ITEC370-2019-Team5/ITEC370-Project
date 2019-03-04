@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 
 import java.util.ArrayList;
@@ -19,6 +22,11 @@ public class LeaderBoard implements Screen {
     private SpriteBatch batch;
     private boolean init;
     private FileHandle handle;
+    private TextField nameText1, nameText2, nameText3, collectableText1, colleactableText2, collectableText3,
+            virusText1, virusText2, virusText3;
+    private String[] lineArray;
+    private Skin skin;
+    private Stage stage;
 
     //Empty Constructor
     public LeaderBoard(NetworkingGame game){
@@ -33,7 +41,7 @@ public class LeaderBoard implements Screen {
         handle = Gdx.files.internal("core/assets/files/Fake_Leaderboard_Data.txt");
         String eachLine = handle.readString();
         System.out.println(eachLine);
-        String lineArray[] = eachLine.split(",");
+        lineArray = eachLine.split(",");
 
         //adding split array values to ArrayList
         String playerName = lineArray[0];
@@ -65,6 +73,8 @@ public class LeaderBoard implements Screen {
 
         //batch.draw(star, 55, 0);
         batch.end();
+        stage.act(delta);
+        stage.draw();
 
 
     }
@@ -75,12 +85,70 @@ public class LeaderBoard implements Screen {
         {
             camera.setToOrtho(false, 600, 400);
             batch = new SpriteBatch();
+            stage = new Stage();
             leaderboard = new Texture("core/assets/finalleaderboard.png");
             //star = new Texture("core/assets/star.png");
             //Sprite starSprite = new Sprite(new Texture("core/assets/star.png"));
             //starSprite.setSize(50f, 35f);
             init = true;
             readFile(leaderboardList);            //read the file once it's initialized
+
+            skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
+
+            //nameText1
+            nameText1 = new TextField(lineArray[0], skin);
+            nameText1.setPosition(300, 250);
+            nameText1.setSize(300, 40);
+            stage.addActor(nameText1);
+
+            //nameText2
+            nameText2 = new TextField(lineArray[5], skin);
+            nameText2.setPosition(300, 250);
+            nameText2.setSize(300, 40);
+            stage.addActor(nameText2);
+
+            //nameText3
+            nameText3 = new TextField(lineArray[8], skin);
+            nameText3.setPosition(300, 250);
+            nameText3.setSize(300, 40);
+            stage.addActor(nameText3);
+
+            //collectableText1
+            collectableText1 = new TextField(lineArray[2], skin);
+            collectableText1.setPosition(300, 250);
+            collectableText1.setSize(300, 40);
+            stage.addActor(collectableText1);
+
+            //collectableText2
+            colleactableText2 = new TextField(lineArray[6], skin);
+            colleactableText2.setPosition(300, 250);
+            colleactableText2.setSize(300, 40);
+            stage.addActor(colleactableText2);
+
+            //collectableText3
+            collectableText3 = new TextField(lineArray[10], skin);
+            collectableText3.setPosition(300, 250);
+            collectableText3.setSize(300, 40);
+            stage.addActor(collectableText3);
+
+            //virusText1
+            virusText1 = new TextField(lineArray[3], skin);
+            virusText1.setPosition(300, 250);
+            virusText1.setSize(300, 40);
+            stage.addActor(virusText1);
+
+            //virusText2
+            virusText2 = new TextField(lineArray[7], skin);
+            virusText2.setPosition(300, 250);
+            virusText2.setSize(300, 40);
+            stage.addActor(virusText2);
+
+            //virusText3
+            virusText3 = new TextField(lineArray[11], skin);
+            virusText3.setPosition(300, 250);
+            virusText3.setSize(300, 40);
+            stage.addActor(virusText3);
+
         }
     }
 
