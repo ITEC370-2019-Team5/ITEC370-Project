@@ -46,7 +46,6 @@ public class MainMenu implements Screen
             if(Gdx.input.isTouched() == true)
             {
                 game.changeScreen(1);
-                System.out.println("Set 1");
             }
         }
         //Load button
@@ -56,7 +55,7 @@ public class MainMenu implements Screen
         {
             if(Gdx.input.isTouched() == true)
             {
-                System.out.println("LOAD");
+                game.changeScreen(4);
             }
         }
         //Next Char button
@@ -70,7 +69,6 @@ public class MainMenu implements Screen
                 if (countPush == 1)
                 {
                     game.changeScreen(2);
-                    System.out.println("NEXT");
                 }
                 countPush = 0;
             }
@@ -87,10 +85,10 @@ public class MainMenu implements Screen
     public void show() {
         camera.setToOrtho(false, 600, 400);
         batch = new SpriteBatch();
-        play = new Texture("core/assets/Play_Button.png");
-        load = new Texture("core/assets/Load_Button.png");
-        next = new Texture("core/assets/Next_Button.png");
-        mainMenu = new Texture("core/assets/Title_Screen.png");
+        play = new Texture("core/assets/MainMenuPics/Play_Button.png");
+        load = new Texture("core/assets/MainMenuPics/Load_Button.png");
+        next = new Texture("core/assets/MainMenuPics/Next_Button.png");
+        mainMenu = new Texture("core/assets/MainMenuPics/Title_Screen.png");
     }
 
     @Override

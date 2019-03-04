@@ -1,8 +1,8 @@
 /**
  * CharacterScreen.java
  *
- * @author Alexander Rhine
- * @since 3-2-2019
+ * @author Michael Donaldson
+ * @since 3-4-2019
  */
 
 package com.mygdx.game;
@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class CharacterScreen implements Screen
+public class LoadGameScreen implements Screen
 {
     public static final int RETURN_HOME_BUTTON_WIDTH = 400;
     public static final int RETURN_HOME_BUTTON_HEIGTH = 60;
@@ -24,11 +24,11 @@ public class CharacterScreen implements Screen
 
     private NetworkingGame game;
     private OrthographicCamera camera;
-    private Texture chooseChar, randomChar, returnHome, coverLoad, coverNext;
+    private Texture loadChar, chooseFile, returnHome, coverLoad, coverNext;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
 
-    public CharacterScreen(NetworkingGame game){
+    public LoadGameScreen(NetworkingGame game){
         this.game = game;
         camera = new OrthographicCamera();
     }
@@ -36,9 +36,9 @@ public class CharacterScreen implements Screen
     @Override
     public void render(float deltaTime){
         batch.begin();
-        batch.draw(chooseChar, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
+        batch.draw(loadChar, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
         batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
-        batch.draw(randomChar, camera.viewportWidth / 2 - 200, 555);
+        batch.draw(chooseFile, camera.viewportWidth / 2 - 200, 555);
         batch.draw(coverLoad, camera.viewportWidth / 2 - 200, 60);
         batch.draw(coverNext, camera.viewportWidth / 2 + 5, 60);
 
@@ -67,7 +67,7 @@ public class CharacterScreen implements Screen
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
-                    System.out.println("RANDOM BUTTON PUSHED");
+                    System.out.println("LOAD BUTTON PUSHED");
                 }
                 countPush = 0;
             }
@@ -80,11 +80,11 @@ public class CharacterScreen implements Screen
     public void show() {
         camera.setToOrtho(false, 600, 400);
         batch = new SpriteBatch();
-        returnHome = new Texture("core/assets/CharSelectPics/Return_Button.png");
-        randomChar = new Texture("core/assets/CharSelectPics/Random_Button.png");
-        chooseChar = new Texture("core/assets/CharSelectPics/Character_Screen.png");
-        coverLoad = new Texture("core/assets/CharSelectPics/Black_Image.png");
-        coverNext = new Texture("core/assets/CharSelectPics/Black_Image.png");
+        returnHome = new Texture("core/assets/LoadGamePics/Return_Button.png");
+        loadChar = new Texture("core/assets/CharSelectPics/Character_Screen.png");
+        chooseFile = new Texture("core/assets/LoadGamePics/Load_File.png");
+        coverLoad = new Texture("core/assets/LoadGamePics/Black_Image.png");
+        coverNext = new Texture("core/assets/LoadGamePics/Black_Image.png");
     }
 
     @Override
