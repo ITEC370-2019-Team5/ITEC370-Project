@@ -17,6 +17,7 @@ public class LeaderBoard implements Screen {
     private NetworkingGame game;
     private OrthographicCamera camera;
     private SpriteBatch batch;
+    private boolean init;
 
     //Empty Constructor
     public LeaderBoard(NetworkingGame game){
@@ -24,6 +25,7 @@ public class LeaderBoard implements Screen {
         camera = new OrthographicCamera();
         //readFile(leaderboardList);            //read the file once it's initialized
         //sortByVirusesFixed(leaderboardList);
+        init = false;
     }
 
     //reads in the file for fake data
@@ -73,12 +75,16 @@ public class LeaderBoard implements Screen {
 
     @Override
     public void show() {
-        camera.setToOrtho(false, 600, 400);
-        batch = new SpriteBatch();
-        leaderboard = new Texture("core/assets/finalleaderboard.png");
-        //star = new Texture("core/assets/star.png");
-        //Sprite starSprite = new Sprite(new Texture("core/assets/star.png"));
-        //starSprite.setSize(50f, 35f);
+        if(init == false)
+        {
+            camera.setToOrtho(false, 600, 400);
+            batch = new SpriteBatch();
+            leaderboard = new Texture("core/assets/finalleaderboard.png");
+            //star = new Texture("core/assets/star.png");
+            //Sprite starSprite = new Sprite(new Texture("core/assets/star.png"));
+            //starSprite.setSize(50f, 35f);
+            init = true;
+        }
     }
 
     @Override
