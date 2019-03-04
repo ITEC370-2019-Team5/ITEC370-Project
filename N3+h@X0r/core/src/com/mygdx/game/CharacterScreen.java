@@ -16,12 +16,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class CharacterScreen implements Screen
 {
-    public static final int RETURN_HOME_BUTTON_WIDTH = 400;
-    public static final int RETURN_HOME_BUTTON_HEIGTH = 60;
-    public static final int NEXT_CHAR_BUTTON_WIDTH = 400;
-    public static final int NEXT_CHAR_BUTTON_HEIGHT = 60;
-
-
     private NetworkingGame game;
     private OrthographicCamera camera;
     private Texture chooseChar, randomChar, returnHome, coverLoad, coverNext;
