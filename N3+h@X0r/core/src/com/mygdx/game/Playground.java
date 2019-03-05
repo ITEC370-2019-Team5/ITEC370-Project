@@ -12,79 +12,71 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class Playground implements Screen , ApplicationListener {
-    private NetworkingGame game;
+	private TiledMap map;
+	private OrthogonalTiledMapRenderer renderer;
+	private OrthographicCamera camera;
+	private TiledMapTileLayer platformingLayer;
+	private int[] decorationLayers;
 
-    private TiledMap map;
-    private OrthogonalTiledMapRenderer renderer;
-    private OrthographicCamera camera;
-    private TiledMapTileLayer platformingLayer;
-    private int[] decorationLayers;
+	@Override
+	public void show() {
+		map = new TmxMapLoader().load("core/assets/TestLevel.tmx");
+		renderer = new OrthogonalTiledMapRenderer(map);
+		MapLayers layers = map.getLayers();
+		platformingLayer = (TiledMapTileLayer) layers.get("Platforming");
+		decorationLayers = new int[]{
+				layers.getIndex("Background")
+		};
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 600, 400);
+	}
 
-    public Playground(NetworkingGame game){
-        this.game = game;
-        camera = new OrthographicCamera();
-    }
+	@Override
+	public void render (float delta) {
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		camera.position.x = 120;
+		camera.position.y = 120;
+		camera.zoom = 2/5f;
 
-    @Override
-    public void show() {
-        map = new TmxMapLoader().load("core/assets/TestLevel.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
-        MapLayers layers = map.getLayers();
-        platformingLayer = (TiledMapTileLayer) layers.get("Platforming");
-        decorationLayers = new int[]{
-                layers.getIndex("Background"),
-                layers.getIndex("Decorations")
-        };
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 600, 400);
-    }
+		camera.update();
+		renderer.setView(camera);
+		renderer.render(decorationLayers);
+		renderer.getBatch().begin();
+		renderer.renderTileLayer(platformingLayer);
+		renderer.getBatch().end();
+	}
 
-    @Override
-    public void render (float delta) {
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.position.x = 120;
-        camera.position.y = 120;
-        camera.zoom = 2/5f;
+	@Override
+	public void render() {
+	}
 
-        camera.update();
-        renderer.setView(camera);
-        renderer.render(decorationLayers);
-        renderer.getBatch().begin();
-        renderer.renderTileLayer(platformingLayer);
-        renderer.getBatch().end();
-    }
+	@Override
+	public void resize(int width, int height) {
+		camera.viewportWidth = width;
+		camera.viewportHeight = height;
+	}
 
-    @Override
-    public void render() {
-    }
+	@Override
+	public void create() {
+	}
 
-    @Override
-    public void resize(int width, int height) {
-        camera.viewportWidth = width;
-        camera.viewportHeight = height;
-    }
+	@Override
+	public void pause() {
+	}
 
-    @Override
-    public void create() {
-    }
+	@Override
+	public void resume() {
+	}
 
-    @Override
-    public void pause() {
-    }
+	@Override
+	public void hide() {
+		dispose();
+	}
 
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void hide() {
-        dispose();
-    }
-
-    @Override
-    public void dispose () {
-        map.dispose();
-        renderer.dispose();
-    }
+	@Override
+	public void dispose () {
+		map.dispose();
+		renderer.dispose();
+	}
 }
