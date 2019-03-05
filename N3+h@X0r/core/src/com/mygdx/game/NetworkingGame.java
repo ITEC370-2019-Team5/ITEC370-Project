@@ -28,7 +28,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     @Override
     public void render () {
         super.render();
-        if(screen == 0)
+        if(screen == 0) //MainMenu
         {
             currentScreenNum = 0;
             setScreen(mainMenu);
@@ -37,7 +37,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
                 changeScreen(3); //shows leaderboard
             }
         }
-        else if(screen == 1)
+        else if(screen == 1) //PlayGround
         {
             currentScreenNum = 1;
             setScreen(playground);
@@ -46,7 +46,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
                 changeScreen(3); //shows leaderboard
             }
         }
-        else if(screen == 2)
+        else if(screen == 2) //Character Selection
         {
             currentScreenNum = 2;
             setScreen(charScreen);
@@ -55,7 +55,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
                 changeScreen(3); //shows leaderboard
             }
         }
-        else if(screen == 3)
+        else if(screen == 3) //Leaderboard
         {
             setScreen(leaderboard);
             if(Gdx.input.isKeyPressed(Input.Keys.L))
@@ -63,7 +63,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
                 changeScreen(currentScreenNum); //shows leaderboard
             }
         }
-        else if(screen == 4)
+        else if(screen == 4) //Loading screen
         {
             setScreen(load);
         }

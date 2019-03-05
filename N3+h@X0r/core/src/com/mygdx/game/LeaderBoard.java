@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -15,20 +14,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import java.util.ArrayList;
 
 public class LeaderBoard implements Screen {
-    private ArrayList<Player> leaderboardList = new ArrayList<Player>();
-    private Texture leaderboard, star;
-    private NetworkingGame game;
-    private OrthographicCamera camera;
-    private SpriteBatch batch;
-    private boolean init;
-    private FileHandle handle;
-    private TextField nameText1, nameText2, nameText3, collectableText1, colleactableText2, collectableText3,
-            virusText1, virusText2, virusText3;
-    private String[] lineArray;
-    private Skin skin;
-    private Stage stage;
 
-    //Empty Constructor
+    private NetworkingGame game; //Instance of the NetworkingGame class.
+    private OrthographicCamera camera; //The camera object.
+    private SpriteBatch batch; //Sprite batch object.
+    private Stage stage; //Stage to be displayed.
+    private Texture leaderboard, star; //LeaderBoard's textures.
+    private Skin skin; //Skin object used for the TextField.
+    private TextField nameText1, nameText2, nameText3, collectableText1, colleactableText2, collectableText3,
+            virusText1, virusText2, virusText3; // Textfields that are used as the leaderboard.
+    private FileHandle handle; //handles file input.
+    private ArrayList<Player> leaderboardList = new ArrayList<Player>(); //ArrayList of player on the leaderboard.
+    private String[] lineArray; //String of input data.
+    private boolean init; //Stops memory leaks.
+
+    //Method to init the class.
     public LeaderBoard(NetworkingGame game){
         this.game = game;
         camera = new OrthographicCamera();
