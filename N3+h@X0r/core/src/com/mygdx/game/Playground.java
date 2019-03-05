@@ -12,11 +12,17 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class Playground implements Screen , ApplicationListener {
+	private NetworkingGame game;
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
 	private OrthographicCamera camera;
 	private TiledMapTileLayer platformingLayer;
 	private int[] decorationLayers;
+
+	public Playground(NetworkingGame game){
+		this.game = game;
+		camera = new OrthographicCamera();
+	}
 
 	@Override
 	public void show() {
