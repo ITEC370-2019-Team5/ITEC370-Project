@@ -22,7 +22,7 @@ public class LeaderBoard implements Screen {
     private Texture leaderboard, star; //LeaderBoard's textures.
     private Skin skin; //Skin object used for the TextField.
     private TextField nameText1, nameText2, nameText3, collectableText1, colleactableText2, collectableText3,
-            virusText1, virusText2, virusText3; // Textfields that are used as the leaderboard.
+            scoreText1, scoreText2, scoreText3; // Textfields that are used as the leaderboard.
     private FileHandle handle; //handles file input.
     private ArrayList<Player> leaderboardList = new ArrayList<Player>(); //ArrayList of player on the leaderboard.
     private String[] lineArray; //String of input data.
@@ -47,21 +47,21 @@ public class LeaderBoard implements Screen {
         String playerName = lineArray[0];
         boolean beatGame = Boolean.parseBoolean(lineArray[1]);
         int collectableCount = Integer.parseInt(lineArray[2]);
-        int virusesFixed = Integer.parseInt(lineArray[3]);
+        int totalScore = Integer.parseInt(lineArray[3]);
 
-        Player p = new Player(playerName, beatGame, collectableCount, virusesFixed);
+        Player p = new Player(playerName, beatGame, collectableCount, totalScore);
         System.out.println(p.toString()); //debugging purposes
         list.add(p);
     }
 
-    public void sortByVirusesFixed(ArrayList<Player> list) {
+    public void sortByTotalScore(ArrayList<Player> list) {
         int startVal = 0;
 
         for(int i=0;i<list.size();i++) {
-            int virusScore = list.get(i).getVirusesFixed();
-            if(virusScore >= startVal) {
+            int totalScore = list.get(i).getTotalScore();
+            if(totalScore >= startVal) {
                 System.out.println(list.get(i).toString());
-                startVal = virusScore;
+                startVal = totalScore;
             }
         }
     }
@@ -69,19 +69,19 @@ public class LeaderBoard implements Screen {
     @Override
     public void render(float delta) {
         batch.begin();
-        batch.draw(leaderboard, 300, 300);
+        batch.draw(leaderboard, 130, 60);
 
         if(lineArray[1].equals("true"))
         {
-            batch.draw(star, 310,350);
+            batch.draw(star, 250,360);
         }
         if(lineArray[5].equals("true"))
         {
-            batch.draw(star, 310, 450);
+            batch.draw(star, 250, 560);
         }
         if(lineArray[9].equals("true"))
         {
-            batch.draw(star, 310,400);
+            batch.draw(star, 250,460);
         }
 
         //batch.draw(star, 55, 0);
@@ -99,7 +99,7 @@ public class LeaderBoard implements Screen {
             camera.setToOrtho(false, 600, 400);
             batch = new SpriteBatch();
             stage = new Stage();
-            leaderboard = new Texture("core/assets/finalleaderboard.png");
+            leaderboard = new Texture("core/assets/bigleaderboard.png");
             star = new Texture("core/assets/star.png");
 
             init = true;
@@ -109,57 +109,57 @@ public class LeaderBoard implements Screen {
 
             //nameText1
             nameText1 = new TextField(lineArray[0], skin);
-            nameText1.setPosition(345, 350);
-            nameText1.setSize(100, 20);
+            nameText1.setPosition(325, 360);
+            nameText1.setSize(100, 25);
             stage.addActor(nameText1);
 
             //nameText2
             nameText2 = new TextField(lineArray[4], skin);
-            nameText2.setPosition(345, 450);
-            nameText2.setSize(100, 20);
+            nameText2.setPosition(325, 560);
+            nameText2.setSize(100, 25);
             stage.addActor(nameText2);
 
             //nameText3
             nameText3 = new TextField(lineArray[8], skin);
-            nameText3.setPosition(345, 400);
-            nameText3.setSize(100, 20);
+            nameText3.setPosition(325, 460);
+            nameText3.setSize(100, 25);
             stage.addActor(nameText3);
 
             //collectableText1
             collectableText1 = new TextField(lineArray[2] + "/25", skin);
-            collectableText1.setPosition(450, 350);
-            collectableText1.setSize(45, 20);
+            collectableText1.setPosition(475, 360);
+            collectableText1.setSize(45, 25);
             stage.addActor(collectableText1);
 
             //collectableText2
             colleactableText2 = new TextField(lineArray[6] + "/25", skin);
-            colleactableText2.setPosition(450, 450);
-            colleactableText2.setSize(47, 20);
+            colleactableText2.setPosition(475, 560);
+            colleactableText2.setSize(47, 25);
             stage.addActor(colleactableText2);
 
             //collectableText3
             collectableText3 = new TextField(lineArray[10] + "/25", skin);
-            collectableText3.setPosition(450, 400);
-            collectableText3.setSize(47, 20);
+            collectableText3.setPosition(475, 460);
+            collectableText3.setSize(47, 25);
             stage.addActor(collectableText3);
 
-            //virusText1
-            virusText1 = new TextField(lineArray[3], skin);
-            virusText1.setPosition(525, 350);
-            virusText1.setSize(25, 20);
-            stage.addActor(virusText1);
+            //scoreText1
+            scoreText1 = new TextField(lineArray[3], skin);
+            scoreText1.setPosition(625, 360);
+            scoreText1.setSize(50, 25);
+            stage.addActor(scoreText1);
 
-            //virusText2
-            virusText2 = new TextField(lineArray[7], skin);
-            virusText2.setPosition(525, 450);
-            virusText2.setSize(25, 20);
-            stage.addActor(virusText2);
+            //scoreText2
+            scoreText2 = new TextField(lineArray[7], skin);
+            scoreText2.setPosition(625, 560);
+            scoreText2.setSize(50, 25);
+            stage.addActor(scoreText2);
 
-            //virusText3
-            virusText3 = new TextField(lineArray[11], skin);
-            virusText3.setPosition(525, 400);
-            virusText3.setSize(25, 20);
-            stage.addActor(virusText3);
+            //scoreText3
+            scoreText3 = new TextField(lineArray[11], skin);
+            scoreText3.setPosition(625, 460);
+            scoreText3.setSize(50, 25);
+            stage.addActor(scoreText3);
 
         }
     }

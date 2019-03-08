@@ -7,7 +7,7 @@ public class Player extends Sprite {
     public static final int COLLECTABLES = 0;
     private boolean beatGame = false;
     private int collectableCount = 0;
-    private int virusesFixed = 0;
+    private int totalScore = 0;
 
     //Empty Constructor
     public Player() {
@@ -15,17 +15,17 @@ public class Player extends Sprite {
     }
 
     //Full Constructor
-    public Player(String playerName, boolean beatGame, int collectableCount, int virusesFixed) {
+    public Player(String playerName, boolean beatGame, int collectableCount, int totalScore) {
         super();
         this.playerName = playerName;
         this.beatGame = beatGame;
         this.collectableCount = collectableCount;
-        this.virusesFixed = virusesFixed;
+        this.totalScore = totalScore;
     }
 
     public String toString() {
         return beatGame+"\t"+playerName+"\t"+
-                        collectableCount+"\t"+virusesFixed+"\n";
+                        collectableCount+"\t"+totalScore+"\n";
     }
     //getters and setters
     public String getPlayerName() {
@@ -52,11 +52,11 @@ public class Player extends Sprite {
         this.collectableCount = collectableCount;
     }
 
-    public int getVirusesFixed() {
-        return virusesFixed;
+    public int getTotalScore() {
+        return totalScore;
     }
 
-    public void setVirusesFixed(int collectableCount) {
-        this.collectableCount = collectableCount;
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
     }
 }
