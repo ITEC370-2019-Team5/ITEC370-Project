@@ -28,6 +28,16 @@ public class LeaderBoard implements Screen {
     private String[] lineArray; //String of input data.
     private boolean init; //Stops memory leaks.
 
+    /*
+    private int starXCoord = 250;
+    private int nameXCoord = 325;
+    private int collectXCoord = 475;
+    private int scoreXCoord = 625;
+    private int thirdPlaceYCoord = 360;
+    private int secondPlaceYCoord = 460;
+    private int firstPlaceYCoord = 560;
+    */
+
     //Method to init the class.
     public LeaderBoard(NetworkingGame game){
         this.game = game;
