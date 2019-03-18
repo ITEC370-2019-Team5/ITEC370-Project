@@ -28,7 +28,7 @@ public class LeaderBoard implements Screen {
     private String[] lineArray; //String of input data.
     private boolean init; //Stops memory leaks.
 
-    /*
+    // Established coordintates so to set x or y coordinates for 1st place, 2nd place, etc.
     private int starXCoord = 250;
     private int nameXCoord = 325;
     private int collectXCoord = 475;
@@ -36,7 +36,6 @@ public class LeaderBoard implements Screen {
     private int thirdPlaceYCoord = 360;
     private int secondPlaceYCoord = 460;
     private int firstPlaceYCoord = 560;
-    */
 
     //Method to init the class.
     public LeaderBoard(NetworkingGame game){
@@ -64,6 +63,7 @@ public class LeaderBoard implements Screen {
         list.add(p);
     }
 
+    //method may not be necessary to keep
     public void sortByTotalScore(ArrayList<Player> list) {
         int startVal = 0;
 
@@ -83,15 +83,15 @@ public class LeaderBoard implements Screen {
 
         if(lineArray[1].equals("true"))
         {
-            batch.draw(star, 250,360);
+            batch.draw(star, starXCoord,thirdPlaceYCoord);
         }
         if(lineArray[5].equals("true"))
         {
-            batch.draw(star, 250, 560);
+            batch.draw(star, starXCoord, firstPlaceYCoord);
         }
         if(lineArray[9].equals("true"))
         {
-            batch.draw(star, 250,460);
+            batch.draw(star, starXCoord,secondPlaceYCoord);
         }
 
         //batch.draw(star, 55, 0);
@@ -119,55 +119,55 @@ public class LeaderBoard implements Screen {
 
             //nameText1
             nameText1 = new TextField(lineArray[0], skin);
-            nameText1.setPosition(325, 360);
+            nameText1.setPosition(nameXCoord, 360);
             nameText1.setSize(100, 25);
             stage.addActor(nameText1);
 
             //nameText2
             nameText2 = new TextField(lineArray[4], skin);
-            nameText2.setPosition(325, 560);
+            nameText2.setPosition(nameXCoord, 560);
             nameText2.setSize(100, 25);
             stage.addActor(nameText2);
 
             //nameText3
             nameText3 = new TextField(lineArray[8], skin);
-            nameText3.setPosition(325, 460);
+            nameText3.setPosition(nameXCoord, 460);
             nameText3.setSize(100, 25);
             stage.addActor(nameText3);
 
             //collectableText1
             collectableText1 = new TextField(lineArray[2] + "/25", skin);
-            collectableText1.setPosition(475, 360);
+            collectableText1.setPosition(collectXCoord, 360);
             collectableText1.setSize(45, 25);
             stage.addActor(collectableText1);
 
             //collectableText2
             colleactableText2 = new TextField(lineArray[6] + "/25", skin);
-            colleactableText2.setPosition(475, 560);
+            colleactableText2.setPosition(collectXCoord, 560);
             colleactableText2.setSize(47, 25);
             stage.addActor(colleactableText2);
 
             //collectableText3
             collectableText3 = new TextField(lineArray[10] + "/25", skin);
-            collectableText3.setPosition(475, 460);
+            collectableText3.setPosition(collectXCoord, 460);
             collectableText3.setSize(47, 25);
             stage.addActor(collectableText3);
 
             //scoreText1
             scoreText1 = new TextField(lineArray[3], skin);
-            scoreText1.setPosition(625, 360);
+            scoreText1.setPosition(scoreXCoord, 360);
             scoreText1.setSize(50, 25);
             stage.addActor(scoreText1);
 
             //scoreText2
             scoreText2 = new TextField(lineArray[7], skin);
-            scoreText2.setPosition(625, 560);
+            scoreText2.setPosition(scoreXCoord, 560);
             scoreText2.setSize(50, 25);
             stage.addActor(scoreText2);
 
             //scoreText3
             scoreText3 = new TextField(lineArray[11], skin);
-            scoreText3.setPosition(625, 460);
+            scoreText3.setPosition(scoreXCoord, 460);
             scoreText3.setSize(50, 25);
             stage.addActor(scoreText3);
 
