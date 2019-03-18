@@ -16,7 +16,7 @@ public class Inventory implements Screen{
     private OrthographicCamera camera; //The camera object.
     private SpriteBatch batch; //Sprite batch object.
     private Stage stage; //Stage to be displayed.
-    private Texture inventory, characterPic; //LeaderBoard's textures.
+    private Texture inventory, avatarPic;
     private Skin skin; //Skin object used for the TextField.
     private boolean init; //Stops memory leaks.
     private ArrayList<Item> itemList = new ArrayList<Item>();
@@ -46,16 +46,10 @@ public class Inventory implements Screen{
             batch = new SpriteBatch();
             stage = new Stage();
             //inventory = new Texture("core/assets/bigleaderboard.png");
-            //characterPic = new Texture("core/assets/star.png");
+            //avatarPic = new Texture("core/assets/star.png");
             init = true;
 
             skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
-
-            //template code for adding items to inventory and setting coordinates and size
-            //nameText1 = new TextField(lineArray[0], skin);
-            //nameText1.setPosition(nameXCoord, 360);
-            //nameText1.setSize(100, 25);
-            //stage.addActor(nameText1);
         }
     }
 
