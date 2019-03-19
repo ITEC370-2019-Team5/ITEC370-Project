@@ -16,7 +16,7 @@ public class Inventory implements Screen{
     private OrthographicCamera camera; //The camera object.
     private SpriteBatch batch; //Sprite batch object.
     private Stage stage; //Stage to be displayed.
-    private Texture inventory, avatarPic;
+    private Texture inventory;
     private Skin skin; //Skin object used for the TextField.
     private boolean init; //Stops memory leaks.
     private ArrayList<Item> itemList = new ArrayList<Item>();
@@ -45,8 +45,7 @@ public class Inventory implements Screen{
             camera.setToOrtho(false, 600, 400);
             batch = new SpriteBatch();
             stage = new Stage();
-            //inventory = new Texture("core/assets/bigleaderboard.png");
-            //avatarPic = new Texture("core/assets/star.png");
+            //inventory = new Texture("core/assets/inventory_page.png");
             init = true;
 
             skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
