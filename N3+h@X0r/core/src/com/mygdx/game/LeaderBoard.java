@@ -9,9 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-
-
-import java.util.ArrayList;
+import java.util*;
 
 public class LeaderBoard implements Screen {
 
@@ -93,8 +91,6 @@ public class LeaderBoard implements Screen {
         {
             batch.draw(star, starXCoord,secondPlaceYCoord);
         }
-
-        //batch.draw(star, 55, 0);
         batch.end();
         stage.act(delta);
         stage.draw();

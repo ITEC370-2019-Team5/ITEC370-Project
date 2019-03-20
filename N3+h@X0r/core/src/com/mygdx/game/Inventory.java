@@ -45,7 +45,7 @@ public class Inventory implements Screen{
             camera.setToOrtho(false, 600, 400);
             batch = new SpriteBatch();
             stage = new Stage();
-            //inventory = new Texture("core/assets/inventory_page.png");
+            inventory = new Texture("core/assets/inventory_page.png");
             init = true;
 
             skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
