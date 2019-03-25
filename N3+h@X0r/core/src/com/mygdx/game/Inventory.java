@@ -31,7 +31,7 @@ public class Inventory implements Screen{
     @Override
     public void render(float delta) {
         batch.begin();
-        batch.draw(inventory, 130, 60);
+        batch.draw(inventory, 200, 120);
 
         batch.end();
         stage.act(delta);
