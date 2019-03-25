@@ -10,7 +10,6 @@ public class NetworkingGame extends Game implements ApplicationListener {
     CharacterScreen charScreen = new CharacterScreen(this);
     LeaderBoard leaderboard = new LeaderBoard(this);
     LoadGameScreen load = new LoadGameScreen(this);
-    Inventory inventory = new Inventory(this);
 
     int currentScreenNum = 0;//Keeps Track of screen number for leaderboard.
 
@@ -29,7 +28,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     @Override
     public void render () {
         super.render();
-        if(screen == 0) //MainMenu
+        if(screen == 0)
         {
             currentScreenNum = 0;
             setScreen(mainMenu);
@@ -37,12 +36,8 @@ public class NetworkingGame extends Game implements ApplicationListener {
             {
                 changeScreen(3); //shows leaderboard
             }
-            if(Gdx.input.isKeyPressed(Input.Keys.I))
-            {
-                changeScreen(5); //shows inventory
-            }
         }
-        else if(screen == 1) //PlayGround
+        else if(screen == 1)
         {
             currentScreenNum = 1;
             setScreen(playground);
@@ -50,12 +45,8 @@ public class NetworkingGame extends Game implements ApplicationListener {
             {
                 changeScreen(3); //shows leaderboard
             }
-            if(Gdx.input.isKeyPressed(Input.Keys.I))
-            {
-                changeScreen(5); //shows inventory
-            }
         }
-        else if(screen == 2) //Character Selection
+        else if(screen == 2)
         {
             currentScreenNum = 2;
             setScreen(charScreen);
@@ -63,34 +54,18 @@ public class NetworkingGame extends Game implements ApplicationListener {
             {
                 changeScreen(3); //shows leaderboard
             }
-            if(Gdx.input.isKeyPressed(Input.Keys.I))
-            {
-                changeScreen(5); //shows inventory
-            }
         }
-        else if(screen == 3) //Leaderboard
+        else if(screen == 3)
         {
             setScreen(leaderboard);
             if(Gdx.input.isKeyPressed(Input.Keys.L))
             {
                 changeScreen(currentScreenNum); //shows leaderboard
             }
-            if(Gdx.input.isKeyPressed(Input.Keys.I))
-            {
-                changeScreen(5); //shows inventory
-            }
         }
-        else if(screen == 4) //Loading screen
+        else if(screen == 4)
         {
             setScreen(load);
-        }
-        else if(screen == 5) //Inventory screen
-        {
-            setScreen(inventory);
-            if(Gdx.input.isKeyPressed(Input.Keys.I))
-            {
-                changeScreen(currentScreenNum); //goes back
-            }
         }
         else
         {

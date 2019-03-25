@@ -18,17 +18,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class LoadGameScreen implements Screen
 {
-    private NetworkingGame game; //Instance of the NetworkingGame class.
-    private OrthographicCamera camera; //The camera object.
-    private Texture loadChar, chooseFile, returnHome, coverLoad, coverNext; //LoadGame's textures.
-    private Skin skin; //Skin object used for the TextField.
-    private SpriteBatch batch; //Sprite batch object.
-    private Stage stage; //Stage being displayed.
-    private TextField textField; //The TextField object.
-    private int countPush = 0; //Used to only click button once. -AR
-    private boolean init; //Stops memory leaks.
+    public static final int RETURN_HOME_BUTTON_WIDTH = 400;
+    public static final int RETURN_HOME_BUTTON_HEIGTH = 60;
+    public static final int NEXT_CHAR_BUTTON_WIDTH = 400;
+    public static final int NEXT_CHAR_BUTTON_HEIGHT = 60;
 
-    //Method to init the class.
+
+    private NetworkingGame game;
+    private OrthographicCamera camera;
+    private Texture loadChar, chooseFile, returnHome, coverLoad, coverNext;
+    private SpriteBatch batch;
+    private int countPush = 0; //Used to only click button once. -AR
+    private Stage stage;
+    private Skin skin;
+    private TextField textField;
+    private boolean init;
+
     public LoadGameScreen(NetworkingGame game){
         this.game = game;
 
@@ -38,22 +43,20 @@ public class LoadGameScreen implements Screen
 
     @Override
     public void render(float deltaTime){
-
-        float x = camera.viewportWidth; //Halfway across x-axis
-        float y = camera.viewportHeight; //Halfway across y-axis
-
         batch.begin();
+        batch.draw(loadChar, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
+        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
+        batch.draw(chooseFile, camera.viewportWidth / 2 - 200, 555);
+        batch.draw(coverLoad, camera.viewportWidth / 2 - 200, 60);
+        batch.draw(coverNext, camera.viewportWidth / 2 + 5, 60);
 
-        batch.draw(loadChar, x/2 - 325, y/2 - 325); //Center the main image (According to a 900x900 screen)
-        batch.draw(returnHome, x/2 - 200, y/2 + 180);
-        batch.draw(chooseFile, x/2 - 200, y/2 + 110);
-        batch.draw(coverLoad, x/2 - 200, 60);
-        batch.draw(coverNext, x/2 + 5, 60);
+        float x = camera.viewportWidth / 2; //Halfway across x-axis
+        float y = camera.viewportHeight / 2; //Halfway across y-axis
 
         //Area where Return button is clickable.
-        if(Gdx.input.getX() >= x/2 - 200 && Gdx.input.getX() <= x/2 + 200
+        if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y/2 - 180) - 60 && Gdx.input.getY() <= y/2 - 180)
+                Gdx.input.getY() >= (y * 2) - 685 && Gdx.input.getY() <= (y * 2) - 625)
         {
             if(Gdx.input.isTouched() == true)
             {
@@ -66,14 +69,13 @@ public class LoadGameScreen implements Screen
             }
         }
         //Area where Previous Character button is clickable.
-        if(Gdx.input.getX() >= x/2 - 200 && Gdx.input.getX() <= x/2 + 200
+        if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y/2 - 180) - 60 && Gdx.input.getY() <= y/2 - 110) {
+                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
                     System.out.println(textField.getText());
-                    //HERE IS WHERE WE GET THE FILE TO INPUT.
                 }
                 countPush = 0;
             }

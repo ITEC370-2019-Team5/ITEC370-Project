@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -12,31 +14,33 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class Playground implements Screen , ApplicationListener {
+	private NetworkingGame game;
 
-	private NetworkingGame game; //Instance of the NetworkingGame class.
-	private OrthographicCamera camera; //The camera object.
-	private OrthogonalTiledMapRenderer renderer; //Rendering object.
-	private TiledMap map; //Map to be displayed.
-	private TiledMapTileLayer platformingLayer; //Layer that is impassible.
-	private int[] decorationLayers; //Array of decorations, make the map look nice.
+	private TiledMap map;
+	private OrthogonalTiledMapRenderer renderer;
+	private OrthographicCamera camera;
+	private TiledMapTileLayer platformingLayer;
+	private int[] decorationLayers;
+	private Player player;
 
-	//Method to init the class.
 	public Playground(NetworkingGame game){
 		this.game = game;
-		camera = new OrthographicCamera();
 	}
 
 	@Override
 	public void show() {
-		map = new TmxMapLoader().load("core/assets/TestLevel.tmx");
+		map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
 		renderer = new OrthogonalTiledMapRenderer(map);
 		MapLayers layers = map.getLayers();
 		platformingLayer = (TiledMapTileLayer) layers.get("Platforming");
 		decorationLayers = new int[]{
 				layers.getIndex("Background")
 		};
+		player = new Player(new Sprite(new Texture("core/assets/CharSelectPics/C1_WalkDown2.png")), platformingLayer);
+		player.setBounds(0,0, 16,16);
+		player.setPosition(8 * platformingLayer.getTileWidth(),1 * platformingLayer.getTileHeight());
+
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 600, 400);
 	}
 
 	@Override
@@ -46,12 +50,26 @@ public class Playground implements Screen , ApplicationListener {
 		camera.position.x = 120;
 		camera.position.y = 120;
 		camera.zoom = 2/5f;
+		camera.setToOrtho(false, 600, 400);
+		map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
+		renderer = new OrthogonalTiledMapRenderer(map);
+		MapLayers layers = map.getLayers();
+		platformingLayer = (TiledMapTileLayer) layers.get("Platforming");
+		decorationLayers = new int[]{
+				layers.getIndex("Background")
+		};
+
+		player.setCollisionLayer(platformingLayer);
+		player.setPosition(8 * platformingLayer.getTileWidth(),1 * platformingLayer.getTileHeight());
+		player.setBounds(player.getX(),player.getY(),16,16);
 
 		camera.update();
 		renderer.setView(camera);
 		renderer.render(decorationLayers);
 		renderer.getBatch().begin();
 		renderer.renderTileLayer(platformingLayer);
+		player.update(delta);
+		player.draw(renderer.getBatch());
 		renderer.getBatch().end();
 	}
 
@@ -84,6 +102,7 @@ public class Playground implements Screen , ApplicationListener {
 
 	@Override
 	public void dispose () {
+		player.getTexture().dispose();
 		map.dispose();
 		renderer.dispose();
 	}
