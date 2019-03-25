@@ -71,22 +71,31 @@ public class NetworkingGame extends Game implements ApplicationListener {
         else if(screen == 3)
         {
             setScreen(leaderboard);
-            if(Gdx.input.isKeyPressed(Input.Keys.L))
+            if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             {
-                changeScreen(currentScreenNum); //shows leaderboard
-            }
-            if(Gdx.input.isKeyPressed(Input.Keys.I))
-            {
-                changeScreen(5); //shows leaderboard
+                changeScreen(currentScreenNum);
             }
         }
         else if(screen == 4)
         {
             setScreen(load);
+            if(Gdx.input.isKeyPressed(Input.Keys.L))
+            {
+                changeScreen(3); //shows leaderboard
+            }
+            if(Gdx.input.isKeyPressed(Input.Keys.I))
+            {
+                changeScreen(5); //shows leaderboard
+            }
+
         }
         else if(screen == 5)
         {
             setScreen(inventory);
+            if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            {
+                changeScreen(currentScreenNum);
+            }
         }
         else
         {
