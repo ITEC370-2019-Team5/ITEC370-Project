@@ -16,6 +16,9 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 public class Playground implements Screen , ApplicationListener {
 	private NetworkingGame game;
 
+	private boolean showOnce = false;
+	private boolean rendOnce = false;
+	private double id = Math.random();
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
 	private OrthographicCamera camera;
@@ -29,17 +32,25 @@ public class Playground implements Screen , ApplicationListener {
 
 	@Override
 	public void show() {
-		map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
+		if(showOnce == false)
+		{
+			map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
+		}
 		renderer = new OrthogonalTiledMapRenderer(map);
 		MapLayers layers = map.getLayers();
 		platformingLayer = (TiledMapTileLayer) layers.get("Platforming");
 		decorationLayers = new int[]{
 				layers.getIndex("Background")
 		};
-		player = new Player(new Sprite(new Texture("core/assets/CharSelectPics/C1_WalkDown2.png")), platformingLayer);
-		player.setBounds(0,0, 16,16);
-		player.setPosition(8 * platformingLayer.getTileWidth(),1 * platformingLayer.getTileHeight());
 
+		if(showOnce == false) {
+
+			player = new Player(new Sprite(new Texture("core/assets/CharSelectPics/C1_WalkDown2.png")), platformingLayer);
+			player.setBounds(0, 0, 16, 16);
+			player.setPosition(8 * platformingLayer.getTileWidth(), 1 * platformingLayer.getTileHeight());
+			System.out.println("test1");
+			showOnce = true;
+		}
 		camera = new OrthographicCamera();
 	}
 
@@ -51,6 +62,7 @@ public class Playground implements Screen , ApplicationListener {
 		camera.position.y = 120;
 		camera.zoom = 2/5f;
 		camera.setToOrtho(false, 600, 400);
+
 		map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
 		renderer = new OrthogonalTiledMapRenderer(map);
 		MapLayers layers = map.getLayers();
@@ -58,12 +70,16 @@ public class Playground implements Screen , ApplicationListener {
 		decorationLayers = new int[]{
 				layers.getIndex("Background")
 		};
-
 		player.setCollisionLayer(platformingLayer);
-		player.setPosition(8 * platformingLayer.getTileWidth(),1 * platformingLayer.getTileHeight());
-		player.setBounds(player.getX(),player.getY(),16,16);
 
-		System.out.println(player.getID());
+
+		if(rendOnce == false)
+		{
+			player.setPosition(8 * platformingLayer.getTileWidth(),1 * platformingLayer.getTileHeight());
+			player.setBounds(player.getX(),player.getY(),16,16);
+			System.out.println("test2");
+			rendOnce = true;
+		}
 
 		camera.update();
 		renderer.setView(camera);
@@ -107,5 +123,8 @@ public class Playground implements Screen , ApplicationListener {
 		player.getTexture().dispose();
 		map.dispose();
 		renderer.dispose();
+	}
+	public double getID(){
+		return id;
 	}
 }

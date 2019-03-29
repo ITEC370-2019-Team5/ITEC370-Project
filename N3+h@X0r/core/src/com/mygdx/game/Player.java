@@ -14,7 +14,7 @@ public class Player extends Sprite {
 
     private Vector2 velocity = new Vector2();
     private float speed = 90;
-    private double id = Math.random();
+
 
     private TiledMapTileLayer collisionLayer;
     private Texture[] c1Textures = new Texture[]{
@@ -253,9 +253,5 @@ public class Player extends Sprite {
 
     public void setCollisionLayer(TiledMapTileLayer collisionLayer) {
         this.collisionLayer = collisionLayer;
-    }
-
-    public double getID(){
-        return id;
     }
 }

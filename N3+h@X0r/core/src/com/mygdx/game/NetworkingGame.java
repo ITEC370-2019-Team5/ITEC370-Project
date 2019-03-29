@@ -30,7 +30,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     @Override
     public void render () {
         super.render();
-        if(screen == 0)
+        if(screen == 0) //Main menu
         {
             currentScreenNum = 0;
             setScreen(mainMenu);
@@ -40,10 +40,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
             }
             if(Gdx.input.isKeyPressed(Input.Keys.I))
             {
-                changeScreen(5); //shows leaderboard
+                changeScreen(5); //shows inventory
             }
         }
-        else if(screen == 1)
+        else if(screen == 1) //Playground
         {
             currentScreenNum = 1;
             setScreen(playground);
@@ -53,10 +53,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
             }
             if(Gdx.input.isKeyPressed(Input.Keys.I))
             {
-                changeScreen(5); //shows leaderboard
+                changeScreen(5); //shows inventory
             }
         }
-        else if(screen == 2)
+        else if(screen == 2)//Character selection
         {
             currentScreenNum = 2;
             setScreen(charScreen);
@@ -66,10 +66,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
             }
             if(Gdx.input.isKeyPressed(Input.Keys.I))
             {
-                changeScreen(5); //shows leaderboard
+                changeScreen(5); //shows inventory
             }
         }
-        else if(screen == 3)
+        else if(screen == 3)//Leaderboard
         {
             setScreen(leaderboard);
             if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
@@ -77,7 +77,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
                 changeScreen(currentScreenNum);
             }
         }
-        else if(screen == 4)
+        else if(screen == 4)//Loading screen
         {
             setScreen(load);
             if(Gdx.input.isKeyPressed(Input.Keys.L))
@@ -86,11 +86,11 @@ public class NetworkingGame extends Game implements ApplicationListener {
             }
             if(Gdx.input.isKeyPressed(Input.Keys.I))
             {
-                changeScreen(5); //shows leaderboard
+                changeScreen(5); //shows inventory
             }
 
         }
-        else if(screen == 5)
+        else if(screen == 5)//Inventory screen
         {
             setScreen(inventory);
             if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
