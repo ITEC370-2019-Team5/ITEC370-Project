@@ -63,6 +63,8 @@ public class Playground implements Screen , ApplicationListener {
 		player.setPosition(8 * platformingLayer.getTileWidth(),1 * platformingLayer.getTileHeight());
 		player.setBounds(player.getX(),player.getY(),16,16);
 
+		System.out.println(player.getID());
+
 		camera.update();
 		renderer.setView(camera);
 		renderer.render(decorationLayers);

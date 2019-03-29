@@ -4,6 +4,7 @@ import com.badlogic.gdx.*;
 
 public class NetworkingGame extends Game implements ApplicationListener {
 
+    private String gameName = "N3+h@Z0r";
     private int screen = 0;
     MainMenu mainMenu = new MainMenu(this);
     Playground playground = new Playground(this);
@@ -121,5 +122,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
     @Override
     public void resume () {
         super.resume();
+    }
+
+    public void setGameName(String name)
+    {
+        gameName = name;
     }
 }

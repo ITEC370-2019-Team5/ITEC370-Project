@@ -18,15 +18,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class LoadGameScreen implements Screen
 {
-    public static final int RETURN_HOME_BUTTON_WIDTH = 400;
-    public static final int RETURN_HOME_BUTTON_HEIGTH = 60;
-    public static final int NEXT_CHAR_BUTTON_WIDTH = 400;
-    public static final int NEXT_CHAR_BUTTON_HEIGHT = 60;
-
 
     private NetworkingGame game;
     private OrthographicCamera camera;
-    private Texture loadChar, chooseFile, returnHome, coverLoad, coverNext;
+    private Texture loadChar, chooseFile, returnHome, coverLoad, coverNext, setName;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
     private Stage stage;
@@ -47,6 +42,7 @@ public class LoadGameScreen implements Screen
         batch.draw(loadChar, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
         batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
         batch.draw(chooseFile, camera.viewportWidth / 2 - 200, 555);
+        batch.draw(setName, camera.viewportWidth / 2 - 200, 485);
         batch.draw(coverLoad, camera.viewportWidth / 2 - 200, 60);
         batch.draw(coverNext, camera.viewportWidth / 2 + 5, 60);
 
@@ -68,7 +64,7 @@ public class LoadGameScreen implements Screen
                 countPush = 0;
             }
         }
-        //Area where Previous Character button is clickable.
+        //Area where Load file is.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
                 Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555) {
@@ -76,6 +72,19 @@ public class LoadGameScreen implements Screen
                 countPush++;
                 if (countPush == 1) {
                     System.out.println(textField.getText());
+                }
+                countPush = 0;
+            }
+        }
+        //Area where Load file is.
+        if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
+                &&
+                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 485) {
+            if (Gdx.input.isTouched() == true) {
+                countPush++;
+                if (countPush == 1) {
+                    game.setGameName(textField.getText());
+                    textField.clear();
                 }
                 countPush = 0;
             }
@@ -107,6 +116,7 @@ public class LoadGameScreen implements Screen
             chooseFile = new Texture("core/assets/LoadGamePics/Load_File.png");
             coverLoad = new Texture("core/assets/LoadGamePics/Black_Image.png");
             coverNext = new Texture("core/assets/LoadGamePics/Black_Image.png");
+            setName = new Texture("core/assets/LoadGamePics/SaveGameName.png");
         }
     }
 

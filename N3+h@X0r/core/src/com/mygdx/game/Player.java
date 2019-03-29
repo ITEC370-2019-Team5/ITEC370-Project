@@ -14,6 +14,7 @@ public class Player extends Sprite {
 
     private Vector2 velocity = new Vector2();
     private float speed = 90;
+    private double id = Math.random();
 
     private TiledMapTileLayer collisionLayer;
     private Texture[] c1Textures = new Texture[]{
@@ -101,6 +102,7 @@ public class Player extends Sprite {
 
         // Moving Down
         if(pressingS && !pressingA && !pressingD && !pressingW){
+            System.out.println("Down " + downTime+" " + getX()+" " + getY());
             translateY(-2f);
             System.out.println("Down " + downTime+" " + getX()+" " + getY());
             if(downTime < 10)
@@ -114,7 +116,6 @@ public class Player extends Sprite {
             if(downTime == 40)
                 downTime = 0;
             downTime++;
-            System.out.println(downTime);
         }
 
         // Moving Left
@@ -254,5 +255,7 @@ public class Player extends Sprite {
         this.collisionLayer = collisionLayer;
     }
 
-
+    public double getID(){
+        return id;
+    }
 }
