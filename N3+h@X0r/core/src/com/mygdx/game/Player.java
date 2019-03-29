@@ -12,9 +12,6 @@ import java.awt.*;
 
 public class Player extends Sprite {
 
-    private Vector2 velocity = new Vector2();
-    private float speed = 90;
-
 
     private TiledMapTileLayer collisionLayer;
     private Texture[] c1Textures = new Texture[]{
@@ -71,29 +68,6 @@ public class Player extends Sprite {
     }
 
     void update(float delta){
-
-        float oldX = getX(), oldY = getY();
-        boolean collisionX = false, collisionY = false;
-
-        setX(getX() + velocity.x * delta);
-        if (velocity.x < 0)
-            collisionX = collidesLeft();
-        else if (velocity.x > 0)
-            collisionX = collidesRight();
-        if (collisionX) {
-            setX(oldX);
-            velocity.x = 0;
-        }
-
-        setY(getY() + velocity.y * delta);
-        if (velocity.y < 0)
-            collisionY = collidesBottom();
-        else if (velocity.y > 0)
-            collisionY = collidesTop();
-        if (collisionY) {
-            setX(oldY);
-            velocity.y = 0;
-        }
         
         pressingS = Gdx.input.isKeyPressed(Input.Keys.S);
         pressingD = Gdx.input.isKeyPressed(Input.Keys.D);
@@ -101,70 +75,71 @@ public class Player extends Sprite {
         pressingA = Gdx.input.isKeyPressed(Input.Keys.A);
 
         // Moving Down
-        if(pressingS && !pressingA && !pressingD && !pressingW){
-            System.out.println("Down " + downTime+" " + getX()+" " + getY());
+        if(pressingS && !pressingA && !pressingD && !pressingW && !collidesBottom()){
             translateY(-2f);
-            System.out.println("Down " + downTime+" " + getX()+" " + getY());
-            if(downTime < 10)
+            if(downTime < 5)
                 setTexture(c1Textures[0]);
-            if(downTime >= 10 && downTime < 20)
+            if(downTime >= 5 && downTime < 10)
                 setTexture(c1Textures[1]);
-            if(downTime >= 20 && downTime < 30)
+            if(downTime >= 10 && downTime < 15)
                 setTexture(c1Textures[2]);
-            if(downTime >= 30 && downTime < 40)
+            if(downTime >= 15 && downTime < 20)
                 setTexture(c1Textures[1]);
-            if(downTime == 40)
+            if(downTime == 20)
                 downTime = 0;
             downTime++;
         }
 
         // Moving Left
-        if(!pressingS && pressingA && !pressingD && !pressingW){
+        if(!pressingS && pressingA && !pressingD && !pressingW && !collidesLeft()){
             translateX(-2f);
-            if(leftTime < 10)
+            if(leftTime < 5)
                 setTexture(c1Textures[3]);
-            if(leftTime >= 10 && leftTime < 20)
+            if(leftTime >= 5 && leftTime < 10)
                 setTexture(c1Textures[4]);
-            if(leftTime >= 20 && leftTime < 30)
+            if(leftTime >= 10 && leftTime < 15)
                 setTexture(c1Textures[5]);
-            if(leftTime >= 30 && leftTime < 40)
+            if(leftTime >= 15 && leftTime < 20)
                 setTexture(c1Textures[4]);
-            if(leftTime == 40)
+            if(leftTime == 20)
                 leftTime = 0;
             leftTime++;
         }
 
         // Moving Right
-        if(!pressingS && !pressingA && pressingD && !pressingW){
+        if(!pressingS && !pressingA && pressingD && !pressingW && !collidesRight()){
             translateX(2f);
-            if(rightTime < 10)
+            if(rightTime < 5)
                 setTexture(c1Textures[6]);
-            if(rightTime >= 10 && rightTime < 20)
+            if(rightTime >= 5 && rightTime < 10)
                 setTexture(c1Textures[7]);
-            if(rightTime >= 20 && rightTime < 30)
+            if(rightTime >= 10 && rightTime < 15)
                 setTexture(c1Textures[8]);
-            if(rightTime >= 30 && rightTime < 40)
+            if(rightTime >= 15 && rightTime < 20)
                 setTexture(c1Textures[7]);
-            if(rightTime == 40)
+            if(rightTime == 20)
                 rightTime = 0;
             rightTime++;
         }
 
         // Moving Up
-        if(!pressingS && !pressingA && !pressingD && pressingW){
+        if(!pressingS && !pressingA && !pressingD && pressingW && !collidesTop()){
             translateY(2f);
-            if(upTime < 10)
+            if(upTime < 5)
                 setTexture(c1Textures[9]);
-            if(upTime >= 10 && upTime < 20)
+            if(upTime >= 5 && upTime < 10)
                 setTexture(c1Textures[10]);
-            if(upTime >= 20 && upTime < 30)
+            if(upTime >= 10 && upTime < 15)
                 setTexture(c1Textures[11]);
-            if(upTime >= 30 && upTime < 40)
+            if(upTime >= 15 && upTime < 20)
                 setTexture(c1Textures[10]);
-            if(upTime == 40)
+            if(upTime == 20)
                 upTime = 0;
             upTime++;
         }
+
+        if(collidesBottom() || collidesLeft() || collidesRight() || collidesTop())
+            setPosition(getX(),getY());
 
     }
 
