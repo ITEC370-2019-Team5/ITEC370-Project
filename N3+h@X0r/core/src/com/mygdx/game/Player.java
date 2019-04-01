@@ -78,7 +78,6 @@ public class Player extends Sprite {
 
         // Moving Down
         if(pressingS && !pressingA && !pressingD && !pressingW && !collidesBottom()){
-            translateY(-2f);
             if(downTime < 5)
                 setTexture(c1Textures[0]);
             if(downTime >= 5 && downTime < 10)
@@ -87,14 +86,12 @@ public class Player extends Sprite {
                 setTexture(c1Textures[2]);
             if(downTime >= 15 && downTime < 20)
                 setTexture(c1Textures[1]);
-            if(downTime == 20)
+            if(downTime >= 20)
                 downTime = 0;
-            downTime++;
+            downTime += 2;
         }
-
         // Moving Left
-        if(!pressingS && pressingA && !pressingD && !pressingW && !collidesLeft()){
-            translateX(-2f);
+        else if(!pressingS && pressingA && !pressingD && !pressingW && !collidesLeft()){
             if(leftTime < 5)
                 setTexture(c1Textures[3]);
             if(leftTime >= 5 && leftTime < 10)
@@ -103,14 +100,12 @@ public class Player extends Sprite {
                 setTexture(c1Textures[5]);
             if(leftTime >= 15 && leftTime < 20)
                 setTexture(c1Textures[4]);
-            if(leftTime == 20)
+            if(leftTime >= 20)
                 leftTime = 0;
-            leftTime++;
+            leftTime += 2;
         }
-
         // Moving Right
-        if(!pressingS && !pressingA && pressingD && !pressingW && !collidesRight()){
-            translateX(2f);
+        else if(!pressingS && !pressingA && pressingD && !pressingW && !collidesRight()){
             if(rightTime < 5)
                 setTexture(c1Textures[6]);
             if(rightTime >= 5 && rightTime < 10)
@@ -119,14 +114,12 @@ public class Player extends Sprite {
                 setTexture(c1Textures[8]);
             if(rightTime >= 15 && rightTime < 20)
                 setTexture(c1Textures[7]);
-            if(rightTime == 20)
+            if(rightTime >= 20)
                 rightTime = 0;
-            rightTime++;
+            rightTime += 2;
         }
-
         // Moving Up
-        if(!pressingS && !pressingA && !pressingD && pressingW && !collidesTop()){
-            translateY(2f);
+        else if(!pressingS && !pressingA && !pressingD && pressingW && !collidesTop()){
             if(upTime < 5)
                 setTexture(c1Textures[9]);
             if(upTime >= 5 && upTime < 10)
@@ -135,11 +128,14 @@ public class Player extends Sprite {
                 setTexture(c1Textures[11]);
             if(upTime >= 15 && upTime < 20)
                 setTexture(c1Textures[10]);
-            if(upTime == 20)
+            if(upTime >= 20)
                 upTime = 0;
-            upTime++;
+            upTime += 2;
         }
-    
+        else
+        {
+            setTexture(c1Textures[1]);
+        }
         //Interaction with items
         if(pressingEnter)
         {
@@ -274,4 +270,90 @@ public class Player extends Sprite {
             return x;
         }
     }
+    public int getUpTime()
+    {
+        return upTime;
+    }
+    public int getDownTime()
+    {
+        return downTime;
+    }
+    public int getLeftTime()
+    {
+        return leftTime;
+    }
+    public int getRightTime()
+    {
+        return rightTime;
+    }
+
+    public void setUpTime(int up){upTime = up;}
+    public void setDownTime(int down){downTime = down;}
+    public void setLeftTime(int left){leftTime = left;}
+    public void setRightTime(int right){rightTime = right;}
+    public boolean isMoveUp()
+    {
+        return(pressingW);
+    }
+    public boolean isMoveDown()
+    {
+        return(pressingS);
+    }
+    public boolean isMoveLeft()
+    {
+        return(pressingA);
+    }
+    public boolean isMoveRight()
+    {
+        return(pressingD);
+    }
+
+    public String prevTexture()
+    {
+        if(pressingS && !pressingA && !pressingD && !pressingW && !collidesBottom()){
+            if(downTime < 5)
+                return "core/assets/CharSelectPics/C1_WalkDown1.png";
+            if(downTime >= 5 && downTime < 10)
+                return "core/assets/CharSelectPics/C1_WalkDown2.png";
+            if(downTime >= 10 && downTime < 15)
+                return "core/assets/CharSelectPics/C1_WalkDown3.png";
+            if(downTime >= 15 && downTime <= 20)
+                return "core/assets/CharSelectPics/C1_WalkDown2.png";
+        }
+        // Moving Left
+        else if(!pressingS && pressingA && !pressingD && !pressingW && !collidesLeft()){
+            if(leftTime < 5)
+                return "core/assets/CharSelectPics/C1_WalkLeft1.png";
+            if(leftTime >= 5 && leftTime < 10)
+                return "core/assets/CharSelectPics/C1_WalkLeft2.png";
+            if(leftTime >= 10 && leftTime < 15)
+                return "core/assets/CharSelectPics/C1_WalkLeft3.png";
+            if(leftTime >= 15 && leftTime <= 20)
+                return "core/assets/CharSelectPics/C1_WalkLeft2.png";
+        }
+        // Moving Right
+        else if(!pressingS && !pressingA && pressingD && !pressingW && !collidesRight()){
+            if(rightTime < 5)
+                return "core/assets/CharSelectPics/C1_WalkRight1.png";
+            if(rightTime >= 5 && rightTime < 10)
+                return "core/assets/CharSelectPics/C1_WalkRight2.png";
+            if(rightTime >= 10 && rightTime < 15)
+                return "core/assets/CharSelectPics/C1_WalkRight3.png";
+            if(rightTime >= 15 && rightTime <= 20)
+                return "core/assets/CharSelectPics/C1_WalkRight2.png";
+        }
+        // Moving Up
+        else if(!pressingS && !pressingA && !pressingD && pressingW && !collidesTop()){
+            if(upTime < 5)
+                return "core/assets/CharSelectPics/C1_WalkUp1.png";
+            if(upTime >= 5 && upTime < 10)
+                return "core/assets/CharSelectPics/C1_WalkUp2.png";
+            if(upTime >= 10 && upTime < 15)
+                return "core/assets/CharSelectPics/C1_WalkUp3.png";
+            if(upTime >= 15 && upTime <= 20)
+                return "core/assets/CharSelectPics/C1_WalkUp2.png";
+        }
+            return "core/assets/CharSelectPics/C1_WalkDown2.png";
+    }
+
 }
