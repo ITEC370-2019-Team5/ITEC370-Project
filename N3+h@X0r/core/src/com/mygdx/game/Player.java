@@ -32,6 +32,7 @@ public class Player extends Sprite {
     private boolean pressingD = Gdx.input.isKeyPressed(Input.Keys.D);
     private boolean pressingW = Gdx.input.isKeyPressed(Input.Keys.W);
     private boolean pressingA = Gdx.input.isKeyPressed(Input.Keys.A);
+    private boolean pressingEnter = Gdx.input.isKeyPressed(Input.Keys.ENTER);
 
     protected String playerName = "";
     public static final int COLLECTABLES = 0;
@@ -73,6 +74,7 @@ public class Player extends Sprite {
         pressingD = Gdx.input.isKeyPressed(Input.Keys.D);
         pressingW = Gdx.input.isKeyPressed(Input.Keys.W);
         pressingA = Gdx.input.isKeyPressed(Input.Keys.A);
+        pressingEnter = Gdx.input.isKeyPressed(Input.Keys.ENTER);
 
         // Moving Down
         if(pressingS && !pressingA && !pressingD && !pressingW && !collidesBottom()){
@@ -137,7 +139,13 @@ public class Player extends Sprite {
                 upTime = 0;
             upTime++;
         }
-
+    
+        //Interaction with items
+        if(pressingEnter)
+        {
+            System.out.print("Enter Pressed");
+        }
+        
         if(collidesBottom() || collidesLeft() || collidesRight() || collidesTop())
             setPosition(getX(),getY());
 
