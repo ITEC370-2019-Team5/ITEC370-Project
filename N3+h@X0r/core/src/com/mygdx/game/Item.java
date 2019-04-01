@@ -5,7 +5,13 @@ public class Item {
     private int amount;
 
     public Item() {
+
         super();
+    }
+
+    public Item(String itemName, int amount) {
+        this.itemName = itemName;
+        this.amount = amount;
     }
 
     //getters and setters
