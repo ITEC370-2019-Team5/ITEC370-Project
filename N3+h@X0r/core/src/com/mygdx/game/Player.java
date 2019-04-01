@@ -137,7 +137,7 @@ public class Player extends Sprite {
                 upTime = 0;
             upTime++;
         }
-        
+
         if(collidesBottom() || collidesLeft() || collidesRight() || collidesTop())
             setPosition(getX(),getY());
 

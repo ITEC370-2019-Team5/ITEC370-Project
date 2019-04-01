@@ -63,7 +63,7 @@ public class CharacterScreen implements Screen
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
-                    System.out.println("RANDOM BUTTON PUSHED");
+                    game.changeChar();
                 }
                 countPush = 0;
             }

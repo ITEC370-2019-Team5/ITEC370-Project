@@ -2,8 +2,11 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.*;
 
+import java.util.Random;
+
 public class NetworkingGame extends Game implements ApplicationListener {
 
+    private int charSelect = 0;
     private String gameName = "N3+h@Z0r";
     private int screen = 0;
     MainMenu mainMenu = new MainMenu(this);
@@ -127,5 +130,11 @@ public class NetworkingGame extends Game implements ApplicationListener {
     public void setGameName(String name)
     {
         gameName = name;
+    }
+
+    public void changeChar()
+    {
+        Random rand = new Random();
+        charSelect = rand.nextInt(8);
     }
 }
