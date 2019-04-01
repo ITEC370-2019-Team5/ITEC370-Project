@@ -243,13 +243,13 @@ public class Player extends Sprite {
         pressingW = Gdx.input.isKeyPressed(Input.Keys.W);
         pressingS = Gdx.input.isKeyPressed(Input.Keys.S);
 
-        if(pressingW)
+        if(pressingW && collidesTop() == false)
         {
-            return (y + 2);
+            return (y + 3);
         }
-        else if(pressingS)
+        else if(pressingS && collidesBottom() == false)
         {
-            return (y - 2);
+            return (y - 3);
         }
         else
         {
@@ -261,13 +261,13 @@ public class Player extends Sprite {
         pressingD = Gdx.input.isKeyPressed(Input.Keys.D);
         pressingA = Gdx.input.isKeyPressed(Input.Keys.A);
 
-        if(pressingA)
+        if(pressingA && collidesLeft() == false)
         {
-            return (x - 2);
+            return (x - 3);
         }
-        else if(pressingD)
+        else if(pressingD && collidesRight() == false)
         {
-            return (x + 2);
+            return (x + 3);
         }
         else
         {
