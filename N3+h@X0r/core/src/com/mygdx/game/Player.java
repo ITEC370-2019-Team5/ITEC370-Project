@@ -68,7 +68,7 @@ public class Player extends Sprite {
     }
 
     void update(float delta){
-        
+
         pressingS = Gdx.input.isKeyPressed(Input.Keys.S);
         pressingD = Gdx.input.isKeyPressed(Input.Keys.D);
         pressingW = Gdx.input.isKeyPressed(Input.Keys.W);
@@ -145,7 +145,7 @@ public class Player extends Sprite {
 
     public String toString() {
         return beatGame+"\t"+playerName+"\t"+
-                        collectableCount+"\t"+virusesFixed+"\n";
+                collectableCount+"\t"+virusesFixed+"\n";
     }
 
     public boolean isCellBlocked(float x, float y) {
@@ -228,5 +228,42 @@ public class Player extends Sprite {
 
     public void setCollisionLayer(TiledMapTileLayer collisionLayer) {
         this.collisionLayer = collisionLayer;
+    }
+
+    public float updateCoordY(float y)
+    {
+        pressingW = Gdx.input.isKeyPressed(Input.Keys.W);
+        pressingS = Gdx.input.isKeyPressed(Input.Keys.S);
+
+        if(pressingW)
+        {
+            return (y + 2);
+        }
+        else if(pressingS)
+        {
+            return (y - 2);
+        }
+        else
+        {
+            return y;
+        }
+    }
+    public float updateCoordX(float x)
+    {
+        pressingD = Gdx.input.isKeyPressed(Input.Keys.D);
+        pressingA = Gdx.input.isKeyPressed(Input.Keys.A);
+
+        if(pressingA)
+        {
+            return (x - 2);
+        }
+        else if(pressingD)
+        {
+            return (x + 2);
+        }
+        else
+        {
+            return x;
+        }
     }
 }

@@ -25,6 +25,10 @@ public class Playground implements Screen , ApplicationListener {
 	private TiledMapTileLayer platformingLayer;
 	private int[] decorationLayers;
 	private Player player;
+	private Texture standing;
+
+	private float x = 8;
+	private float y = 1;
 
 	public Playground(NetworkingGame game){
 		this.game = game;
@@ -32,6 +36,7 @@ public class Playground implements Screen , ApplicationListener {
 
 	@Override
 	public void show() {
+		standing = new Texture("core/assets/CharSelectPics/C1_WalkDown2.png");
 		if(showOnce == false)
 		{
 			map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
@@ -43,14 +48,17 @@ public class Playground implements Screen , ApplicationListener {
 				layers.getIndex("Background")
 		};
 
-		if(showOnce == false) {
-
-			player = new Player(new Sprite(new Texture("core/assets/CharSelectPics/C1_WalkDown2.png")), platformingLayer);
-			player.setBounds(0, 0, 16, 16);
-			player.setPosition(8 * platformingLayer.getTileWidth(), 1 * platformingLayer.getTileHeight());
-			System.out.println("test1");
+		if(showOnce == false)
+		{
+			x = x * platformingLayer.getTileWidth();
+			y = y * platformingLayer.getTileHeight();
 			showOnce = true;
 		}
+
+		player = new Player(new Sprite(standing), platformingLayer);
+		player.setBounds(0, 0, 16, 16);
+		player.setPosition(x, y);
+
 		camera = new OrthographicCamera();
 	}
 
@@ -70,16 +78,21 @@ public class Playground implements Screen , ApplicationListener {
 		decorationLayers = new int[]{
 				layers.getIndex("Background")
 		};
-		player.setCollisionLayer(platformingLayer);
-
 
 		if(rendOnce == false)
 		{
-			player.setPosition(8 * platformingLayer.getTileWidth(),1 * platformingLayer.getTileHeight());
 			player.setBounds(player.getX(),player.getY(),16,16);
-			System.out.println("test2");
 			rendOnce = true;
 		}
+
+
+		x = player.updateCoordX(x);
+		y = player.updateCoordY(y);
+		player.setCollisionLayer(platformingLayer);
+		player.setPosition(x, y);
+
+		System.out.println("x: " + x);
+		System.out.println("y: " + y);
 
 		camera.update();
 		renderer.setView(camera);
