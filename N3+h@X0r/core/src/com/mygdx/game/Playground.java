@@ -25,10 +25,15 @@ public class Playground implements Screen , ApplicationListener {
 	private TiledMapTileLayer platformingLayer;
 	private int[] decorationLayers;
 	private Player player;
-	private Texture standing;
+	private Texture prevTexture;
 
 	private float x = 8;
 	private float y = 1;
+
+	private int upTime = 0;
+	private int downTime = 0;
+	private int leftTime = 0;
+	private int rightTime = 0;
 
 	public Playground(NetworkingGame game){
 		this.game = game;
@@ -36,9 +41,9 @@ public class Playground implements Screen , ApplicationListener {
 
 	@Override
 	public void show() {
-		standing = new Texture("core/assets/CharSelectPics/C1_WalkDown2.png");
 		if(showOnce == false)
 		{
+			prevTexture = new Texture("core/assets/CharSelectPics/C1_WalkDown2.png");
 			map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
 		}
 		renderer = new OrthogonalTiledMapRenderer(map);
@@ -55,7 +60,7 @@ public class Playground implements Screen , ApplicationListener {
 			showOnce = true;
 		}
 
-		player = new Player(new Sprite(standing), platformingLayer);
+		player = new Player(new Sprite(prevTexture), platformingLayer);
 		player.setBounds(0, 0, 16, 16);
 		player.setPosition(x, y);
 
@@ -68,7 +73,7 @@ public class Playground implements Screen , ApplicationListener {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.position.x = 120;
 		camera.position.y = 120;
-		camera.zoom = 2/5f;
+		camera.zoom = 3/5f;
 		camera.setToOrtho(false, 600, 400);
 
 		map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
@@ -85,14 +90,16 @@ public class Playground implements Screen , ApplicationListener {
 			rendOnce = true;
 		}
 
-
 		x = player.updateCoordX(x);
 		y = player.updateCoordY(y);
+
 		player.setCollisionLayer(platformingLayer);
 		player.setPosition(x, y);
 
-		System.out.println("x: " + x);
-		System.out.println("y: " + y);
+		player.setUpTime(upTime);
+		player.setDownTime(downTime);
+		player.setLeftTime(leftTime);
+		player.setRightTime(rightTime);
 
 		camera.update();
 		renderer.setView(camera);
@@ -100,6 +107,13 @@ public class Playground implements Screen , ApplicationListener {
 		renderer.getBatch().begin();
 		renderer.renderTileLayer(platformingLayer);
 		player.update(delta);
+		prevTexture = new Texture(player.prevTexture());
+
+		upTime = player.getUpTime();
+		downTime = player.getDownTime();
+		leftTime = player.getLeftTime();
+		rightTime = player.getRightTime();
+
 		player.draw(renderer.getBatch());
 		renderer.getBatch().end();
 	}
@@ -137,6 +151,7 @@ public class Playground implements Screen , ApplicationListener {
 		map.dispose();
 		renderer.dispose();
 	}
+
 	public double getID(){
 		return id;
 	}
