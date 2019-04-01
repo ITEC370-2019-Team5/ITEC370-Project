@@ -35,9 +35,11 @@ public class Playground implements Screen , ApplicationListener {
 	private int downTime = 0;
 	private int leftTime = 0;
 	private int rightTime = 0;
+	private int charSelect = 0;
 
-	public Playground(NetworkingGame game){
+	public Playground(NetworkingGame game, int _charSelect){
 		this.game = game;
+		charSelect = _charSelect;
 	}
 
 	@Override
@@ -61,7 +63,7 @@ public class Playground implements Screen , ApplicationListener {
 			showOnce = true;
 		}
 
-		player = new Player(new Sprite(prevTexture), platformingLayer);
+		player = new Player(new Sprite(prevTexture), platformingLayer, charSelect);
 		player.setBounds(0, 0, 16, 16);
 		player.setPosition(x, y);
 

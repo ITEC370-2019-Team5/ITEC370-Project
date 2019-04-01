@@ -13,22 +13,113 @@ import java.awt.*;
 
 public class Player extends Sprite {
 
-
     private TiledMapTileLayer collisionLayer;
-    private Texture[] c1Textures = new Texture[]{
-            new Texture("core/assets/CharSelectPics/C1_WalkDown1.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkDown2.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkDown3.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkLeft1.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkLeft2.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkLeft3.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkRight1.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkRight2.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkRight3.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkUp1.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkUp2.png"),
-            new Texture("core/assets/CharSelectPics/C1_WalkUp3.png"),
-    };
+    private Texture[][] charTextures = new Texture[][]{
+            new Texture[]{
+                    new Texture("core/assets/CharSelectPics/C1_WalkDown1.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkDown2.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkDown3.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkLeft1.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkLeft2.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkLeft3.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkRight1.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkRight2.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkRight3.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkUp1.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkUp2.png"),
+                    new Texture("core/assets/CharSelectPics/C1_WalkUp3.png")},
+            new Texture[]{
+                    new Texture("core/assets/CharSelectPics/C2_WalkDown1.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkDown2.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkDown3.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkLeft1.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkLeft2.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkLeft3.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkRight1.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkRight2.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkRight3.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkUp1.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkUp2.png"),
+                    new Texture("core/assets/CharSelectPics/C2_WalkUp3.png")},
+            new Texture[]{
+                    new Texture("core/assets/CharSelectPics/C3_WalkDown1.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkDown2.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkDown3.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkLeft1.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkLeft2.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkLeft3.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkRight1.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkRight2.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkRight3.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkUp1.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkUp2.png"),
+                    new Texture("core/assets/CharSelectPics/C3_WalkUp3.png")},
+            new Texture[]{
+                    new Texture("core/assets/CharSelectPics/C4_WalkDown1.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkDown2.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkDown3.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkLeft1.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkLeft2.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkLeft3.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkRight1.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkRight2.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkRight3.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkUp1.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkUp2.png"),
+                    new Texture("core/assets/CharSelectPics/C4_WalkUp3.png")},
+            new Texture[]{
+                    new Texture("core/assets/CharSelectPics/C5_WalkDown1.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkDown2.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkDown3.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkLeft1.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkLeft2.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkLeft3.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkRight1.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkRight2.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkRight3.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkUp1.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkUp2.png"),
+                    new Texture("core/assets/CharSelectPics/C5_WalkUp3.png")},
+            new Texture[]{
+                    new Texture("core/assets/CharSelectPics/C6_WalkDown1.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkDown2.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkDown3.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkLeft1.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkLeft2.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkLeft3.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkRight1.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkRight2.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkRight3.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkUp1.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkUp2.png"),
+                    new Texture("core/assets/CharSelectPics/C6_WalkUp3.png")},
+            new Texture[]{
+                    new Texture("core/assets/CharSelectPics/C7_WalkDown1.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkDown2.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkDown3.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkLeft1.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkLeft2.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkLeft3.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkRight1.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkRight2.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkRight3.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkUp1.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkUp2.png"),
+                    new Texture("core/assets/CharSelectPics/C7_WalkUp3.png")},
+            new Texture[]{
+                    new Texture("core/assets/CharSelectPics/C8_WalkDown1.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkDown2.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkDown3.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkLeft1.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkLeft2.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkLeft3.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkRight1.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkRight2.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkRight3.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkUp1.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkUp2.png"),
+                    new Texture("core/assets/CharSelectPics/C8_WalkUp3.png")}};
+
     private boolean pressingS = Gdx.input.isKeyPressed(Input.Keys.S);
     private boolean pressingD = Gdx.input.isKeyPressed(Input.Keys.D);
     private boolean pressingW = Gdx.input.isKeyPressed(Input.Keys.W);
@@ -45,6 +136,7 @@ public class Player extends Sprite {
     private int downTime = 0;
     private int leftTime = 0;
     private int rightTime = 0;
+    private int charSelect = 0;
 
     //Empty Constructor
     public Player() {
@@ -52,9 +144,10 @@ public class Player extends Sprite {
     }
 
     //Full Constructor
-    public Player(Sprite sprite, TiledMapTileLayer collisionLayer){
+    public Player(Sprite sprite, TiledMapTileLayer collisionLayer, int _charSelect){
         super(sprite);
         this.collisionLayer = collisionLayer;
+        charSelect = _charSelect;
     }
 
     public Player(String playerName, boolean beatGame, int collectableCount, int virusesFixed){
@@ -80,13 +173,13 @@ public class Player extends Sprite {
         // Moving Down
         if(pressingS && !pressingA && !pressingD && !pressingW && !collidesBottom()){
             if(downTime < 5)
-                setTexture(c1Textures[0]);
+                setTexture(charTextures[charSelect][0]);
             if(downTime >= 5 && downTime < 10)
-                setTexture(c1Textures[1]);
+                setTexture(charTextures[charSelect][1]);
             if(downTime >= 10 && downTime < 15)
-                setTexture(c1Textures[2]);
+                setTexture(charTextures[charSelect][2]);
             if(downTime >= 15 && downTime < 20)
-                setTexture(c1Textures[1]);
+                setTexture(charTextures[charSelect][1]);
             if(downTime >= 20)
                 downTime = 0;
             downTime += 2;
@@ -94,13 +187,13 @@ public class Player extends Sprite {
         // Moving Left
         else if(!pressingS && pressingA && !pressingD && !pressingW && !collidesLeft()){
             if(leftTime < 5)
-                setTexture(c1Textures[3]);
+                setTexture(charTextures[charSelect][3]);
             if(leftTime >= 5 && leftTime < 10)
-                setTexture(c1Textures[4]);
+                setTexture(charTextures[charSelect][4]);
             if(leftTime >= 10 && leftTime < 15)
-                setTexture(c1Textures[5]);
+                setTexture(charTextures[charSelect][5]);
             if(leftTime >= 15 && leftTime < 20)
-                setTexture(c1Textures[4]);
+                setTexture(charTextures[charSelect][4]);
             if(leftTime >= 20)
                 leftTime = 0;
             leftTime += 2;
@@ -108,13 +201,13 @@ public class Player extends Sprite {
         // Moving Right
         else if(!pressingS && !pressingA && pressingD && !pressingW && !collidesRight()){
             if(rightTime < 5)
-                setTexture(c1Textures[6]);
+                setTexture(charTextures[charSelect][6]);
             if(rightTime >= 5 && rightTime < 10)
-                setTexture(c1Textures[7]);
+                setTexture(charTextures[charSelect][7]);
             if(rightTime >= 10 && rightTime < 15)
-                setTexture(c1Textures[8]);
+                setTexture(charTextures[charSelect][8]);
             if(rightTime >= 15 && rightTime < 20)
-                setTexture(c1Textures[7]);
+                setTexture(charTextures[charSelect][8]);
             if(rightTime >= 20)
                 rightTime = 0;
             rightTime += 2;
@@ -122,20 +215,20 @@ public class Player extends Sprite {
         // Moving Up
         else if(!pressingS && !pressingA && !pressingD && pressingW && !collidesTop()){
             if(upTime < 5)
-                setTexture(c1Textures[9]);
+                setTexture(charTextures[charSelect][9]);
             if(upTime >= 5 && upTime < 10)
-                setTexture(c1Textures[10]);
+                setTexture(charTextures[charSelect][10]);
             if(upTime >= 10 && upTime < 15)
-                setTexture(c1Textures[11]);
+                setTexture(charTextures[charSelect][11]);
             if(upTime >= 15 && upTime < 20)
-                setTexture(c1Textures[10]);
+                setTexture(charTextures[charSelect][10]);
             if(upTime >= 20)
                 upTime = 0;
             upTime += 2;
         }
         else
         {
-            setTexture(c1Textures[1]);
+            setTexture(charTextures[charSelect][1]);
         }
         //Interaction with items
         if(pressingEnter)
