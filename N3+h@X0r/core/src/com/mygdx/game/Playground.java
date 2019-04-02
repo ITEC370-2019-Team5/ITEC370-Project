@@ -32,32 +32,51 @@ public class Playground implements Screen , ApplicationListener {
 	private Item testItem, testItem2;
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private boolean pressingEnter;
-	private int itemOneX = 4;
-	private int itemTwoX = 1;
-
+	private Texture prevTexture;
 
 	private float x = 8;
 	private float y = 1;
+
+	private float itemX = 4;
+	private float itemY = 1;
+
+	private ArrayList<Integer> itemListX = new ArrayList<Integer>();
+	private ArrayList<Integer> itemListY = new ArrayList<Integer>();
+
+	private int upTime = 0;
+	private int downTime = 0;
+	private int leftTime = 0;
+	private int rightTime = 0;
+	private int charSelect;
 
 	public Playground(NetworkingGame game){
 		this.game = game;
 	}
 
+
 	@Override
 	public void show() {
-		standing = new Texture("core/assets/CharSelectPics/C1_WalkDown2.png");
-
-		testItem = new Item(new Sprite(new Texture("core/assets/test_item.png")),
-				"Test Item", "core/assets/test_item.png", 1, platformingLayer);
-		testItem2 = new Item(new Sprite(new Texture("core/assets/test_item.png")),
-				"TestItem2", "core/assets/test_item.png", 1, platformingLayer);
-		itemList.add(testItem);
-		itemList.add(testItem2);
 
 		if(showOnce == false)
 		{
+			prevTexture = new Texture("core/assets/CharSelectPics/C" + (charSelect + 1) + "_WalkDown2.png");
 			map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
+			itemListX.add(4);
+			itemListY.add(1);
+			itemListX.add(7);
+			itemListY.add(3);
 		}
+
+		testItem = new Item(new Sprite(new Texture("core/assets/test_item.png")),
+				"Test Item", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(0), itemListY.get(0));
+		testItem2 = new Item(new Sprite(new Texture("core/assets/test_item.png")),
+				"TestItem2", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(1), itemListY.get(1));
+		itemList.add(testItem);
+		itemList.add(testItem2);
+
+		itemListX.clear();
+		itemListY.clear();
+
 		renderer = new OrthogonalTiledMapRenderer(map);
 		MapLayers layers = map.getLayers();
 		platformingLayer = (TiledMapTileLayer) layers.get("Platforming");
@@ -71,13 +90,29 @@ public class Playground implements Screen , ApplicationListener {
 			y = y * platformingLayer.getTileHeight();
 			showOnce = true;
 		}
-
-		player = new Player(new Sprite(standing), platformingLayer);
+		player = new Player(new Sprite(prevTexture), platformingLayer, charSelect);
 		player.setBounds(0, 0, 16, 16);
 		player.setPosition(x, y);
 
+		for(int i = 0;i < itemList.size(); i++) {
+			itemList.get(i).setBounds(itemList.get(i).updateCoordX(), itemList.get(i).updateCoordY(), 16, 16);
+		}
+
+		//Setting the items
+		for(int i = 0; i < itemList.size(); i++)
+		{
+			itemX = itemList.get(i).getX();
+			itemY = itemList.get(i).getY();
+			itemList.get(i).setPosition(itemX, itemY);
+
+		}
+
+		itemX = itemList.get(0).getX();
+		itemY = itemList.get(0).getY();
+
 		camera = new OrthographicCamera();
 	}
+
 
 	@Override
 	public void render (float delta) {
@@ -101,50 +136,77 @@ public class Playground implements Screen , ApplicationListener {
 		if(rendOnce == false)
 		{
 			player.setBounds(player.getX(),player.getY(),16,16);
-			itemList.get(0).setBounds(testItem.getX(), testItem.getY(), 16, 16); //test item
-			itemList.get(1).setBounds(testItem.getX(), testItem.getY(), 16, 16); //test item
 			rendOnce = true;
 		}
 
-		for(int i = 0;i<itemList.size();i++) {
-			itemList.get(i).setBounds(0, 0, 16, 16);
-			itemList.get(i).setCollisionLayer(platformingLayer);
+		for(int i = 0;i < itemList.size(); i++) {
+			itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 16, 16);
+			//itemList.get(i).setCollisionLayer(platformingLayer);
 		}
-		itemList.get(0).setPosition(itemOneX * platformingLayer.getTileWidth(), itemTwoX * platformingLayer.getTileHeight());
-		itemList.get(1).setPosition(7 * platformingLayer.getTileWidth(), 3 * platformingLayer.getTileHeight());
 
 		if(pressingEnter) {
-			for(int i = 0;i<itemList.size();i++) {
-				float itemXCoord = itemList.get(i).getX();
-				float itemYCoord = itemList.get(i).getY();
+			for(int i = 0;i < itemList.size(); i++) {
+				itemX = itemList.get(i).getX();
+				itemY = itemList.get(i).getY();
 
-				if(player.getX() > (itemXCoord - 10) && player.getX() < (itemXCoord + 10) &&
-						player.getY() > (itemYCoord - 10) && player.getY() < (itemYCoord + 10)) {
-					itemOneX = itemOneX * -1;
-					itemTwoX = itemTwoX * -1;
-					System.out.println(itemList.get(i).getLocation());
+				System.out.println(itemX);
+				System.out.println(itemY);
+
+				if(player.getX() > ((itemX * 16) - 10) && player.getX() < ((itemX * 16) + 10) &&
+						player.getY() > ((itemY * 16) - 10) && player.getY() < ((itemY * 16) + 10)) {
+					itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
+					itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
 				}
 			}
 		}
 
+		//Setting the player
 		x = player.updateCoordX(x);
 		y = player.updateCoordY(y);
 		player.setCollisionLayer(platformingLayer);
 		player.setPosition(x, y);
 
+		//Setting the items
+		for(int i = 0; i < itemList.size(); i++)
+		{
+			itemX = itemList.get(i).getX();
+			itemY = itemList.get(i).getY();
+			itemList.get(i).setPosition(itemX * platformingLayer.getTileWidth(), itemY * platformingLayer.getTileHeight());
+		}
+
+		//Updating the player
+		player.setUpTime(upTime);
+		player.setDownTime(downTime);
+		player.setLeftTime(leftTime);
+		player.setRightTime(rightTime);
+
+		//Update render and camera
 		camera.update();
 		renderer.setView(camera);
 		renderer.render(decorationLayers);
 		renderer.getBatch().begin();
 		renderer.renderTileLayer(platformingLayer);
 
-		for( int i = 0; i< itemList.size(); i++) {
+		for( int i = 0; i < itemList.size(); i++) {
 
 			itemList.get(i).update(delta);
 			itemList.get(i).draw(renderer.getBatch());
+
+			System.out.println(itemList.get(i).getX());
+			System.out.println(itemList.get(i).getY());
+
+			itemListX.add((int) itemList.get(i).getX() / 16);
+			itemListY.add((int) itemList.get(i).getY() / 16);
 		}
 
 		player.update(delta);
+		prevTexture = new Texture(player.prevTexture());
+
+		upTime = player.getUpTime();
+		downTime = player.getDownTime();
+		leftTime = player.getLeftTime();
+		rightTime = player.getRightTime();
+
 		player.draw(renderer.getBatch());
 		renderer.getBatch().end();
 
@@ -187,5 +249,10 @@ public class Playground implements Screen , ApplicationListener {
 	}
 	public double getID(){
 		return id;
+	}
+
+	public void updateChar(int num)
+	{
+		charSelect = num;
 	}
 }

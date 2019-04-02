@@ -33,6 +33,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     @Override
     public void render () {
         super.render();
+        playground.updateChar(charSelect);
         if(screen == 0) //Main menu
         {
             currentScreenNum = 0;
@@ -83,15 +84,6 @@ public class NetworkingGame extends Game implements ApplicationListener {
         else if(screen == 4)//Loading screen
         {
             setScreen(load);
-            if(Gdx.input.isKeyPressed(Input.Keys.L))
-            {
-                changeScreen(3); //shows leaderboard
-            }
-            if(Gdx.input.isKeyPressed(Input.Keys.I))
-            {
-                changeScreen(5); //shows inventory
-            }
-
         }
         else if(screen == 5)//Inventory screen
         {
@@ -135,6 +127,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     public void changeChar()
     {
         Random rand = new Random();
-        charSelect = rand.nextInt(8);
+        charSelect = rand.nextInt(4);
+        System.out.println(charSelect);
     }
 }
