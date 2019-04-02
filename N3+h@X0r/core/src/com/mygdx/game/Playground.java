@@ -67,10 +67,17 @@ public class Playground implements Screen , ApplicationListener {
 			itemListY.add(3);
 		}
 
-		testItem = new Item(new Sprite(new Texture("core/assets/test_item.png")),
+		testItem = new Item(new Sprite(new Texture("core/assets/test_item.png")), 'I',
 				"Test Item", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(0), itemListY.get(0));
-		testItem2 = new Item(new Sprite(new Texture("core/assets/test_item.png")),
-				"TestItem2", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(1), itemListY.get(1));
+		testItem2 = new Item(new Sprite(new Texture("core/assets/test_item.png")), 'H',
+				"TestItem2", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(1), itemListY.get(1),
+				"We're no strangers to love\n" +
+						"You know the rules and so do I\n" +
+						"A full commitment's what I'm thinking of\n" +
+						"You wouldn't get this from any other guy\n" +
+						"I just wanna tell you how I'm feeling\n" +
+						"Gotta make you understand\n" +
+						"...");
 		itemList.add(testItem);
 		itemList.add(testItem2);
 
@@ -149,11 +156,13 @@ public class Playground implements Screen , ApplicationListener {
 				itemX = itemList.get(i).getX();
 				itemY = itemList.get(i).getY();
 
-				System.out.println(itemX);
-				System.out.println(itemY);
-
 				if(player.getX() > ((itemX * 16) - 10) && player.getX() < ((itemX * 16) + 10) &&
 						player.getY() > ((itemY * 16) - 10) && player.getY() < ((itemY * 16) + 10)) {
+					if(itemList.get(i).getType() == 'H')
+					{
+						game.changeStr(itemList.get(i).getHint());
+						game.changeScreen(6);
+					}
 					itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
 					itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
 				}
@@ -191,9 +200,6 @@ public class Playground implements Screen , ApplicationListener {
 
 			itemList.get(i).update(delta);
 			itemList.get(i).draw(renderer.getBatch());
-
-			System.out.println(itemList.get(i).getX());
-			System.out.println(itemList.get(i).getY());
 
 			itemListX.add((int) itemList.get(i).getX() / 16);
 			itemListY.add((int) itemList.get(i).getY() / 16);

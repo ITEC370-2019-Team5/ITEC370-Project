@@ -15,6 +15,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     LeaderBoard leaderboard = new LeaderBoard(this);
     LoadGameScreen load = new LoadGameScreen(this);
     Inventory inventory = new Inventory(this);
+    TextScreen textScreen = new TextScreen(this);
 
     int currentScreenNum = 0;//Keeps Track of screen number for leaderboard.
 
@@ -93,6 +94,14 @@ public class NetworkingGame extends Game implements ApplicationListener {
                 changeScreen(currentScreenNum);
             }
         }
+        else if(screen == 6)
+        {
+            setScreen(textScreen);
+            if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            {
+                changeScreen(currentScreenNum);
+            }
+        }
         else
         {
             System.out.println("Error!");
@@ -129,5 +138,9 @@ public class NetworkingGame extends Game implements ApplicationListener {
         Random rand = new Random();
         charSelect = rand.nextInt(4);
         System.out.println(charSelect);
+    }
+    public void changeStr(String str)
+    {
+        textScreen.changeStr(str);
     }
 }

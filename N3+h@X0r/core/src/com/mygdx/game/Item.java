@@ -13,20 +13,35 @@ public class Item extends Sprite{
     private TiledMapTileLayer collisionLayer;
     private float x;
     private float y;
+    String hint;
+    char type;
 
     public Item() {
 
         super();
     }
 
-    public Item(Sprite sprite, String itemName, String location, int amount, TiledMapTileLayer collisionLayer, float _x, float _y) {
+    public Item(Sprite sprite, char type, String itemName, String location, int amount, TiledMapTileLayer collisionLayer, float x, float y) {
         super(sprite);
+        this.type = type;
         this.itemName = itemName;
         this.location = location;
         this.amount = amount;
         this.collisionLayer = collisionLayer;
-        x = _x;
-        y = _y;
+        this.x = x;
+        this.y = y;
+    }
+    public Item(Sprite sprite, char type, String itemName, String location, int amount, TiledMapTileLayer collisionLayer, float x, float y, String hint)
+    {
+        super(sprite);
+        this.type = type;
+        this.itemName = itemName;
+        this.location = location;
+        this.amount = amount;
+        this.collisionLayer = collisionLayer;
+        this.x = x;
+        this.y = y;
+        this.hint = hint;
     }
 
     public void draw(SpriteBatch spriteBatch) {
@@ -87,6 +102,14 @@ public class Item extends Sprite{
     public void setY(int num)
     {
         y = num;
+    }
+    public char getType()
+    {
+        return this.type;
+    }
+    public String getHint()
+    {
+        return this.hint;
     }
 
 }
