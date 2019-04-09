@@ -13,8 +13,8 @@ public class Item extends Sprite{
     private TiledMapTileLayer collisionLayer;
     private float x;
     private float y;
-    String hint;
-    char type;
+    private String hint;
+    private char type;
 
     public Item() {
 

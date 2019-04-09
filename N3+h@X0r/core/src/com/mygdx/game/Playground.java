@@ -69,7 +69,7 @@ public class Playground implements Screen , ApplicationListener {
 
 		testItem = new Item(new Sprite(new Texture("core/assets/test_item.png")), 'I',
 				"Test Item", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(0), itemListY.get(0));
-		testItem2 = new Item(new Sprite(new Texture("core/assets/test_item.png")), 'H',
+		testItem2 = new Item(new Sprite(new Texture("core/assets/sticky_note.png")), 'H',
 				"TestItem2", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(1), itemListY.get(1),
 				"We're no strangers to love\n" +
 						"You know the rules and so do I\n" +
@@ -78,6 +78,8 @@ public class Playground implements Screen , ApplicationListener {
 						"I just wanna tell you how I'm feeling\n" +
 						"Gotta make you understand\n" +
 						"...");
+
+
 		itemList.add(testItem);
 		itemList.add(testItem2);
 
@@ -146,9 +148,15 @@ public class Playground implements Screen , ApplicationListener {
 			rendOnce = true;
 		}
 
+		//setting the pixel width and height of each item
 		for(int i = 0;i < itemList.size(); i++) {
-			itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 16, 16);
-			//itemList.get(i).setCollisionLayer(platformingLayer);
+			if(itemList.get(i).getType() == 'H') {
+				itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 6, 6);
+			}
+			else {
+				itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 16, 16);
+				//itemList.get(i).setCollisionLayer(platformingLayer);
+			}
 		}
 
 		if(pressingEnter) {
