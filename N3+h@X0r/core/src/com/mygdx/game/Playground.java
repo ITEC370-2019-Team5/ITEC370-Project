@@ -33,6 +33,7 @@ public class Playground implements Screen , ApplicationListener {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private boolean pressingEnter;
 	private Texture prevTexture;
+	private Inventory inventory;
 
 	private float x = 8;
 	private float y = 1;
@@ -70,7 +71,7 @@ public class Playground implements Screen , ApplicationListener {
 		testItem = new Item(new Sprite(new Texture("core/assets/test_item.png")), 'I',
 				"Test Item", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(0), itemListY.get(0));
 		testItem2 = new Item(new Sprite(new Texture("core/assets/sticky_note.png")), 'H',
-				"TestItem2", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(1), itemListY.get(1),
+				"Hint 1", "core/assets/sticky_note.png", 1, platformingLayer, itemListX.get(1), itemListY.get(1),
 				"We're no strangers to love\n" +
 						"You know the rules and so do I\n" +
 						"A full commitment's what I'm thinking of\n" +
@@ -166,10 +167,16 @@ public class Playground implements Screen , ApplicationListener {
 
 				if(player.getX() > ((itemX * 16) - 10) && player.getX() < ((itemX * 16) + 10) &&
 						player.getY() > ((itemY * 16) - 10) && player.getY() < ((itemY * 16) + 10)) {
+
 					if(itemList.get(i).getType() == 'H')
 					{
 						game.changeStr(itemList.get(i).getHint());
 						game.changeScreen(6);
+					}
+					else
+					{
+						//need to somehow add that item's sprite to the inventory screen
+						//inventory.itemSpriteList[i] = itemList.get(i). -need to get the sprite somehow after this dot notation
 					}
 					itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
 					itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);

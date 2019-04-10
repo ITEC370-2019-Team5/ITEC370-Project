@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -19,7 +20,7 @@ public class Inventory implements Screen{
     private Texture inventory;
     private Skin skin; //Skin object used for the TextField.
     private boolean init; //Stops memory leaks.
-    private ArrayList<Item> itemList = new ArrayList<Item>();
+    protected Sprite[] itemSpriteList = new Sprite[14];
 
     //Method to init the class.
     public Inventory(NetworkingGame game){
@@ -32,6 +33,79 @@ public class Inventory implements Screen{
     public void render(float delta) {
         batch.begin();
         batch.draw(inventory, 200, 120);
+
+        if (itemSpriteList[0] != null)
+        {
+            itemSpriteList[0].setSize(73, 73);
+            batch.draw(itemSpriteList[0],100, 100);
+        }
+        if (itemSpriteList[1] != null)
+        {
+            itemSpriteList[1].setSize(73, 73);
+            batch.draw(itemSpriteList[1],100, 100);
+        }
+        if (itemSpriteList[2] != null)
+        {
+            itemSpriteList[2].setSize(73, 73);
+            batch.draw(itemSpriteList[2],100, 100);
+        }
+        if (itemSpriteList[3] != null)
+        {
+            itemSpriteList[3].setSize(73, 73);
+            batch.draw(itemSpriteList[3],100, 100);
+        }
+        if (itemSpriteList[4] != null)
+        {
+            itemSpriteList[4].setSize(73, 73);
+            batch.draw(itemSpriteList[4],100, 100);
+        }
+        if (itemSpriteList[5] != null)
+        {
+            itemSpriteList[5].setSize(73, 73);
+            batch.draw(itemSpriteList[5],100, 100);
+        }
+        if (itemSpriteList[6] != null)
+        {
+            itemSpriteList[6].setSize(73, 73);
+            batch.draw(itemSpriteList[6],100, 100);
+        }
+        if (itemSpriteList[7] != null)
+        {
+            itemSpriteList[7].setSize(73, 73);
+            batch.draw(itemSpriteList[7],100, 100);
+        }
+        if (itemSpriteList[8] != null)
+        {
+            itemSpriteList[8].setSize(73, 73);
+            batch.draw(itemSpriteList[8],100, 100);
+        }
+        if (itemSpriteList[9] != null)
+        {
+            itemSpriteList[9].setSize(73, 73);
+            batch.draw(itemSpriteList[9],100, 100);
+        }
+        if (itemSpriteList[10] != null)
+        {
+            itemSpriteList[10].setSize(73, 73);
+            batch.draw(itemSpriteList[10],100, 100);
+        }
+        if (itemSpriteList[11] != null)
+        {
+            itemSpriteList[11].setSize(73, 73);
+            batch.draw(itemSpriteList[11],100, 100);
+        }
+        if (itemSpriteList[12] != null)
+        {
+            itemSpriteList[12].setSize(73, 73);
+            batch.draw(itemSpriteList[12],100, 100);
+        }
+        if (itemSpriteList[13] != null)
+        {
+            itemSpriteList[13].setSize(73, 73);
+            batch.draw(itemSpriteList[13],100, 100);
+        }
+
+
 
         batch.end();
         stage.act(delta);
