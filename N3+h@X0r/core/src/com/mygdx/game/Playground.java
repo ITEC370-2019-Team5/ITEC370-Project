@@ -29,7 +29,7 @@ public class Playground implements Screen , ApplicationListener {
 	private int[] decorationLayers;
 	private Player player;
 	private Texture standing, itemTexture;
-	private Item testItem, testItem2;
+	private Item testItem, hintItem, leftDoor, topDoor, bottomDoor1, bottomDoor2;
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private boolean pressingEnter;
 	private Texture prevTexture;
@@ -70,7 +70,7 @@ public class Playground implements Screen , ApplicationListener {
 
 		testItem = new Item(new Sprite(new Texture("core/assets/test_item.png")), 'I',
 				"Test Item", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(0), itemListY.get(0));
-		testItem2 = new Item(new Sprite(new Texture("core/assets/sticky_note.png")), 'H',
+		hintItem = new Item(new Sprite(new Texture("core/assets/sticky_note.png")), 'H',
 				"Hint 1", "core/assets/sticky_note.png", 1, platformingLayer, itemListX.get(1), itemListY.get(1),
 				"We're no strangers to love\n" +
 						"You know the rules and so do I\n" +
@@ -80,9 +80,20 @@ public class Playground implements Screen , ApplicationListener {
 						"Gotta make you understand\n" +
 						"...");
 
+		//4 doors on the first level of the map
+		leftDoor = new Item('D', platformingLayer, -1.0f, 46.0f, 1);
+		topDoor = new Item('D', platformingLayer, 47.0f, 193.0f, 2);
+		bottomDoor1 = new Item('D', platformingLayer, 119.0f, 7.0f, 3);
+		bottomDoor2 = new Item('D', platformingLayer, 248.0f, 7.0f, 4);
+
 
 		itemList.add(testItem);
-		itemList.add(testItem2);
+		itemList.add(hintItem);
+		itemList.add(leftDoor);
+		itemList.add(topDoor);
+		itemList.add(bottomDoor1);
+		itemList.add(bottomDoor2);
+
 
 		itemListX.clear();
 		itemListY.clear();
@@ -151,35 +162,81 @@ public class Playground implements Screen , ApplicationListener {
 
 		//setting the pixel width and height of each item
 		for(int i = 0;i < itemList.size(); i++) {
-			if(itemList.get(i).getType() == 'H') {
+			char theType = itemList.get(i).getType();
+			if(theType == 'H') {
 				itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 6, 6);
 			}
-			else {
+			else if(theType == 'I') {
 				itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 16, 16);
 				//itemList.get(i).setCollisionLayer(platformingLayer);
 			}
 		}
 
+		//debugging purposes
+		//System.out.println("X : " + player.getX());
+		//System.out.println(" Y : " + player.getY());
+
+		//giant if statement when you press ENTER at all throughout the playground
 		if(pressingEnter) {
+			float playerXCoord = player.getX();
+			float playerYCoord = player.getY();
+
 			for(int i = 0;i < itemList.size(); i++) {
 				itemX = itemList.get(i).getX();
 				itemY = itemList.get(i).getY();
 
-				if(player.getX() > ((itemX * 16) - 10) && player.getX() < ((itemX * 16) + 10) &&
-						player.getY() > ((itemY * 16) - 10) && player.getY() < ((itemY * 16) + 10)) {
+				//doors
 
-					if(itemList.get(i).getType() == 'H')
-					{
-						game.changeStr(itemList.get(i).getHint());
-						game.changeScreen(6);
+				//left door
+				if(itemList.get(i).getType() == 'D')
+				{
+					if(itemList.get(i).getID() == 1) {
+						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
+								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
+							System.out.println("LEFT DOOR ENTERED");
+						}
 					}
-					else
-					{
-						//need to somehow add that item's sprite to the inventory screen
-						//inventory.itemSpriteList[i] = itemList.get(i). -need to get the sprite somehow after this dot notation
+
+					if(itemList.get(i).getID() == 2) {
+						if (playerXCoord > ((itemX * 16) - 5) && playerXCoord < ((itemX * 16) + 5) &&
+								playerYCoord == itemY  && playerYCoord == itemY ) {
+							System.out.println("TOP DOOR ENTERED");
+						}
 					}
-					itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
-					itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
+
+					if(itemList.get(i).getID() == 3) {
+						if (playerXCoord > ((itemX * 16) - 24) && playerXCoord < ((itemX * 16) + 24) &&
+								playerYCoord > ((itemY * 16) - 10) && playerYCoord < ((itemY * 16) + 10)) {
+							System.out.println("BOTTOM DOOR 1 ENTERED");
+						}
+					}
+
+					if(itemList.get(i).getID() == 4) {
+						if (playerXCoord > ((itemX * 16) - 24) && playerXCoord < ((itemX * 16) + 24) &&
+								playerYCoord > ((itemY * 16) - 10) && playerYCoord < ((itemY * 16) + 10)) {
+							System.out.println("BOTTOM DOOR 2 ENTERED");
+						}
+					}
+
+				}
+
+				//items and hints
+				else {
+					if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
+							playerYCoord > ((itemY * 16) - 10) && playerYCoord < ((itemY * 16) + 10)) {
+						//hints
+						if (itemList.get(i).getType() == 'H') {
+							game.changeStr(itemList.get(i).getHint());
+							game.changeScreen(6);
+						}
+						//items
+						else {
+							//need to somehow add that item's sprite to the inventory screen
+							//inventory.itemSpriteList[i] = itemList.get(i). -need to get the sprite somehow after this dot notation
+						}
+						itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
+						itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
+					}
 				}
 			}
 		}
@@ -195,7 +252,9 @@ public class Playground implements Screen , ApplicationListener {
 		{
 			itemX = itemList.get(i).getX();
 			itemY = itemList.get(i).getY();
-			itemList.get(i).setPosition(itemX * platformingLayer.getTileWidth(), itemY * platformingLayer.getTileHeight());
+			if(itemList.get(i).getType() != 'D') {
+				itemList.get(i).setPosition(itemX * platformingLayer.getTileWidth(), itemY * platformingLayer.getTileHeight());
+			}
 		}
 
 		//Updating the player
@@ -212,12 +271,13 @@ public class Playground implements Screen , ApplicationListener {
 		renderer.renderTileLayer(platformingLayer);
 
 		for( int i = 0; i < itemList.size(); i++) {
+			if(itemList.get(i).getType() != 'D') {
+				itemList.get(i).update(delta);
+				itemList.get(i).draw(renderer.getBatch());
 
-			itemList.get(i).update(delta);
-			itemList.get(i).draw(renderer.getBatch());
-
-			itemListX.add((int) itemList.get(i).getX() / 16);
-			itemListY.add((int) itemList.get(i).getY() / 16);
+				itemListX.add((int) itemList.get(i).getX() / 16);
+				itemListY.add((int) itemList.get(i).getY() / 16);
+			}
 		}
 
 		player.update(delta);

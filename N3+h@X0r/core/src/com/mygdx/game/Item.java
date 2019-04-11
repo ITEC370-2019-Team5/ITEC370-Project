@@ -15,6 +15,7 @@ public class Item extends Sprite{
     private float y;
     private String hint;
     private char type;
+    private int id;
 
     public Item() {
 
@@ -30,6 +31,7 @@ public class Item extends Sprite{
         this.collisionLayer = collisionLayer;
         this.x = x;
         this.y = y;
+        this.id = id;
     }
     public Item(Sprite sprite, char type, String itemName, String location, int amount, TiledMapTileLayer collisionLayer, float x, float y, String hint)
     {
@@ -42,6 +44,17 @@ public class Item extends Sprite{
         this.x = x;
         this.y = y;
         this.hint = hint;
+    }
+
+    //door item is invisible
+    public Item (char type, TiledMapTileLayer collisionLayer, float x, float y, int id)
+    {
+        //no sprite for doors
+        this.type = type;
+        this.collisionLayer = collisionLayer;
+        this.x = x;
+        this.y = y;
+        this.id = id;
     }
 
     public void draw(SpriteBatch spriteBatch) {
@@ -86,6 +99,13 @@ public class Item extends Sprite{
     public void setCollisionLayer(TiledMapTileLayer collisionLayer) {
         this.collisionLayer = collisionLayer;
     }
+
+    public int getID()
+    {
+        return id;
+    }
+
+    public void setID(int id) { this.id = id; }
 
     public float updateCoordX()
     {
