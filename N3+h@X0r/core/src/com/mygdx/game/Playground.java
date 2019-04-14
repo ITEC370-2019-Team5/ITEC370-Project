@@ -173,8 +173,8 @@ public class Playground implements Screen , ApplicationListener {
 		}
 
 		//debugging purposes
-		//System.out.println("X : " + player.getX());
-		//System.out.println(" Y : " + player.getY());
+		System.out.println("X : " + player.getX());
+		System.out.println(" Y : " + player.getY());
 
 		//giant if statement when you press ENTER at all throughout the playground
 		if(pressingEnter) {
@@ -198,8 +198,8 @@ public class Playground implements Screen , ApplicationListener {
 					}
 
 					if(itemList.get(i).getID() == 2) {
-						if (playerXCoord > ((itemX * 16) - 5) && playerXCoord < ((itemX * 16) + 5) &&
-								playerYCoord == itemY  && playerYCoord == itemY ) {
+						if (playerYCoord == itemY  && playerYCoord == itemY ) {
+							//this door works. Not the rest
 							System.out.println("TOP DOOR ENTERED");
 						}
 					}
