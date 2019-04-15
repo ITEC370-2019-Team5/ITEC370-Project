@@ -62,7 +62,7 @@ public class Playground implements Screen , ApplicationListener {
 		{
 			prevTexture = new Texture("core/assets/CharSelectPics/C" + (charSelect + 1) + "_WalkDown2.png");
 			map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
-			itemListX.add(4);
+			itemListX.add(3);
 			itemListY.add(1);
 			itemListX.add(7);
 			itemListY.add(3);
@@ -81,10 +81,10 @@ public class Playground implements Screen , ApplicationListener {
 						"...");
 
 		//4 doors on the first level of the map
-		leftDoor = new Item('D', platformingLayer, -1.0f, 46.0f, 1);
-		topDoor = new Item('D', platformingLayer, 47.0f, 193.0f, 2);
-		bottomDoor1 = new Item('D', platformingLayer, 119.0f, 7.0f, 3);
-		bottomDoor2 = new Item('D', platformingLayer, 248.0f, 7.0f, 4);
+		leftDoor = new Item('D', platformingLayer, 0.0f, 2.0f, 1);
+		topDoor = new Item('D', platformingLayer, 3.0f, 12.0f, 2);
+		bottomDoor1 = new Item('D', platformingLayer, 7.0f, 0.0f, 3);
+		bottomDoor2 = new Item('D', platformingLayer, 15.0f, 0.0f, 4);
 
 
 		itemList.add(testItem);
@@ -198,8 +198,8 @@ public class Playground implements Screen , ApplicationListener {
 					}
 
 					if(itemList.get(i).getID() == 2) {
-						if (playerYCoord == itemY  && playerYCoord == itemY ) {
-							//this door works. Not the rest
+						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
+								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
 							System.out.println("TOP DOOR ENTERED");
 						}
 					}
