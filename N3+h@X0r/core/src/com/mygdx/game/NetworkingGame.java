@@ -16,6 +16,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
     LoadGameScreen load = new LoadGameScreen(this);
     Inventory inventory = new Inventory(this);
     TextScreen textScreen = new TextScreen(this);
+    Desktop desktop = new Desktop(this);
+    Restart restart = new Restart(this);
+    Viruses viruses = new Viruses(this);
+    NetworkConfig nc = new NetworkConfig(this);
 
     int currentScreenNum = 0;//Keeps Track of screen number for leaderboard.
 
@@ -74,7 +78,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
                 changeScreen(5); //shows inventory
             }
         }
-        else if(screen == 3)//Leaderboard
+        else if(screen == 3)//Leader board
         {
             setScreen(leaderboard);
             if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
@@ -94,13 +98,36 @@ public class NetworkingGame extends Game implements ApplicationListener {
                 changeScreen(currentScreenNum);
             }
         }
-        else if(screen == 6)
+        else if(screen == 6)//TextBox screen
         {
             setScreen(textScreen);
             if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             {
                 changeScreen(currentScreenNum);
             }
+        }
+        else if(screen == 7)//Computer screen
+        {
+            setScreen(desktop);
+            if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            {
+                changeScreen(currentScreenNum);
+            }
+        }
+        else if(screen == 8)//Computer restarting
+        {
+            restart.setScreen(currentScreenNum);
+           setScreen(restart);
+        }
+        else if(screen == 9)//Removing viruses
+        {
+            viruses.setScreen(currentScreenNum);
+            setScreen(viruses);
+        }
+        else if(screen == 10)//CLI for network config
+        {
+            nc.setScreen(currentScreenNum);
+            setScreen(nc);
         }
         else
         {
