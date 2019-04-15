@@ -33,6 +33,29 @@ public class Desktop implements Screen{
         batch.begin();
         batch.draw(display,camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
 
+
+        if(Gdx.input.getX() >= 150 && Gdx.input.getX() <= 220
+                &&
+                Gdx.input.getY() >= 158 && Gdx.input.getY() <= 228){
+            if (Gdx.input.isTouched() == true) {
+                game.changeScreen(8);
+            }
+        }
+        if(Gdx.input.getX() >= 150 && Gdx.input.getX() <= 220
+                &&
+                Gdx.input.getY() >= 242 && Gdx.input.getY() <= 312){
+            if (Gdx.input.isTouched() == true) {
+                game.changeScreen(10);
+            }
+        }
+        if(Gdx.input.getX() >= 150 && Gdx.input.getX() <= 220
+                &&
+                Gdx.input.getY() >= 327 && Gdx.input.getY() <= 397){
+            if (Gdx.input.isTouched() == true) {
+                game.changeScreen(9);
+            }
+        }
+
         batch.end();
         stage.act(delta);
         stage.draw();

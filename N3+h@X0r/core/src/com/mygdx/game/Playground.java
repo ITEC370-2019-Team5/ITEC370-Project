@@ -186,38 +186,36 @@ public class Playground implements Screen , ApplicationListener {
 				itemY = itemList.get(i).getY();
 
 				//doors
-
-				//left door
 				if(itemList.get(i).getType() == 'D')
 				{
+					//Left door
 					if(itemList.get(i).getID() == 1) {
 						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
 								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
 							System.out.println("LEFT DOOR ENTERED");
 						}
 					}
-
+					//Top door
 					if(itemList.get(i).getID() == 2) {
 						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
 								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
 							System.out.println("TOP DOOR ENTERED");
 						}
 					}
-
+					//Bottom door 1
 					if(itemList.get(i).getID() == 3) {
 						if (playerXCoord > ((itemX * 16) - 24) && playerXCoord < ((itemX * 16) + 24) &&
 								playerYCoord > ((itemY * 16) - 10) && playerYCoord < ((itemY * 16) + 10)) {
 							System.out.println("BOTTOM DOOR 1 ENTERED");
 						}
 					}
-
+					//Bottom door 2
 					if(itemList.get(i).getID() == 4) {
 						if (playerXCoord > ((itemX * 16) - 24) && playerXCoord < ((itemX * 16) + 24) &&
 								playerYCoord > ((itemY * 16) - 10) && playerYCoord < ((itemY * 16) + 10)) {
 							System.out.println("BOTTOM DOOR 2 ENTERED");
 						}
 					}
-
 				}
 
 				//items and hints
@@ -233,11 +231,17 @@ public class Playground implements Screen , ApplicationListener {
 						else {
 							//need to somehow add that item's sprite to the inventory screen
 							//inventory.itemSpriteList[i] = itemList.get(i). -need to get the sprite somehow after this dot notation
+							itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
+							itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
 						}
-						itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
-						itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
 					}
 				}
+			}
+
+			if (playerXCoord > ((9 * 16) - 10) && playerXCoord < ((9 * 16) + 10) &&
+					playerYCoord > ((8 * 16) - 10) && playerYCoord < ((8 * 16) + 10))
+			{
+				game.changeScreen(7);
 			}
 		}
 
