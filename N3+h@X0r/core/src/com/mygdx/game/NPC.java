@@ -7,10 +7,12 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public class NPC extends Sprite{
     private TiledMapTileLayer collisionLayer;
+    private String dialogue;
 
-    NPC(Sprite sprite, TiledMapTileLayer collisionLayer){
+    NPC(Sprite sprite, TiledMapTileLayer collisionLayer, String dialogue){
         super(sprite);
         this.collisionLayer = collisionLayer;
+        this.dialogue = dialogue;
     }
 
     public void draw(SpriteBatch spriteBatch) {
@@ -19,7 +21,6 @@ public class NPC extends Sprite{
     }
 
     void update(float delta){
-        setPosition(getX(),getY());
     }
 
     public TiledMapTileLayer getCollisionLayer() {
@@ -28,5 +29,13 @@ public class NPC extends Sprite{
 
     public void setCollisionLayer(TiledMapTileLayer collisionLayer) {
         this.collisionLayer = collisionLayer;
+    }
+
+    public String getDialogue() {
+        return dialogue;
+    }
+
+    public void setDialogue(String dialogue) {
+        this.dialogue = dialogue;
     }
 }

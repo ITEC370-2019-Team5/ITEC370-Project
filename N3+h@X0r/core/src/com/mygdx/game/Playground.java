@@ -28,6 +28,7 @@ public class Playground implements Screen , ApplicationListener {
 	private TiledMapTileLayer platformingLayer;
 	private int[] decorationLayers;
 	private Player player;
+	private NPC boss;
 	private Texture standing, itemTexture;
 	private Item testItem, hintItem, leftDoor, topDoor, bottomDoor1, bottomDoor2;
 	private ArrayList<Item> itemList = new ArrayList<Item>();
@@ -109,11 +110,19 @@ public class Playground implements Screen , ApplicationListener {
 		{
 			x = x * platformingLayer.getTileWidth();
 			y = y * platformingLayer.getTileHeight();
+
 			showOnce = true;
 		}
 		player = new Player(new Sprite(prevTexture), platformingLayer, charSelect);
 		player.setBounds(0, 0, 16, 16);
 		player.setPosition(x, y);
+
+		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer,
+				"Oh good, you finally made it!\n" +
+						"Now before we get started, let's see\n" +
+						"if you know the basics");
+		boss.setBounds(0,0,16,16);
+		boss.setPosition(3 * 16, 2 * 16);
 
 		for(int i = 0;i < itemList.size(); i++) {
 			itemList.get(i).setBounds(itemList.get(i).updateCoordX(), itemList.get(i).updateCoordY(), 16, 16);
@@ -158,6 +167,12 @@ public class Playground implements Screen , ApplicationListener {
 		{
 			player.setBounds(player.getX(),player.getY(),16,16);
 			rendOnce = true;
+			game.changeStr("WASD = Move Up, Left, Down, and Right\n" +
+					"Enter = Interact with people and objects\n" +
+					"Escape = Exit out of a window or text box\n" +
+					"Talk to your boss to get your first assignment\n" +
+					"(The black-haired man in the black suit and tie)");
+			game.changeScreen(6);
 		}
 
 		//setting the pixel width and height of each item
@@ -237,6 +252,12 @@ public class Playground implements Screen , ApplicationListener {
 					}
 				}
 			}
+			//Boss Dialogue
+			if(player.getX() > (boss.getX() - 20) && player.getX() < (boss.getX() + 4) &&
+					player.getY() > (boss.getY() - 20) && player.getY() < (boss.getY() + 4)){
+				game.changeStr(boss.getDialogue());
+				game.changeScreen(6);
+			}
 
 			if (playerXCoord > ((9 * 16) - 10) && playerXCoord < ((9 * 16) + 10) &&
 					playerYCoord > ((8 * 16) - 10) && playerYCoord < ((8 * 16) + 10))
@@ -250,6 +271,8 @@ public class Playground implements Screen , ApplicationListener {
 		y = player.updateCoordY(y);
 		player.setCollisionLayer(platformingLayer);
 		player.setPosition(x, y);
+
+		boss.setPosition(3 * 16, 2 * 16);
 
 		//Setting the items
 		for(int i = 0; i < itemList.size(); i++)
@@ -286,6 +309,7 @@ public class Playground implements Screen , ApplicationListener {
 
 		player.update(delta);
 		prevTexture = new Texture(player.prevTexture());
+		boss.update(delta);
 
 		upTime = player.getUpTime();
 		downTime = player.getDownTime();
@@ -293,6 +317,7 @@ public class Playground implements Screen , ApplicationListener {
 		rightTime = player.getRightTime();
 
 		player.draw(renderer.getBatch());
+		boss.draw(renderer.getBatch());
 		renderer.getBatch().end();
 
 		itemList.clear();
@@ -328,6 +353,7 @@ public class Playground implements Screen , ApplicationListener {
 	@Override
 	public void dispose () {
 		player.getTexture().dispose();
+		boss.getTexture().dispose();
 		map.dispose();
 		testItem.getTexture().dispose();
 		renderer.dispose();
