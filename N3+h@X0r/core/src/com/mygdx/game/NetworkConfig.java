@@ -20,6 +20,7 @@ public class NetworkConfig implements Screen{
     private SpriteBatch batch; //Sprite batch object.
     private Stage stage; //Stage to be displayed.
     private Texture display;
+    private Texture blackBox;
     private Skin skin; //Skin object used for the TextField.
     private boolean init; //Stops memory leaks.
     private Label label;
@@ -39,10 +40,13 @@ public class NetworkConfig implements Screen{
     public void render(float delta) {
         batch.begin();
         batch.draw(display,camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
+        batch.draw(blackBox, 150, 200);
 
         if(Gdx.input.isKeyPressed(Input.Keys.ENTER))
         {
             str = textField.getText();
+
+            label.toBack();
         }
 
         batch.end();
@@ -60,6 +64,7 @@ public class NetworkConfig implements Screen{
             init = true;
 
             skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
+            blackBox = new Texture("core/assets/DesktopPics/blackBox.png");
             str = "For more info, you can type \"help\" \n To exit, you can type\"Exit\"";
 
             textField = new TextField("", skin);
@@ -99,6 +104,7 @@ public class NetworkConfig implements Screen{
     @Override
     public void dispose () {
         display.dispose();
+        label.remove();
     }
 
     public void setScreen(int num)

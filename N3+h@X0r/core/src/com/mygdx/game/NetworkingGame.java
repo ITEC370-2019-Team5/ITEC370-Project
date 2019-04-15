@@ -128,6 +128,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
         {
             nc.setScreen(currentScreenNum);
             setScreen(nc);
+            if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            {
+                changeScreen(7);
+            }
         }
         else
         {
