@@ -18,10 +18,10 @@ public class CharacterScreen implements Screen
 {
     private NetworkingGame game;
     private OrthographicCamera camera;
-    private Texture chooseChar, randomChar, returnHome, coverLoad, coverNext;
+    private Texture chooseChar, randomChar, returnHome, coverLoad, coverNext, myChar;
     private SpriteBatch batch;
-    private int countPush = 0; //Used to only click button once. -AR
     private boolean init;
+    private int charSelect = 0;
 
     public CharacterScreen(NetworkingGame game){
         this.game = game;
@@ -37,6 +37,7 @@ public class CharacterScreen implements Screen
         batch.draw(randomChar, camera.viewportWidth / 2 - 200, 555);
         batch.draw(coverLoad, camera.viewportWidth / 2 - 200, 60);
         batch.draw(coverNext, camera.viewportWidth / 2 + 5, 60);
+        batch.draw(myChar, camera.viewportHeight / 2 - 120, 210);
 
         float x = camera.viewportWidth / 2; //Halfway across x-axis
         float y = camera.viewportHeight / 2; //Halfway across y-axis
@@ -48,24 +49,16 @@ public class CharacterScreen implements Screen
         {
             if(Gdx.input.isTouched() == true)
             {
-                countPush++;
-                if (countPush == 1)
-                {
-                    game.changeScreen(0); //Returns to home screen.
-                }
-                countPush = 0;
+                game.changeScreen(0); //Returns to home screen.
             }
         }
-        //Area where Previous Character button is clickable.
+        //Area where Random Character button is clickable.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
                 Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555) {
             if (Gdx.input.isTouched() == true) {
-                countPush++;
-                if (countPush == 1) {
-                    game.changeChar();
-                }
-                countPush = 0;
+                game.changeChar();
+                charSelect = game.getChar();
             }
         }
 
@@ -84,6 +77,7 @@ public class CharacterScreen implements Screen
             coverLoad = new Texture("core/assets/CharSelectPics/Black_Image.png");
             coverNext = new Texture("core/assets/CharSelectPics/Black_Image.png");
         }
+        myChar = new Texture("core/assets/CharSelectPics/C" + (charSelect + 1) + "_Display.png");
     }
 
     @Override

@@ -84,7 +84,9 @@ public class TextScreen implements Screen{
     @Override
     public void hide() { dispose(); }
     @Override
-    public void dispose () {
+    public void dispose ()
+    {
+
     }
     public void changeStr(String str)
     {

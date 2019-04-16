@@ -167,12 +167,6 @@ public class Playground implements Screen , ApplicationListener {
 		{
 			player.setBounds(player.getX(),player.getY(),16,16);
 			rendOnce = true;
-			game.changeStr("WASD = Move Up, Left, Down, and Right\n" +
-					"Enter = Interact with people and objects\n" +
-					"Escape = Exit out of a window or text box\n" +
-					"Talk to your boss to get your first assignment\n" +
-					"(The black-haired man in the black suit and tie)");
-			game.changeScreen(6);
 		}
 
 		//setting the pixel width and height of each item
@@ -188,8 +182,8 @@ public class Playground implements Screen , ApplicationListener {
 		}
 
 		//debugging purposes
-		System.out.println("X : " + player.getX());
-		System.out.println(" Y : " + player.getY());
+		//System.out.println("X : " + player.getX());
+		//System.out.println(" Y : " + player.getY());
 
 		//giant if statement when you press ENTER at all throughout the playground
 		if(pressingEnter) {
