@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,9 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-
-import java.util.ArrayList;
 
 public class TextScreen implements Screen{
     private NetworkingGame game; //Instance of the NetworkingGame class.
@@ -22,6 +20,7 @@ public class TextScreen implements Screen{
     private boolean init; //Stops memory leaks.
     String displayThis = "";
     private Label label;
+    private char whoami = 'h';
 
     //Method to init the class.
     public TextScreen(NetworkingGame game){
@@ -34,6 +33,23 @@ public class TextScreen implements Screen{
     public void render(float delta) {
         batch.begin();
         batch.draw(blackBox, 50, 100);
+
+        if(Gdx.input.isKeyPressed(Input.Keys.ENTER))
+        {
+
+            if(whoami == 'h')
+            {
+                game.changeScreen(1);
+            }
+            else if(whoami == 'b')
+            {
+                displayThis = game.getNextDialogue();
+            }
+            else
+            {
+                game.changeScreen(1);
+            }
+        }
 
         batch.end();
         stage.act(delta);
@@ -90,6 +106,10 @@ public class TextScreen implements Screen{
     public void changeStr(String str)
     {
         displayThis = str;
+    }
+    public void whoami(char myChar)
+    {
+        whoami = myChar;
     }
 }
 

@@ -173,8 +173,13 @@ public class NetworkingGame extends Game implements ApplicationListener {
     {
         return charSelect;
     }
-    public void changeStr(String str)
+    public void changeStr(String str, char type)
     {
+        textScreen.whoami(type);
         textScreen.changeStr(str);
+    }
+    public String getNextDialogue()
+    {
+        return playground.getNextDialogue();
     }
 }

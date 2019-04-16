@@ -117,10 +117,10 @@ public class Playground implements Screen , ApplicationListener {
 		player.setBounds(0, 0, 16, 16);
 		player.setPosition(x, y);
 
-		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer,
-				"Oh good, you finally made it!\n" +
-						"Now before we get started, let's see\n" +
-						"if you know the basics");
+		String[] diag = {"Oh good, you finally made it!\n" +
+				"Now before we get started, let's see\n" +
+				"if you know the basics", "This is a test"};
+		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer, diag);
 		boss.setBounds(0,0,16,16);
 		boss.setPosition(3 * 16, 2 * 16);
 
@@ -233,7 +233,8 @@ public class Playground implements Screen , ApplicationListener {
 							playerYCoord > ((itemY * 16) - 10) && playerYCoord < ((itemY * 16) + 10)) {
 						//hints
 						if (itemList.get(i).getType() == 'H') {
-							game.changeStr(itemList.get(i).getHint());
+
+							game.changeStr(itemList.get(i).getHint(), 'h');
 							game.changeScreen(6);
 						}
 						//items
@@ -249,7 +250,8 @@ public class Playground implements Screen , ApplicationListener {
 			//Boss Dialogue
 			if(player.getX() > (boss.getX() - 20) && player.getX() < (boss.getX() + 4) &&
 					player.getY() > (boss.getY() - 20) && player.getY() < (boss.getY() + 4)){
-				game.changeStr(boss.getDialogue());
+				game.changeStr(boss.getDialogue(boss.getDiagSoFar()), 'b');
+				boss.setdiagSoFar();
 				game.changeScreen(6);
 			}
 
@@ -359,5 +361,11 @@ public class Playground implements Screen , ApplicationListener {
 	public void updateChar(int num)
 	{
 		charSelect = num;
+	}
+
+	public String getNextDialogue()
+	{
+		boss.setdiagSoFar();
+		return boss.getDialogue(boss.getDiagSoFar());
 	}
 }
