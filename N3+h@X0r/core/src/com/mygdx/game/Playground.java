@@ -63,7 +63,7 @@ public class Playground implements Screen , ApplicationListener {
 		{
 			prevTexture = new Texture("core/assets/CharSelectPics/C" + (charSelect + 1) + "_WalkDown2.png");
 			map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
-			itemListX.add(3);
+			itemListX.add(9);
 			itemListY.add(1);
 			itemListX.add(7);
 			itemListY.add(3);
@@ -119,8 +119,14 @@ public class Playground implements Screen , ApplicationListener {
 
 		String[] diag = {"Oh good, you finally made it!\n" +
 				"Now before we get started, let's see\n" +
-				"if you know the basics", "This is a test"};
-		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer, diag);
+				"if you know the basics",
+							"Which of the following ip's are\n" +
+							"within the private IP range?\n" +
+									"A: 192.167.4.3\n" +
+									"B: 172.16.94.217\n" +
+									"C: 154.3.43.196"};
+		char[] types = {'d', 'q'};
+		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer, diag, types);
 		boss.setBounds(0,0,16,16);
 		boss.setPosition(3 * 16, 2 * 16);
 
@@ -251,7 +257,6 @@ public class Playground implements Screen , ApplicationListener {
 			if(player.getX() > (boss.getX() - 20) && player.getX() < (boss.getX() + 4) &&
 					player.getY() > (boss.getY() - 20) && player.getY() < (boss.getY() + 4)){
 				game.changeStr(boss.getDialogue(boss.getDiagSoFar()), 'b');
-				boss.setdiagSoFar();
 				game.changeScreen(6);
 			}
 
@@ -367,5 +372,9 @@ public class Playground implements Screen , ApplicationListener {
 	{
 		boss.setdiagSoFar();
 		return boss.getDialogue(boss.getDiagSoFar());
+	}
+	public char getNextDiagType()
+	{
+		return boss.getDiagType();
 	}
 }

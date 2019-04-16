@@ -8,12 +8,14 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 public class NPC extends Sprite{
     private TiledMapTileLayer collisionLayer;
     private String[] dialogue;
+    private char[] type;
     private int diagSoFar;
 
-    NPC(Sprite sprite, TiledMapTileLayer collisionLayer, String[] dialogue){
+    NPC(Sprite sprite, TiledMapTileLayer collisionLayer, String[] dialogue, char[] type){
         super(sprite);
         this.collisionLayer = collisionLayer;
         this.dialogue = dialogue;
+        this.type = type;
         diagSoFar = 0;
     }
 
@@ -52,5 +54,9 @@ public class NPC extends Sprite{
         {
             diagSoFar++;
         }
+    }
+    public char getDiagType()
+    {
+        return type[diagSoFar];
     }
 }

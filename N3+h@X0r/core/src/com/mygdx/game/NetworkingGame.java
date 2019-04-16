@@ -128,10 +128,6 @@ public class NetworkingGame extends Game implements ApplicationListener {
         {
             nc.setScreen(currentScreenNum);
             setScreen(nc);
-            if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            {
-                changeScreen(7);
-            }
         }
         else
         {
@@ -181,5 +177,9 @@ public class NetworkingGame extends Game implements ApplicationListener {
     public String getNextDialogue()
     {
         return playground.getNextDialogue();
+    }
+    public char getNextDiagType()
+    {
+        return playground.getNextDiagType();
     }
 }

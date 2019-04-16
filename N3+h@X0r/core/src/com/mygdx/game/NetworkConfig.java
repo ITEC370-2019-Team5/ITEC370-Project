@@ -62,7 +62,7 @@ public class NetworkConfig implements Screen{
             init = true;
 
             skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
-            str1 = "For more info, you can type \"help\" \n To exit, you can type\"Exit\"";
+            str1 = "For more info, you can type \"help\" \nTo exit, you can type\"exit\"";
 
             textField = new TextField("", skin);
             textField.setPosition(150, 150);
@@ -122,19 +122,28 @@ public class NetworkConfig implements Screen{
     {
         if(cmd.equals("help"))
         {
-            str2 = "test";
+            str2 = "Commmands: \n" +
+                    "   help: Displays this message\n" +
+                    "   exit: exits the CLI\n" +
+                    "   ipconfig: prints adapter info";
         }
-        else if(cmd.equals(""))
+        else if(cmd.equals("exit"))
         {
             str2 = "";
+            str1 = "For more info, you can type \"help\" \nTo exit, you can type\"exit\"";
+            game.changeScreen(7);
         }
-        else if(cmd.equals(""))
+        else if(cmd.equals("ip"))
         {
-            str2 = "";
+            str2 = "ip";
         }
-        else if(cmd.equals(""))
+        else if(cmd.equals("ipconfig"))
         {
-            str2 = "";
+            str2 = "Wireless LAN adapter Wi-Fi\n" +
+                    "  Link-local IPV6: fe80::87::25cb::fc2e::e738\n" +
+                    "  IPV4 Addr: 10.1.1.1\n" +
+                    "  Subnet Mask: 255.255.255.0\n" +
+                    "  Default Gateway: 10.1.0.1";
         }
         else
         {
@@ -142,4 +151,3 @@ public class NetworkConfig implements Screen{
         }
     }
 }
-

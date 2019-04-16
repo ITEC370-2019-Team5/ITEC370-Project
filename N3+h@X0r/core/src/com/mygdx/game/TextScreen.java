@@ -43,12 +43,35 @@ public class TextScreen implements Screen{
             }
             else if(whoami == 'b')
             {
-                displayThis = game.getNextDialogue();
+                if(game.getNextDiagType() == 'd')
+                {
+                    displayThis = game.getNextDialogue();
+                }
+                else if(game.getNextDiagType() == 'q')
+                {
+                    //Do nothing
+                }
+                else
+                {
+                    System.out.println("Something broke");
+                }
             }
             else
             {
                 game.changeScreen(1);
             }
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.A))
+        {
+            System.out.println("A pressed");
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.B))
+        {
+            System.out.println("B pressed");
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.C))
+        {
+            System.out.println("C pressed");
         }
 
         batch.end();
