@@ -62,7 +62,7 @@ public class Player extends Sprite {
                     new Texture("core/assets/CharSelectPics/C4_WalkRight3.png"),
                     new Texture("core/assets/CharSelectPics/C4_WalkUp1.png"),
                     new Texture("core/assets/CharSelectPics/C4_WalkUp2.png"),
-                    new Texture("core/assets/CharSelectPics/C4_WalkUp3.png")}/*,
+                    new Texture("core/assets/CharSelectPics/C4_WalkUp3.png")},
             new Texture[]{
                     new Texture("core/assets/CharSelectPics/C5_WalkDown1.png"),
                     new Texture("core/assets/CharSelectPics/C5_WalkDown2.png"),
@@ -75,7 +75,7 @@ public class Player extends Sprite {
                     new Texture("core/assets/CharSelectPics/C5_WalkRight3.png"),
                     new Texture("core/assets/CharSelectPics/C5_WalkUp1.png"),
                     new Texture("core/assets/CharSelectPics/C5_WalkUp2.png"),
-                    new Texture("core/assets/CharSelectPics/C5_WalkUp3.png")},
+                    new Texture("core/assets/CharSelectPics/C5_WalkUp3.png")}/*
             new Texture[]{
                     new Texture("core/assets/CharSelectPics/C6_WalkDown1.png"),
                     new Texture("core/assets/CharSelectPics/C6_WalkDown2.png"),

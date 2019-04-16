@@ -167,7 +167,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     public void changeChar()
     {
         Random rand = new Random();
-        charSelect = rand.nextInt(4);
+        charSelect = rand.nextInt(5);
     }
     public int getChar()
     {
