@@ -51,19 +51,18 @@ public class TextScreen implements Screen{
             init = true;
 
             skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
-
-            label = new Label(displayThis, skin);
-            label.setFontScale(2);
-            label.setPosition(100, 125);
-            label.setSize(700, 200);
-
-            label.setText(displayThis);
-
-
-            stage.addActor(label);
-            Gdx.input.setInputProcessor(stage);
-
         }
+
+        label = new Label(displayThis, skin);
+        label.setFontScale(2);
+        label.setPosition(100, 125);
+        label.setSize(700, 200);
+
+        label.setText(displayThis);
+
+
+        stage.addActor(label);
+        Gdx.input.setInputProcessor(stage);
 
     }
 
@@ -86,7 +85,7 @@ public class TextScreen implements Screen{
     @Override
     public void dispose ()
     {
-
+        label.remove();
     }
     public void changeStr(String str)
     {
