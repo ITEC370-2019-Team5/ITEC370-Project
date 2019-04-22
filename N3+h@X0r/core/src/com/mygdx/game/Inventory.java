@@ -20,7 +20,8 @@ public class Inventory implements Screen{
     private Texture inventory;
     private Skin skin; //Skin object used for the TextField.
     private boolean init; //Stops memory leaks.
-    protected Sprite[] itemSpriteList = new Sprite[14];
+    private Sprite[] itemSpriteList = new Sprite[14];
+    private int x = 0;
 
     //Method to init the class.
     public Inventory(NetworkingGame game){
@@ -34,75 +35,80 @@ public class Inventory implements Screen{
         batch.begin();
         batch.draw(inventory, 200, 120);
 
+       Sprite s = new Sprite(new Texture("core/assets/test_item.png"));
+       itemSpriteList[13] = s;
+
+        System.out.println(itemSpriteList[0]);
+
         if (itemSpriteList[0] != null)
         {
             itemSpriteList[0].setSize(73, 73);
-            batch.draw(itemSpriteList[0],100, 100);
+            batch.draw(itemSpriteList[0],469, 497);
         }
         if (itemSpriteList[1] != null)
         {
             itemSpriteList[1].setSize(73, 73);
-            batch.draw(itemSpriteList[1],100, 100);
+            batch.draw(itemSpriteList[1],576, 497);
         }
         if (itemSpriteList[2] != null)
         {
             itemSpriteList[2].setSize(73, 73);
-            batch.draw(itemSpriteList[2],100, 100);
+            batch.draw(itemSpriteList[2],250, 399);
         }
         if (itemSpriteList[3] != null)
         {
             itemSpriteList[3].setSize(73, 73);
-            batch.draw(itemSpriteList[3],100, 100);
+            batch.draw(itemSpriteList[3],361, 399);
         }
         if (itemSpriteList[4] != null)
         {
             itemSpriteList[4].setSize(73, 73);
-            batch.draw(itemSpriteList[4],100, 100);
+            batch.draw(itemSpriteList[4],469, 399);
         }
         if (itemSpriteList[5] != null)
         {
             itemSpriteList[5].setSize(73, 73);
-            batch.draw(itemSpriteList[5],100, 100);
+            batch.draw(itemSpriteList[5],576, 399);
         }
         if (itemSpriteList[6] != null)
         {
             itemSpriteList[6].setSize(73, 73);
-            batch.draw(itemSpriteList[6],100, 100);
+            batch.draw(itemSpriteList[6],250, 302);
         }
         if (itemSpriteList[7] != null)
         {
             itemSpriteList[7].setSize(73, 73);
-            batch.draw(itemSpriteList[7],100, 100);
+            batch.draw(itemSpriteList[7],361, 302);
         }
         if (itemSpriteList[8] != null)
         {
             itemSpriteList[8].setSize(73, 73);
-            batch.draw(itemSpriteList[8],100, 100);
+            batch.draw(itemSpriteList[8],469, 302);
         }
         if (itemSpriteList[9] != null)
         {
             itemSpriteList[9].setSize(73, 73);
-            batch.draw(itemSpriteList[9],100, 100);
+            batch.draw(itemSpriteList[9],576, 302);
         }
         if (itemSpriteList[10] != null)
         {
             itemSpriteList[10].setSize(73, 73);
-            batch.draw(itemSpriteList[10],100, 100);
+            batch.draw(itemSpriteList[10],250, 204);
         }
         if (itemSpriteList[11] != null)
         {
             itemSpriteList[11].setSize(73, 73);
-            batch.draw(itemSpriteList[11],100, 100);
+            batch.draw(itemSpriteList[11],361, 204);
         }
         if (itemSpriteList[12] != null)
         {
             itemSpriteList[12].setSize(73, 73);
-            batch.draw(itemSpriteList[12],100, 100);
+            batch.draw(itemSpriteList[12],469, 204);
         }
         if (itemSpriteList[13] != null)
         {
             itemSpriteList[13].setSize(73, 73);
-            batch.draw(itemSpriteList[13],100, 100);
+            batch.draw(itemSpriteList[13],576, 204);
         }
 
 
@@ -126,6 +132,22 @@ public class Inventory implements Screen{
         }
     }
 
+    //getter - gets Sprite of index
+    public Sprite getItemSprite(int position) {
+        return itemSpriteList[position];
+    }
+
+    //setter
+    public void setItemSprite(Sprite[] itemSpriteList, int position) {
+        this.itemSpriteList[position] = itemSpriteList[position];
+    }
+
+    public void addToInv (Sprite s) {
+        itemSpriteList[x] = s;
+        System.out.println(itemSpriteList[0]);
+        x++;
+    }
+
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = width;
@@ -145,5 +167,7 @@ public class Inventory implements Screen{
         @Override
         public void dispose () {
         }
+
+
     }
 

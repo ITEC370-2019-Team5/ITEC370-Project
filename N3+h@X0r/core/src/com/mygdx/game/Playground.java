@@ -34,7 +34,7 @@ public class Playground implements Screen , ApplicationListener {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private boolean pressingEnter;
 	private Texture prevTexture;
-	private Inventory inventory;
+	private Inventory inventory = new Inventory(game);
 
 	private float x = 8;
 	private float y = 1;
@@ -63,8 +63,8 @@ public class Playground implements Screen , ApplicationListener {
 		{
 			prevTexture = new Texture("core/assets/CharSelectPics/C" + (charSelect + 1) + "_WalkDown2.png");
 			map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
-			itemListX.add(9);
-			itemListY.add(1);
+			itemListX.add(12);
+			itemListY.add(3);
 			itemListX.add(7);
 			itemListY.add(3);
 		}
@@ -156,8 +156,8 @@ public class Playground implements Screen , ApplicationListener {
 
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		camera.position.x += 16;
-		camera.position.y += 16;
+		camera.position.x = 120;
+		camera.position.y = 120;
 		camera.zoom = 3/5f;
 		camera.setToOrtho(false, 600, 400);
 
@@ -246,7 +246,8 @@ public class Playground implements Screen , ApplicationListener {
 						//items
 						else {
 							//need to somehow add that item's sprite to the inventory screen
-							//inventory.itemSpriteList[i] = itemList.get(i). -need to get the sprite somehow after this dot notation
+							System.out.println(itemList.get(0).getLocation());
+							game.addToInv(new Sprite(new Texture(itemList.get(i).getLocation())));
 							itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
 							itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
 						}
@@ -273,7 +274,7 @@ public class Playground implements Screen , ApplicationListener {
 		player.setCollisionLayer(platformingLayer);
 		player.setPosition(x, y);
 
-		boss.setPosition(4 * 16, 3 * 16);
+		boss.setPosition(3 * 16, 2 * 16);
 
 		//Setting the items
 		for(int i = 0; i < itemList.size(); i++)

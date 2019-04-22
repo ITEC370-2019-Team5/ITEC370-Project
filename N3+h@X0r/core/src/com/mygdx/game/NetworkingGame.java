@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.Random;
 
@@ -182,4 +183,5 @@ public class NetworkingGame extends Game implements ApplicationListener {
     {
         return playground.getNextDiagType();
     }
+    public void addToInv(Sprite s) { inventory.addToInv(s);}
 }
