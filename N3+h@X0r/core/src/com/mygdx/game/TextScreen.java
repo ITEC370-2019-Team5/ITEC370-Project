@@ -21,6 +21,7 @@ public class TextScreen implements Screen{
     String displayThis = "";
     private Label label;
     private char whoami = 'h';
+    private int t = 0;
 
     //Method to init the class.
     public TextScreen(NetworkingGame game){
@@ -34,7 +35,7 @@ public class TextScreen implements Screen{
         batch.begin();
         batch.draw(blackBox, 50, 100);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.ENTER))
+        if(Gdx.input.isKeyPressed(Input.Keys.ENTER) && t >= 40)
         {
 
             if(whoami == 'h')
@@ -60,19 +61,24 @@ public class TextScreen implements Screen{
             {
                 game.changeScreen(1);
             }
+            t = 0;
         }
-        else if(Gdx.input.isKeyPressed(Input.Keys.A))
+        else if(Gdx.input.isKeyPressed(Input.Keys.A) && t >= 40)
         {
             System.out.println("A pressed");
+            t = 0;
         }
-        else if(Gdx.input.isKeyPressed(Input.Keys.B))
+        else if(Gdx.input.isKeyPressed(Input.Keys.B) && t >= 40)
         {
             System.out.println("B pressed");
+            t = 0;
         }
-        else if(Gdx.input.isKeyPressed(Input.Keys.C))
+        else if(Gdx.input.isKeyPressed(Input.Keys.C) && t >= 40)
         {
             System.out.println("C pressed");
+            t = 0;
         }
+        t++;
 
         batch.end();
         stage.act(delta);
