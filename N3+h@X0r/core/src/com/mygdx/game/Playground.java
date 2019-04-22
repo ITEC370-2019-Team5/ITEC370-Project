@@ -156,8 +156,8 @@ public class Playground implements Screen , ApplicationListener {
 
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		camera.position.x = 120;
-		camera.position.y = 120;
+		camera.position.x += 16;
+		camera.position.y += 16;
 		camera.zoom = 3/5f;
 		camera.setToOrtho(false, 600, 400);
 
@@ -273,7 +273,7 @@ public class Playground implements Screen , ApplicationListener {
 		player.setCollisionLayer(platformingLayer);
 		player.setPosition(x, y);
 
-		boss.setPosition(3 * 16, 2 * 16);
+		boss.setPosition(4 * 16, 3 * 16);
 
 		//Setting the items
 		for(int i = 0; i < itemList.size(); i++)

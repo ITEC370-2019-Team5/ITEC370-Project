@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class NetworkConfig implements Screen{
     private NetworkingGame game; //Instance of the NetworkingGame class.
@@ -22,17 +23,30 @@ public class NetworkConfig implements Screen{
     private Texture display;
     private Skin skin; //Skin object used for the TextField.
     private boolean init; //Stops memory leaks.
-    private Label label1, label2;
-    private String str1, str2 = "";
+    private Label label;
+    private String str = "";
     private TextField textField;
 
     private int currentScreenNum;
+
+    private Computer[] comps = new Computer[10];
+    private String currentComp = "A";
 
     //Method to init the class.
     public NetworkConfig(NetworkingGame game){
         this.game = game;
         camera = new OrthographicCamera();
         init = false;
+        comps[0] = new Computer("A", "10.1.1.2", "0:0:0:0:0:ffff:a01:102", "255.255.255.0", "162.96.48.231");
+        comps[1] = new Computer("B", "10.1.1.3", "0:0:0:0:0:ffff:a01:103", "255.255.255.0", "162.96.48.231");
+        comps[2] = new Computer("C", "10.1.1.4", "0:0:0:0:0:ffff:a01:104", "255.255.255.0", "162.96.48.231");
+        comps[3] = new Computer("D", "10.1.1.5", "0:0:0:0:0:ffff:a01:105", "255.255.255.0", "162.96.48.231");
+        comps[4] = new Computer("E", "10.1.1.6", "0:0:0:0:0:ffff:a01:106", "255.255.255.0", "162.96.48.231");
+        comps[5] = new Computer("F", "10.1.1.7", "0:0:0:0:0:ffff:a01:107", "255.255.255.0", "162.96.48.231");
+        comps[6] = new Computer("G", "10.1.1.8", "0:0:0:0:0:ffff:a01:108", "255.255.255.0", "162.96.48.231");
+        comps[7] = new Computer("H", "10.1.1.9", "0:0:0:0:0:ffff:a01:109", "255.255.255.0", "162.96.48.231");
+        comps[8] = new Computer("I", "10.1.1.10", "0:0:0:0:0:ffff:a01:10a", "255.255.255.0", "162.96.48.231");
+        comps[9] = new Computer("J", "10.1.1.11", "0:0:0:0:0:ffff:a01:10b", "255.255.255.0", "162.96.48.231");
     }
 
     @Override
@@ -42,9 +56,8 @@ public class NetworkConfig implements Screen{
 
         if(Gdx.input.isKeyPressed(Input.Keys.ENTER))
         {
-            str2 = str2;
-            str1 = textField.getText();
-            setStr(str1);
+            str = textField.getText();
+            setStr(str);
         }
 
         batch.end();
@@ -62,7 +75,7 @@ public class NetworkConfig implements Screen{
             init = true;
 
             skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
-            str1 = "For more info, you can type \"help\" \nTo exit, you can type\"exit\"";
+            str = "For more info, you can type \"?\" \nTo exit, you can type\"exit\"";
 
             textField = new TextField("", skin);
             textField.setPosition(150, 150);
@@ -70,24 +83,15 @@ public class NetworkConfig implements Screen{
         }
         display = new Texture("core/assets/DesktopPics/Configure_Background.png");
 
-        label1 = new Label(str1, skin);
-        label2 = new Label(str1, skin);
+        label = new Label(str, skin);
 
-        label1.setFontScale(2);
-        label2.setFontScale(2);
-
-        label1.setPosition(150, 200);
-        label2.setPosition(150, 475);
-
-        label1.setSize(600, 275);
-        label2.setSize(600, 275);
-
-        label1.setText(str1);
-        label2.setText(str2);
+        label.setFontScale(2);
+        label.setPosition(150, 400);
+        label.setSize(600, 400);
+        label.setText(str);
 
         stage.addActor(textField);
-        stage.addActor(label1);
-        stage.addActor(label2);
+        stage.addActor(label);
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -110,8 +114,7 @@ public class NetworkConfig implements Screen{
     @Override
     public void dispose () {
         display.dispose();
-        label1.remove();
-        label2.remove();
+        label.remove();
     }
 
     public void setScreen(int num)
@@ -120,34 +123,121 @@ public class NetworkConfig implements Screen{
     }
     public void setStr(String cmd)
     {
-        if(cmd.equals("help"))
+        Scanner scan = new Scanner(cmd);
+        scan.useDelimiter(" ");
+        String command = "";
+        command = scan.next();
+
+        if(command.equals("?"))
         {
-            str2 = "Commmands: \n" +
-                    "   help: Displays this message\n" +
-                    "   exit: exits the CLI\n" +
-                    "   ipconfig: prints adapter info";
+            str = "Commands: \n" +
+                    "  ?: Displays this message\n" +
+                    "  exit: exits the CLI\n" +
+                    "  config <device>: Sets the config device\n" +
+                    "  ip <addr> <mask>: Configures IP features\n" +
+                    "  ipv6 <addr>: Configures IPv6 features\n" +
+                    "  gateway <addr>: Configures the gateway\n" +
+                    "  ipconfig: displays config info";
         }
-        else if(cmd.equals("exit"))
+        else if(command.equals("exit"))
         {
-            str2 = "";
-            str1 = "For more info, you can type \"help\" \nTo exit, you can type\"exit\"";
+            str = "For more info, you can type \"help\" \nTo exit, you can type\"exit\"";
             game.changeScreen(7);
+
         }
-        else if(cmd.equals("ip"))
+        else if(command.equals("config"))
         {
-            str2 = "ip";
+            try
+            {
+                currentComp = scan.next();
+                str = "Configuring device: " + currentComp;
+            }
+            catch(Exception e)
+            {
+                str = "Invalid arguments.\nCorrect use: config <device>";
+            }
         }
-        else if(cmd.equals("ipconfig"))
+        else if(command.equals("ip"))
         {
-            str2 = "Wireless LAN adapter Wi-Fi\n" +
-                    "  Link-local IPV6: fe80::87::25cb::fc2e::e738\n" +
-                    "  IPV4 Addr: 10.1.1.1\n" +
-                    "  Subnet Mask: 255.255.255.0\n" +
-                    "  Default Gateway: 10.1.0.1";
+            for(int i = 0; i < comps.length; i++)
+            {
+                if(comps[i].getName().equals(currentComp))
+                {
+                    String ip;
+                    String mask;
+                    try
+                    {
+                        ip = scan.next();
+                        mask = scan.next();
+                        comps[i].setip(ip);
+                        comps[i].setMask(mask);
+                        str = "Configuration complete for device: " + currentComp;
+                    }
+                    catch(Exception e)
+                    {
+                        str = "Invalid arguments.\nCorrect use: ip <Addr> <mask>";
+                    }
+                }
+            }
+        }
+        else if(command.equals("ipv6"))
+        {
+            for(int i = 0; i < comps.length; i++)
+            {
+                if(comps[i].getName().equals(currentComp))
+                {
+                    String ipv6;
+                    try
+                    {
+                        ipv6 = scan.next();
+
+                        comps[i].setipv6(ipv6);
+                        str = "Configuration complete for device: " + currentComp;
+                    }
+                    catch(Exception e)
+                    {
+                        str = "Invalid arguments.\nCorrect use: ipv6 <Addr>";
+                    }
+                }
+            }
+        }
+        else if(command.equals("gateway"))
+        {
+            for(int i = 0; i < comps.length; i++)
+            {
+                if(comps[i].getName().equals(currentComp))
+                {
+                    String gate;
+                    try
+                    {
+                        gate = scan.next();
+                        comps[i].setGateway(gate);
+                        str = "Configuration complete for device: " + currentComp;
+                    }
+                    catch(Exception e)
+                    {
+                        str = "Invalid arguments.\nCorrect use: gateway <Addr>";
+                    }
+                }
+            }
+        }
+        else if(command.equals("ipconfig"))
+        {
+            for(int i = 0; i < comps.length; i++)
+            {
+                if(comps[i].getName().equals(currentComp))
+                {
+                    str = "Device name: " + comps[i].getName() +
+                            "\nIPV4: " + comps[i].getip() +
+                            "\nIPV6: " + comps[i].getipv6() +
+                            "\nSubnet Mask: " + comps[i].getMask() +
+                            "\nDefault Gateway: " + comps[i].getGateway();
+                }
+            }
         }
         else
         {
-            System.out.println("Command not found");
+            str = "'" + command + "' is not recognized as an internal\nor external command";
         }
     }
 }
