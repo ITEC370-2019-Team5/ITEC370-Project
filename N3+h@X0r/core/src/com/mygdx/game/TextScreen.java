@@ -54,7 +54,7 @@ public class TextScreen implements Screen{
                 }
                 else
                 {
-                    System.out.println("Something broke");
+                    game.changeScreen(1);
                 }
             }
             else
@@ -65,17 +65,38 @@ public class TextScreen implements Screen{
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.A) && t >= 40)
         {
-            System.out.println("A pressed");
+            if(game.getNextDiagType() == 'q')
+            {
+                if(game.getAnswer() == 'a')
+                {
+                    game.incAnsIndex();
+                    displayThis = game.getNextDialogue();
+                }
+            }
             t = 0;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.B) && t >= 40)
         {
-            System.out.println("B pressed");
+            if(game.getNextDiagType() == 'q')
+            {
+                if(game.getAnswer() == 'b')
+                {
+                    game.incAnsIndex();
+                    displayThis = game.getNextDialogue();
+                }
+            }
             t = 0;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.C) && t >= 40)
         {
-            System.out.println("C pressed");
+            if(game.getNextDiagType() == 'q')
+            {
+                if(game.getAnswer() == 'c')
+                {
+                    game.incAnsIndex();
+                    displayThis = game.getNextDialogue();
+                }
+            }
             t = 0;
         }
         t++;

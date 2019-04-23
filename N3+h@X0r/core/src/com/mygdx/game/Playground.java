@@ -84,17 +84,11 @@ public class Playground implements Screen , ApplicationListener {
 		//4 doors on the first level of the map
 		leftDoor = new Item('D', platformingLayer, 0.0f, 2.0f, 1);
 		topDoor = new Item('D', platformingLayer, 3.0f, 12.0f, 2);
-		bottomDoor1 = new Item('D', platformingLayer, 7.0f, 0.0f, 3);
-		bottomDoor2 = new Item('D', platformingLayer, 15.0f, 0.0f, 4);
-
 
 		itemList.add(testItem);
 		itemList.add(hintItem);
 		itemList.add(leftDoor);
 		itemList.add(topDoor);
-		itemList.add(bottomDoor1);
-		itemList.add(bottomDoor2);
-
 
 		itemListX.clear();
 		itemListY.clear();
@@ -124,9 +118,12 @@ public class Playground implements Screen , ApplicationListener {
 							"within the private IP range?\n" +
 									"A: 192.167.4.3\n" +
 									"B: 172.16.94.217\n" +
-									"C: 154.3.43.196"};
+									"C: 154.3.43.196",
+						"Well done, now..."};
+
 		char[] types = {'d', 'q'};
-		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer, diag, types);
+		char[] answers = {'b'};
+		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer, diag, types, answers);
 		boss.setBounds(0,0,16,16);
 		boss.setPosition(3 * 16, 2 * 16);
 
@@ -140,7 +137,6 @@ public class Playground implements Screen , ApplicationListener {
 			itemX = itemList.get(i).getX();
 			itemY = itemList.get(i).getY();
 			itemList.get(i).setPosition(itemX, itemY);
-
 		}
 
 		itemX = itemList.get(0).getX();
@@ -183,7 +179,6 @@ public class Playground implements Screen , ApplicationListener {
 			}
 			else if(theType == 'I') {
 				itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 16, 16);
-				//itemList.get(i).setCollisionLayer(platformingLayer);
 			}
 		}
 
@@ -207,7 +202,8 @@ public class Playground implements Screen , ApplicationListener {
 					if(itemList.get(i).getID() == 1) {
 						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
 								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
-							System.out.println("LEFT DOOR ENTERED");
+
+							game.changeScreen(11);
 						}
 					}
 					//Top door
@@ -215,20 +211,6 @@ public class Playground implements Screen , ApplicationListener {
 						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
 								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
 							System.out.println("TOP DOOR ENTERED");
-						}
-					}
-					//Bottom door 1
-					if(itemList.get(i).getID() == 3) {
-						if (playerXCoord > ((itemX * 16) - 24) && playerXCoord < ((itemX * 16) + 24) &&
-								playerYCoord > ((itemY * 16) - 10) && playerYCoord < ((itemY * 16) + 10)) {
-							System.out.println("BOTTOM DOOR 1 ENTERED");
-						}
-					}
-					//Bottom door 2
-					if(itemList.get(i).getID() == 4) {
-						if (playerXCoord > ((itemX * 16) - 24) && playerXCoord < ((itemX * 16) + 24) &&
-								playerYCoord > ((itemY * 16) - 10) && playerYCoord < ((itemY * 16) + 10)) {
-							System.out.println("BOTTOM DOOR 2 ENTERED");
 						}
 					}
 				}
@@ -245,8 +227,6 @@ public class Playground implements Screen , ApplicationListener {
 						}
 						//items
 						else {
-							//need to somehow add that item's sprite to the inventory screen
-							System.out.println(itemList.get(0).getLocation());
 							game.addToInv(new Sprite(new Texture(itemList.get(i).getLocation())));
 							itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
 							itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
@@ -377,5 +357,13 @@ public class Playground implements Screen , ApplicationListener {
 	public char getNextDiagType()
 	{
 		return boss.getDiagType();
+	}
+	public char getAnswer()
+	{
+		return boss.getAnswer();
+	}
+	public void incAnsIndex()
+	{
+		boss.incAnsIndex();
 	}
 }

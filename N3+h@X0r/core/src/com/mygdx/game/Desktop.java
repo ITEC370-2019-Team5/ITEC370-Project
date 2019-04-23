@@ -95,4 +95,3 @@ public class Desktop implements Screen{
     public void dispose () {
     }
 }
-

@@ -21,6 +21,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     Restart restart = new Restart(this);
     Viruses viruses = new Viruses(this);
     NetworkConfig nc = new NetworkConfig(this);
+    ServerRoom sr = new ServerRoom(this);
 
     int currentScreenNum = 0;//Keeps Track of screen number for leaderboard.
 
@@ -130,6 +131,11 @@ public class NetworkingGame extends Game implements ApplicationListener {
             nc.setScreen(currentScreenNum);
             setScreen(nc);
         }
+        else if(screen == 11)//Server Room
+        {
+            currentScreenNum = 11;
+            setScreen(sr);
+        }
         else
         {
             System.out.println("Error!");
@@ -182,6 +188,14 @@ public class NetworkingGame extends Game implements ApplicationListener {
     public char getNextDiagType()
     {
         return playground.getNextDiagType();
+    }
+    public char getAnswer()
+    {
+        return playground.getAnswer();
+    }
+    public void incAnsIndex()
+    {
+        playground.incAnsIndex();
     }
     public void addToInv(Sprite s) { inventory.addToInv(s);}
 }

@@ -9,13 +9,16 @@ public class NPC extends Sprite{
     private TiledMapTileLayer collisionLayer;
     private String[] dialogue;
     private char[] type;
+    private char[] answer;
     private int diagSoFar;
+    private int answerIndex = 0;
 
-    NPC(Sprite sprite, TiledMapTileLayer collisionLayer, String[] dialogue, char[] type){
+    NPC(Sprite sprite, TiledMapTileLayer collisionLayer, String[] dialogue, char[] type, char[] answer){
         super(sprite);
         this.collisionLayer = collisionLayer;
         this.dialogue = dialogue;
         this.type = type;
+        this.answer = answer;
         diagSoFar = 0;
     }
 
@@ -36,7 +39,14 @@ public class NPC extends Sprite{
     }
 
     public String getDialogue(int num) {
-        return dialogue[num];
+        if(num < dialogue.length)
+        {
+            return dialogue[num];
+        }
+        else
+        {
+            return "Something decided to go haywire.";
+        }
     }
 
     public void setDialogue(String[] dialogue) {
@@ -57,6 +67,28 @@ public class NPC extends Sprite{
     }
     public char getDiagType()
     {
-        return type[diagSoFar];
+        if(diagSoFar < type.length)
+        {
+            return type[diagSoFar];
+        }
+        else
+        {
+            return '`';
+        }
+    }
+    public char getAnswer()
+    {
+        if(answerIndex < answer.length)
+        {
+            return answer[answerIndex];
+        }
+        else
+        {
+            return '`';
+        }
+    }
+    public void incAnsIndex()
+    {
+        answerIndex++;
     }
 }

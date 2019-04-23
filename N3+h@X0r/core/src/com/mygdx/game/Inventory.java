@@ -35,11 +35,6 @@ public class Inventory implements Screen{
         batch.begin();
         batch.draw(inventory, 200, 120);
 
-       Sprite s = new Sprite(new Texture("core/assets/test_item.png"));
-       itemSpriteList[13] = s;
-
-        System.out.println(itemSpriteList[0]);
-
         if (itemSpriteList[0] != null)
         {
             itemSpriteList[0].setSize(73, 73);
@@ -144,7 +139,6 @@ public class Inventory implements Screen{
 
     public void addToInv (Sprite s) {
         itemSpriteList[x] = s;
-        System.out.println(itemSpriteList[0]);
         x++;
     }
 
