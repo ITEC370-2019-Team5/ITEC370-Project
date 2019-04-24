@@ -8,7 +8,7 @@ import java.util.Random;
 public class NetworkingGame extends Game implements ApplicationListener {
 
     private int charSelect = 0;
-    private String gameName = "N3+h@Z0r";
+    private String gameName = "N3+h@X0r";
     private int screen = 0;
     MainMenu mainMenu = new MainMenu(this);
     Playground playground = new Playground(this);

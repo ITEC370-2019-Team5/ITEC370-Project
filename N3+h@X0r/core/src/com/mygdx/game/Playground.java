@@ -73,13 +73,10 @@ public class Playground implements Screen , ApplicationListener {
 				"Test Item", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(0), itemListY.get(0));
 		hintItem = new Item(new Sprite(new Texture("core/assets/sticky_note.png")), 'H',
 				"Hint 1", "core/assets/sticky_note.png", 1, platformingLayer, itemListX.get(1), itemListY.get(1),
-				"We're no strangers to love\n" +
-						"You know the rules and so do I\n" +
-						"A full commitment's what I'm thinking of\n" +
-						"You wouldn't get this from any other guy\n" +
-						"I just wanna tell you how I'm feeling\n" +
-						"Gotta make you understand\n" +
-						"...");
+				"Private IP ranges:\n" +
+						"  192.168.0.0 - 192.168.255.255\n" +
+						"  172.16.0.0 - 172.31.255.255\n" +
+						"  10.0.0.0 - 10.255.255.255\n");
 
 		//4 doors on the first level of the map
 		leftDoor = new Item('D', platformingLayer, 0.0f, 2.0f, 1);
@@ -119,7 +116,7 @@ public class Playground implements Screen , ApplicationListener {
 									"A: 192.167.4.3\n" +
 									"B: 172.16.94.217\n" +
 									"C: 154.3.43.196",
-						"Well done, now..."};
+						"Great now head over to your machine\nand familiarize yourself. It's the one with the two\ndesktop towers."};
 
 		char[] types = {'d', 'q'};
 		char[] answers = {'b'};

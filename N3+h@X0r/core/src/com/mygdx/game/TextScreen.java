@@ -72,6 +72,10 @@ public class TextScreen implements Screen{
                     game.incAnsIndex();
                     displayThis = game.getNextDialogue();
                 }
+                else
+                {
+                    System.out.println("That answer is incorrect");
+                }
             }
             t = 0;
         }
@@ -84,6 +88,10 @@ public class TextScreen implements Screen{
                     game.incAnsIndex();
                     displayThis = game.getNextDialogue();
                 }
+                else
+                {
+                    System.out.println("That answer is incorrect");
+                }
             }
             t = 0;
         }
@@ -95,6 +103,10 @@ public class TextScreen implements Screen{
                 {
                     game.incAnsIndex();
                     displayThis = game.getNextDialogue();
+                }
+                else
+                {
+                    System.out.println("That answer is incorrect");
                 }
             }
             t = 0;
