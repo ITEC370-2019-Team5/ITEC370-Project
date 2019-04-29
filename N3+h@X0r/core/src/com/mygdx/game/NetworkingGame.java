@@ -2,6 +2,8 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.Random;
 
@@ -41,6 +43,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     public void render () {
         super.render();
         playground.updateChar(charSelect);
+        sr.updateChar(charSelect);
         if(screen == 0) //Main menu
         {
             currentScreenNum = 0;
@@ -143,9 +146,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     }
 
     @Override
-    public void dispose () {
-        super.dispose();
-    }
+    public void dispose () { super.dispose(); }
 
     @Override
     public void resize ( int width, int height){

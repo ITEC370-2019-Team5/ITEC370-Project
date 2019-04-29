@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public class Item extends Sprite{
@@ -22,6 +23,7 @@ public class Item extends Sprite{
         super();
     }
 
+    //normal items plus thirst and hunger items
     public Item(Sprite sprite, char type, String itemName, String location, int amount, TiledMapTileLayer collisionLayer, float x, float y) {
         super(sprite);
         this.type = type;

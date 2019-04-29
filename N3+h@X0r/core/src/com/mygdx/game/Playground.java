@@ -4,16 +4,22 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import java.text.Bidi;
 import java.util.ArrayList;
 
 public class Playground implements Screen , ApplicationListener {
@@ -30,11 +36,15 @@ public class Playground implements Screen , ApplicationListener {
 	private Player player;
 	private NPC boss;
 	private Texture standing, itemTexture;
-	private Item testItem, hintItem, leftDoor, topDoor, bottomDoor1, bottomDoor2;
+	private Item testItem, hintItem, leftDoor, topDoor, thirstItem1, hungerItem1, thirstItem2, hungerItem2;
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private boolean pressingEnter;
 	private Texture prevTexture;
 	private Inventory inventory = new Inventory(game);
+
+	private BitmapFont hungerThirst;
+	int thirstCount = 60;
+	int hungerCount = 60;
 
 	private float x = 8;
 	private float y = 1;
@@ -63,11 +73,29 @@ public class Playground implements Screen , ApplicationListener {
 		{
 			prevTexture = new Texture("core/assets/CharSelectPics/C" + (charSelect + 1) + "_WalkDown2.png");
 			map = new TmxMapLoader().load("core/assets/OfficeRoom.tmx");
+
 			itemListX.add(12);
 			itemListY.add(3);
+
 			itemListX.add(7);
 			itemListY.add(3);
+
+			itemListX.add(9); //thirst item 1 x
+			itemListY.add(4); // thirst item 1 y
+
+			itemListX.add(16); //thirst item 2 x
+			itemListY.add(11); // thirst item 2 y
+
+			itemListX.add(19); //hunger item 1 x
+			itemListY.add(9); // hunger item 1 y
+
+			itemListX.add(17); //hunger item 2 x
+			itemListY.add(1); // hunger item 2 y
 		}
+
+		hungerThirst = new BitmapFont();
+		hungerThirst.setColor(Color.RED);
+
 
 		testItem = new Item(new Sprite(new Texture("core/assets/test_item.png")), 'I',
 				"Test Item", "core/assets/test_item.png", 1, platformingLayer, itemListX.get(0), itemListY.get(0));
@@ -78,14 +106,36 @@ public class Playground implements Screen , ApplicationListener {
 						"  172.16.0.0 - 172.31.255.255\n" +
 						"  10.0.0.0 - 10.255.255.255\n");
 
-		//4 doors on the first level of the map
+		//2 doors on the map
 		leftDoor = new Item('D', platformingLayer, 0.0f, 2.0f, 1);
 		topDoor = new Item('D', platformingLayer, 3.0f, 12.0f, 2);
+
+		thirstItem1 = new Item(new Sprite(new Texture("core/assets/thrist_item.png")), 'T',
+				"Thirst 1", "core/assets/thrist_item.png",1,  platformingLayer,
+				itemListX.get(2), itemListY.get(2));
+
+		thirstItem2 = new Item(new Sprite(new Texture("core/assets/thrist_item.png")), 'T',
+				"Thirst 2", "core/assets/thrist_item.png", 1, platformingLayer,
+				itemListX.get(3), itemListY.get(3));
+
+		hungerItem1 = new Item(new Sprite(new Texture("core/assets/hunger_item.png")), 'G',
+				"Hunger 1", "core/assets/hunger_item.png", 1, platformingLayer,
+				itemListX.get(4), itemListY.get(4));
+
+		hungerItem2 = new Item(new Sprite(new Texture("core/assets/hunger_item.png")), 'G',
+				"Hunger 2", "core/assets/hunger_item.png", 1, platformingLayer,
+				itemListX.get(5), itemListY.get(5));
+
 
 		itemList.add(testItem);
 		itemList.add(hintItem);
 		itemList.add(leftDoor);
 		itemList.add(topDoor);
+
+		itemList.add(thirstItem1);
+		itemList.add(thirstItem2);
+		itemList.add(hungerItem1);
+		itemList.add(hungerItem2);
 
 		itemListX.clear();
 		itemListY.clear();
@@ -124,6 +174,7 @@ public class Playground implements Screen , ApplicationListener {
 		boss.setBounds(0,0,16,16);
 		boss.setPosition(3 * 16, 2 * 16);
 
+		//sets all items to 16x16 pixels to fit the boundaries of the map
 		for(int i = 0;i < itemList.size(); i++) {
 			itemList.get(i).setBounds(itemList.get(i).updateCoordX(), itemList.get(i).updateCoordY(), 16, 16);
 		}
@@ -174,7 +225,7 @@ public class Playground implements Screen , ApplicationListener {
 			if(theType == 'H') {
 				itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 6, 6);
 			}
-			else if(theType == 'I') {
+			else if(theType == 'I' || theType == 'T' || theType == 'G') {
 				itemList.get(i).setBounds(itemList.get(i).getX(), itemList.get(i).getY(), 16, 16);
 			}
 		}
@@ -222,11 +273,22 @@ public class Playground implements Screen , ApplicationListener {
 							game.changeStr(itemList.get(i).getHint(), 'h');
 							game.changeScreen(6);
 						}
-						//items
+						//items, thirst and hunger included.
 						else {
-							game.addToInv(new Sprite(new Texture(itemList.get(i).getLocation())));
+							if(itemList.get(i).getType() == 'I') {
+								game.addToInv(new Sprite(new Texture(itemList.get(i).getLocation())));
+							}
 							itemList.get(i).setX(itemList.get(i).updateCoordX() * -1);
 							itemList.get(i).setY(itemList.get(i).updateCoordY() * -1);
+
+							//if a hunger or thirst item, increment counter by 20
+							if(itemList.get(i).getType() == 'G') {
+								hungerCount = hungerCount + 20;
+
+							}
+							if(itemList.get(i).getType() == 'T') {
+								thirstCount = thirstCount + 20;
+							}
 						}
 					}
 				}
@@ -294,6 +356,9 @@ public class Playground implements Screen , ApplicationListener {
 		downTime = player.getDownTime();
 		leftTime = player.getLeftTime();
 		rightTime = player.getRightTime();
+
+		hungerThirst.getData().setScale(.6f, .6f);
+		hungerThirst.draw(renderer.getBatch(), "Thirst:  " + thirstCount + "  \t Hunger:  " + hungerCount + "", 100, 15);
 
 		player.draw(renderer.getBatch());
 		boss.draw(renderer.getBatch());
