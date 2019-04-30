@@ -24,6 +24,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     Viruses viruses = new Viruses(this);
     NetworkConfig nc = new NetworkConfig(this);
     ServerRoom sr = new ServerRoom(this);
+    pauseMenu pm = new pauseMenu(this);
 
     int currentScreenNum = 0;//Keeps Track of screen number for leaderboard.
 
@@ -68,6 +69,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
             if(Gdx.input.isKeyPressed(Input.Keys.I))
             {
                 changeScreen(5); //shows inventory
+            }
+            if(Gdx.input.isKeyPressed(Input.Keys.P))
+            {
+                changeScreen(12); //Shows pause menu
             }
         }
         else if(screen == 2)//Character selection
@@ -138,6 +143,15 @@ public class NetworkingGame extends Game implements ApplicationListener {
         {
             currentScreenNum = 11;
             setScreen(sr);
+        }
+        else if(screen == 12)
+        {
+            currentScreenNum = 12;
+            setScreen(pm);
+            if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            {
+                changeScreen(1); //Shows pause menu
+            }
         }
         else
         {

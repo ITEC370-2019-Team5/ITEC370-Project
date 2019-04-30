@@ -17,7 +17,7 @@ public class MainMenu implements Screen
 
     private NetworkingGame game;
     private OrthographicCamera camera;
-    private Texture mainMenu, play, load, next;
+    private Texture bb, mainMenu, play, load, next;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
     private boolean init;
@@ -32,6 +32,7 @@ public class MainMenu implements Screen
     @Override
     public void render(float deltaTime){
         batch.begin();
+        batch.draw(bb, 0,0);
         batch.draw(mainMenu, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
         batch.draw(play, camera.viewportWidth / 2 - 200, 130);
         batch.draw(load, camera.viewportWidth / 2 - 200, 60);
@@ -89,6 +90,7 @@ public class MainMenu implements Screen
             load = new Texture("core/assets/MainMenuPics/Load_Button.png");
             next = new Texture("core/assets/MainMenuPics/Next_Button.png");
             mainMenu = new Texture("core/assets/MainMenuPics/Title_Screen.png");
+            bb = new Texture("core/assets/MainMenuPics/BlackBox.png");
         }
     }
 
