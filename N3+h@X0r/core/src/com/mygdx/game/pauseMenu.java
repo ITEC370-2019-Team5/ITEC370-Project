@@ -67,7 +67,7 @@ public class pauseMenu implements Screen
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
-                    game.changeScreen(1);
+                    game.changeScreen(game.currentScreenNum);
                 }
                 countPush = 0;
             }

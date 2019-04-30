@@ -143,14 +143,17 @@ public class NetworkingGame extends Game implements ApplicationListener {
         {
             currentScreenNum = 11;
             setScreen(sr);
+            if(Gdx.input.isKeyPressed(Input.Keys.P))
+            {
+                changeScreen(12); //Shows pause menu
+            }
         }
         else if(screen == 12)
         {
-            currentScreenNum = 12;
             setScreen(pm);
             if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             {
-                changeScreen(1); //Shows pause menu
+                changeScreen(currentScreenNum); //Shows pause menu
             }
         }
         else

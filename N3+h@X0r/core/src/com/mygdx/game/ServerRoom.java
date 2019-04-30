@@ -44,7 +44,6 @@ public class ServerRoom implements Screen , ApplicationListener {
         this.game = game;
     }
 
-
     @Override
     public void show() {
 
