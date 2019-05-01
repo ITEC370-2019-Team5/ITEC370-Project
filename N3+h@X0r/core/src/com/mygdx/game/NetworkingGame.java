@@ -207,7 +207,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
     {
         return playground.getNextDiagType();
     }
-    public char getAnswer()
+    public String getAnswer()
     {
         return playground.getAnswer();
     }
@@ -216,4 +216,16 @@ public class NetworkingGame extends Game implements ApplicationListener {
         playground.incAnsIndex();
     }
     public void addToInv(Sprite s) { inventory.addToInv(s);}
+
+    public boolean questionDone()
+    {
+        if(playground.getIP().equals(nc.getIP("B")))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

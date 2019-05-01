@@ -9,16 +9,18 @@ public class NPC extends Sprite{
     private TiledMapTileLayer collisionLayer;
     private String[] dialogue;
     private char[] type;
-    private char[] answer;
-    private int diagSoFar;
+    private String[] answer, ip, mask;
+    private int diagSoFar, ipSoFar, maskSoFar;
     private int answerIndex = 0;
 
-    NPC(Sprite sprite, TiledMapTileLayer collisionLayer, String[] dialogue, char[] type, char[] answer){
+    NPC(Sprite sprite, TiledMapTileLayer collisionLayer, String[] dialogue, char[] type, String[] answer, String[] ip, String[] mask){
         super(sprite);
         this.collisionLayer = collisionLayer;
         this.dialogue = dialogue;
         this.type = type;
         this.answer = answer;
+        this.ip = ip;
+        this.mask = mask;
         diagSoFar = 0;
     }
 
@@ -76,7 +78,7 @@ public class NPC extends Sprite{
             return '`';
         }
     }
-    public char getAnswer()
+    public String getAnswer()
     {
         if(answerIndex < answer.length)
         {
@@ -84,11 +86,29 @@ public class NPC extends Sprite{
         }
         else
         {
-            return '`';
+            return "`";
         }
     }
     public void incAnsIndex()
     {
         answerIndex++;
+    }
+    public String getIP()
+    {
+        if(ipSoFar == ip.length)
+        {
+            ipSoFar = 0;
+        }
+        ipSoFar++;
+        return ip[ipSoFar - 1];
+    }
+    public String getMask()
+    {
+        if(maskSoFar == mask.length)
+        {
+            maskSoFar = 0;
+        }
+        maskSoFar++;
+        return ip[maskSoFar - 1];
     }
 }

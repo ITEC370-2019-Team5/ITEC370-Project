@@ -240,4 +240,9 @@ public class NetworkConfig implements Screen{
             str = "'" + command + "' is not recognized as an internal\nor external command";
         }
     }
+
+    public String getIP(String device)
+    {
+        return comps[1].getip();
+    }
 }

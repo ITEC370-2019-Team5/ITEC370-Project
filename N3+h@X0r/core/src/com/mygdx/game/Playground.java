@@ -45,6 +45,7 @@ public class Playground implements Screen , ApplicationListener {
 	private BitmapFont hungerThirst;
 	int thirstCount = 60;
 	int hungerCount = 60;
+	int timer = 0;
 
 	private float x = 8;
 	private float y = 1;
@@ -166,11 +167,17 @@ public class Playground implements Screen , ApplicationListener {
 									"A: 192.167.4.3\n" +
 									"B: 172.16.94.217\n" +
 									"C: 154.3.43.196",
-						"Great now head over to your machine\nand familiarize yourself. It's the one with the two\ndesktop towers."};
+				"Great, our computers use IP addresses 10.1.1.X\n The 'X' represents 2-255.",
+				"Our ten computers are named 'A' - 'J'",
+						"Great now head over to your computer and set\ndevice B's ip to 10.1.1.12. Make sure the\nmask remains 255.255.255.0.",
+						"OOOOOO BABY"};
 
-		char[] types = {'d', 'q'};
-		char[] answers = {'b'};
-		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer, diag, types, answers);
+		char[] types = {'d', 'q', 'd', 'd', 'q'};
+		String[] answers = {"b", "IP"};
+		String[] ip = {"10.1.1.12"};
+		String[] mask = {"255.255.255.0"};
+
+		boss = new NPC(new Sprite(new Texture("core/assets/Boss_StandDown.png")), platformingLayer, diag, types, answers, ip, mask);
 		boss.setBounds(0,0,16,16);
 		boss.setPosition(3 * 16, 2 * 16);
 
@@ -230,10 +237,6 @@ public class Playground implements Screen , ApplicationListener {
 			}
 		}
 
-		//debugging purposes
-		//System.out.println("X : " + player.getX());
-		//System.out.println(" Y : " + player.getY());
-
 		//giant if statement when you press ENTER at all throughout the playground
 		if(pressingEnter) {
 			float playerXCoord = player.getX();
@@ -252,13 +255,6 @@ public class Playground implements Screen , ApplicationListener {
 								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
 
 							game.changeScreen(11);
-						}
-					}
-					//Top door
-					if(itemList.get(i).getID() == 2) {
-						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
-								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
-							System.out.println("TOP DOOR ENTERED");
 						}
 					}
 				}
@@ -284,7 +280,6 @@ public class Playground implements Screen , ApplicationListener {
 							//if a hunger or thirst item, increment counter by 20
 							if(itemList.get(i).getType() == 'G') {
 								hungerCount = hungerCount + 20;
-
 							}
 							if(itemList.get(i).getType() == 'T') {
 								thirstCount = thirstCount + 20;
@@ -305,6 +300,15 @@ public class Playground implements Screen , ApplicationListener {
 			{
 				game.changeScreen(7);
 			}
+		}
+
+		timer++;
+
+		if(timer == 60)
+		{
+			hungerCount--;
+			thirstCount--;
+			timer = 0;
 		}
 
 		//Setting the player
@@ -420,12 +424,16 @@ public class Playground implements Screen , ApplicationListener {
 	{
 		return boss.getDiagType();
 	}
-	public char getAnswer()
+	public String getAnswer()
 	{
 		return boss.getAnswer();
 	}
 	public void incAnsIndex()
 	{
 		boss.incAnsIndex();
+	}
+	public String getIP()
+	{
+		return boss.getIP();
 	}
 }
