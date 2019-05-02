@@ -264,7 +264,15 @@ public class Playground implements Screen , ApplicationListener {
 						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
 								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
 
-							game.changeScreen(11);
+							if(game.keycardFound(0))
+							{
+								game.changeScreen(11);
+							}
+							else
+							{
+								game.changeStr("You need a key card to access this door.", 'h');
+								game.changeScreen(6);
+							}
 						}
 					}
 				}
