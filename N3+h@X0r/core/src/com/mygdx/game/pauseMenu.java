@@ -21,11 +21,10 @@ public class pauseMenu implements Screen
 
     private NetworkingGame game;
     private OrthographicCamera camera;
-    private Texture pause, chooseFile, returnHome;
+    private Texture pause, resume, save, returnHome;
     private SpriteBatch batch;
     private int countPush = 0; //Used to only click button once. -AR
     private Stage stage;
-    private Skin skin;
     private boolean init;
 
     public pauseMenu(NetworkingGame game){
@@ -40,7 +39,8 @@ public class pauseMenu implements Screen
         batch.begin();
         batch.draw(pause, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
         batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
-        batch.draw(chooseFile, camera.viewportWidth / 2 - 200, 555);
+        batch.draw(resume, camera.viewportWidth / 2 - 200, 555);
+        batch.draw(save, camera.viewportWidth / 2 - 200, 480);
 
         float x = camera.viewportWidth / 2; //Halfway across x-axis
         float y = camera.viewportHeight / 2; //Halfway across y-axis
@@ -60,10 +60,22 @@ public class pauseMenu implements Screen
                 countPush = 0;
             }
         }
-        //Area where Load file is.
+        //Area where Save the file
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555) {
+                Gdx.input.getY() >= (y * 2) - 610 && Gdx.input.getY() <= (y * 2) - 555) {
+            if (Gdx.input.isTouched() == true) {
+                countPush++;
+                if (countPush == 1) {
+                    System.out.println("Save game");
+                }
+                countPush = 0;
+            }
+        }
+        //Area where you resume the game
+        if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
+                &&
+                Gdx.input.getY() >= (y * 2) - 535 && Gdx.input.getY() <= (y * 2) - 480) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
@@ -87,7 +99,8 @@ public class pauseMenu implements Screen
             camera.setToOrtho(false, 600, 400);
             returnHome = new Texture("core/assets/LoadGamePics/Return_Button.png");
             pause = new Texture("core/assets/PauseMenuPics/Pause_Screen.png");
-            chooseFile = new Texture("core/assets/PauseMenuPics/resume.png");
+            resume = new Texture("core/assets/PauseMenuPics/resume.png");
+            save = new Texture("core/assets/PauseMenuPics/Save_file.png");
         }
     }
 
