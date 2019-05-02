@@ -171,10 +171,10 @@ public class Playground implements Screen , ApplicationListener {
 									"A: 192.167.4.3\n" +
 									"B: 172.16.94.217\n" +
 									"C: 154.3.43.196",
-				"Great, our computers use IP addresses 10.1.1.X\n The 'X' represents 2-255.",
+				"Great, our computers use IP addresses 10.1.1.X\nThe 'X' represents 2-255.",
 				"Our ten computers are named 'A' - 'J'",
 						"Great now head over to your computer and set\ndevice B's ip to 10.1.1.12. Make sure the\nmask remains 255.255.255.0.",
-						"OOOOOO BABY"};
+						"Great work, now make yourself at home.\nGo check out the server room.\nIt's the room on the right."};
 
 		char[] types = {'d', 'q', 'd', 'd', 'q'};
 		String[] answers = {"b", "IP"};
