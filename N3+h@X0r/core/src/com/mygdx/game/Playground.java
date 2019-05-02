@@ -171,10 +171,10 @@ public class Playground implements Screen , ApplicationListener {
 									"A: 192.167.4.3\n" +
 									"B: 172.16.94.217\n" +
 									"C: 154.3.43.196",
-				"Great, our computers use IP addresses 10.1.1.X\nThe 'X' represents 2-255.",
-				"Our ten computers are named 'A' - 'J'",
-						"Great now head over to your computer and set\ndevice B's ip to 10.1.1.12. Make sure the\nmask remains 255.255.255.0.",
-						"Great work, now make yourself at home.\nGo check out the server room.\nIt's the room on the right."};
+				"Great, our computers use IP addresses 10.1.1.X\nThe 'X' represents 2 - 255.",
+				"Our ten computers are named 'A' - 'J' and they range from\n10.1.1.2 - 10.1.1.11",
+						"Now head over to your computer and set\ndevice B's ip to 10.1.1.12. Make sure the\nmask remains 255.255.255.0.",
+						"Great work, now make yourself at home.\nGo check out the server room.\nIt's through the door to the left."};
 
 		char[] types = {'d', 'q', 'd', 'd', 'q'};
 		String[] answers = {"b", "IP"};
@@ -262,15 +262,7 @@ public class Playground implements Screen , ApplicationListener {
 						if (playerXCoord > ((itemX * 16) - 10) && playerXCoord < ((itemX * 16) + 10) &&
 								playerYCoord > ((itemY * 16) - 24) && playerYCoord < ((itemY * 16) + 24)) {
 
-							if(game.keycardFound(0))
-							{
-								game.changeScreen(11);
-							}
-							else
-							{
-								game.changeStr("You need a key card to access this door.", 'h');
-								game.changeScreen(6);
-							}
+							game.changeScreen(11);
 						}
 					}
 				}

@@ -40,9 +40,9 @@ public class LoadGameScreen implements Screen
     public void render(float deltaTime){
         batch.begin();
         batch.draw(loadChar, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
-        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
-        batch.draw(chooseFile, camera.viewportWidth / 2 - 200, 555);
-        batch.draw(setName, camera.viewportWidth / 2 - 200, 485);
+        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 425);
+        batch.draw(chooseFile, camera.viewportWidth / 2 - 200, 355);
+        batch.draw(setName, camera.viewportWidth / 2 - 200, 285);
         batch.draw(coverLoad, camera.viewportWidth / 2 - 200, 60);
         batch.draw(coverNext, camera.viewportWidth / 2 + 5, 60);
 
@@ -52,7 +52,7 @@ public class LoadGameScreen implements Screen
         //Area where Return button is clickable.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 685 && Gdx.input.getY() <= (y * 2) - 625)
+                Gdx.input.getY() >= (y * 2) - 485 && Gdx.input.getY() <= (y * 2) - 425)
         {
             if(Gdx.input.isTouched() == true)
             {
@@ -67,7 +67,7 @@ public class LoadGameScreen implements Screen
         //Area where Load file is.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 610 && Gdx.input.getY() <= (y * 2) - 550) {
+                Gdx.input.getY() >= (y * 2) - 410 && Gdx.input.getY() <= (y * 2) - 350) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
@@ -86,7 +86,7 @@ public class LoadGameScreen implements Screen
         //Area where Load file is.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 535 && Gdx.input.getY() <= (y * 2) - 475) {
+                Gdx.input.getY() >= (y * 2) - 335 && Gdx.input.getY() <= (y * 2) - 275) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
@@ -110,7 +110,7 @@ public class LoadGameScreen implements Screen
             skin = new Skin(Gdx.files.internal("core/assets/clean-crispy/skin/clean-crispy-ui.json"));
 
             textField = new TextField("", skin);
-            textField.setPosition(300, 250);
+            textField.setPosition(300, 150);
             textField.setSize(300, 40);
 
             stage.addActor(textField);

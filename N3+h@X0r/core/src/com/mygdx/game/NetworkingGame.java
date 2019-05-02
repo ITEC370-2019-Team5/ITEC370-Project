@@ -243,8 +243,4 @@ public class NetworkingGame extends Game implements ApplicationListener {
     {
         return gameName;
     }
-    public boolean keycardFound(int i)
-    {
-        return inventory.keycardFound(i);
-    }
 }

@@ -75,46 +75,7 @@ public class Player extends Sprite {
                     new Texture("core/assets/CharSelectPics/C5_WalkRight3.png"),
                     new Texture("core/assets/CharSelectPics/C5_WalkUp1.png"),
                     new Texture("core/assets/CharSelectPics/C5_WalkUp2.png"),
-                    new Texture("core/assets/CharSelectPics/C5_WalkUp3.png")}/*
-            new Texture[]{
-                    new Texture("core/assets/CharSelectPics/C6_WalkDown1.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkDown2.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkDown3.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkLeft1.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkLeft2.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkLeft3.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkRight1.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkRight2.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkRight3.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkUp1.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkUp2.png"),
-                    new Texture("core/assets/CharSelectPics/C6_WalkUp3.png")},
-            new Texture[]{
-                    new Texture("core/assets/CharSelectPics/C7_WalkDown1.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkDown2.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkDown3.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkLeft1.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkLeft2.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkLeft3.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkRight1.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkRight2.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkRight3.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkUp1.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkUp2.png"),
-                    new Texture("core/assets/CharSelectPics/C7_WalkUp3.png")},
-            new Texture[]{
-                    new Texture("core/assets/CharSelectPics/C8_WalkDown1.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkDown2.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkDown3.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkLeft1.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkLeft2.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkLeft3.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkRight1.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkRight2.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkRight3.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkUp1.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkUp2.png"),
-                    new Texture("core/assets/CharSelectPics/C8_WalkUp3.png")}*/};
+                    new Texture("core/assets/CharSelectPics/C5_WalkUp3.png")}};
 
     private boolean pressingS = Gdx.input.isKeyPressed(Input.Keys.S);
     private boolean pressingD = Gdx.input.isKeyPressed(Input.Keys.D);

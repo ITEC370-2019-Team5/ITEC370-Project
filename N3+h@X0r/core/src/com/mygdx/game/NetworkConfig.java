@@ -78,7 +78,7 @@ public class NetworkConfig implements Screen{
             str = "For more info, you can type \"?\" \nTo exit, you can type\"exit\"";
 
             textField = new TextField("", skin);
-            textField.setPosition(150, 150);
+            textField.setPosition(150, 120);
             textField.setSize(600, 50);
         }
         display = new Texture("core/assets/DesktopPics/Configure_Background.png");
@@ -86,7 +86,7 @@ public class NetworkConfig implements Screen{
         label = new Label(str, skin);
 
         label.setFontScale(2);
-        label.setPosition(150, 400);
+        label.setPosition(150, 300);
         label.setSize(600, 400);
         label.setText(str);
 

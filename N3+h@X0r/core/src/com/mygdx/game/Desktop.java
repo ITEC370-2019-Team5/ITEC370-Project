@@ -36,21 +36,21 @@ public class Desktop implements Screen{
 
         if(Gdx.input.getX() >= 150 && Gdx.input.getX() <= 220
                 &&
-                Gdx.input.getY() >= 158 && Gdx.input.getY() <= 228){
+                Gdx.input.getY() >= 58 && Gdx.input.getY() <= 128){
             if (Gdx.input.isTouched() == true) {
                 game.changeScreen(8);
             }
         }
         if(Gdx.input.getX() >= 150 && Gdx.input.getX() <= 220
                 &&
-                Gdx.input.getY() >= 242 && Gdx.input.getY() <= 312){
+                Gdx.input.getY() >= 142 && Gdx.input.getY() <= 212){
             if (Gdx.input.isTouched() == true) {
                 game.changeScreen(10);
             }
         }
         if(Gdx.input.getX() >= 150 && Gdx.input.getX() <= 220
                 &&
-                Gdx.input.getY() >= 327 && Gdx.input.getY() <= 397){
+                Gdx.input.getY() >= 227 && Gdx.input.getY() <= 297){
             if (Gdx.input.isTouched() == true) {
                 game.changeScreen(9);
             }

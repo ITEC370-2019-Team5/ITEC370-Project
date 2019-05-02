@@ -33,11 +33,11 @@ public class CharacterScreen implements Screen
     public void render(float deltaTime){
         batch.begin();
         batch.draw(chooseChar, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
-        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
-        batch.draw(randomChar, camera.viewportWidth / 2 - 200, 555);
+        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 425);
+        batch.draw(randomChar, camera.viewportWidth / 2 - 200, 355);
         batch.draw(coverLoad, camera.viewportWidth / 2 - 200, 60);
         batch.draw(coverNext, camera.viewportWidth / 2 + 5, 60);
-        batch.draw(myChar, camera.viewportHeight / 2 - 120, 210);
+        batch.draw(myChar, camera.viewportHeight / 2, 110);
 
         float x = camera.viewportWidth / 2; //Halfway across x-axis
         float y = camera.viewportHeight / 2; //Halfway across y-axis
@@ -45,7 +45,7 @@ public class CharacterScreen implements Screen
         //Area where Return button is clickable.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 685 && Gdx.input.getY() <= (y * 2) - 625)
+                Gdx.input.getY() >= (y * 2) - 485 && Gdx.input.getY() <= (y * 2) - 425)
         {
             if(Gdx.input.isTouched() == true)
             {
@@ -55,7 +55,7 @@ public class CharacterScreen implements Screen
         //Area where Random Character button is clickable.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555) {
+                Gdx.input.getY() >= (y * 2) - 415 && Gdx.input.getY() <= (y * 2) - 355) {
             if (Gdx.input.isTouched() == true) {
                 game.changeChar();
                 charSelect = game.getChar();

@@ -7,7 +7,7 @@ public class Computer{
     private String mask;
     private String gateway;
 
-    public Computer(String name, String ip, String ipv6, String mask, String gateway)
+    Computer(String name, String ip, String ipv6, String mask, String gateway)
     {
         this.name = name;
         this.ip = ip;
@@ -15,38 +15,39 @@ public class Computer{
         this.mask = mask;
         this.gateway = gateway;
     }
-    public String getip()
+    String getip()
     {
         return ip;
     }
-    public String getipv6()
+    String getipv6()
     {
         return ipv6;
     }
-    public String getMask()
+    String getMask()
     {
         return mask;
     }
-    public String getGateway()
+    String getGateway()
     {
         return gateway;
-    }public String getName()
+    }
+    String getName()
     {
         return name;
     }
-    public void setip(String input)
+    void setip(String input)
     {
         this.ip = input;
     }
-    public void setipv6(String input)
+    void setipv6(String input)
     {
         this.ipv6 = input;
     }
-    public void setMask(String input)
+    void setMask(String input)
     {
         this.mask = input;
     }
-    public void setGateway(String input)
+    void setGateway(String input)
     {
         this.gateway = input;
     }

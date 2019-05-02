@@ -41,9 +41,9 @@ public class pauseMenu implements Screen
     public void render(float deltaTime){
         batch.begin();
         batch.draw(pause, camera.viewportWidth / 2 - 325, camera.viewportHeight / 2 - 325);
-        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 625);
-        batch.draw(resume, camera.viewportWidth / 2 - 200, 555);
-        batch.draw(save, camera.viewportWidth / 2 - 200, 480);
+        batch.draw(returnHome, camera.viewportWidth / 2 - 200, 325);
+        batch.draw(resume, camera.viewportWidth / 2 - 200, 255);
+        batch.draw(save, camera.viewportWidth / 2 - 200, 180);
 
         float x = camera.viewportWidth / 2; //Halfway across x-axis
         float y = camera.viewportHeight / 2; //Halfway across y-axis
@@ -51,7 +51,7 @@ public class pauseMenu implements Screen
         //Area where Return button is clickable.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 685 && Gdx.input.getY() <= (y * 2) - 625)
+                Gdx.input.getY() >= (y * 2) - 385 && Gdx.input.getY() <= (y * 2) - 325)
         {
             if(Gdx.input.isTouched() == true)
             {
@@ -66,7 +66,7 @@ public class pauseMenu implements Screen
         //Area where you resume the game
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 610 && Gdx.input.getY() <= (y * 2) - 555) {
+                Gdx.input.getY() >= (y * 2) - 310 && Gdx.input.getY() <= (y * 2) - 255) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
@@ -78,7 +78,7 @@ public class pauseMenu implements Screen
         //Area where Save the file
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 535 && Gdx.input.getY() <= (y * 2) - 480) {
+                Gdx.input.getY() >= (y * 2) - 235 && Gdx.input.getY() <= (y * 2) - 180) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {

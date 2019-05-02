@@ -162,18 +162,6 @@ public class Inventory implements Screen{
         public void dispose () {
         }
 
-        public boolean keycardFound(int i)
-        {
-            if(itemSpriteList[i] != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
 
     }
 
