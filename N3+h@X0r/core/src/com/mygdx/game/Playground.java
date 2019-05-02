@@ -211,8 +211,6 @@ public class Playground implements Screen , ApplicationListener {
 	@Override
 	public void render (float delta) {
 
-		System.out.println(game.getBossIndex());
-
 		pressingEnter = Gdx.input.isKeyPressed(Input.Keys.ENTER);
 
 		Gdx.gl.glClearColor(0,0,0,1);
