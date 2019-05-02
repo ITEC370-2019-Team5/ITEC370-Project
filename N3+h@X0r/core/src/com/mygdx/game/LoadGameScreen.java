@@ -67,11 +67,18 @@ public class LoadGameScreen implements Screen
         //Area where Load file is.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 555) {
+                Gdx.input.getY() >= (y * 2) - 610 && Gdx.input.getY() <= (y * 2) - 550) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
-                    System.out.println(textField.getText());
+                    if(textField.getText().equals(""))
+                    {
+                        System.out.println("File does not exist");
+                    }
+                    else
+                    {
+                        game.loadFile(textField.getText());
+                    }
                 }
                 countPush = 0;
             }
@@ -79,12 +86,11 @@ public class LoadGameScreen implements Screen
         //Area where Load file is.
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
-                Gdx.input.getY() >= (y * 2) - 615 && Gdx.input.getY() <= (y * 2) - 485) {
+                Gdx.input.getY() >= (y * 2) - 535 && Gdx.input.getY() <= (y * 2) - 475) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
                     game.setGameName(textField.getText());
-                    textField.clear();
                 }
                 countPush = 0;
             }

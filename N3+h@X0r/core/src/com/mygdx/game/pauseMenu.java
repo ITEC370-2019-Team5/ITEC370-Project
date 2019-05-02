@@ -16,6 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
+import java.io.File;
+import java.io.FileWriter;
+
 public class pauseMenu implements Screen
 {
 
@@ -60,26 +63,63 @@ public class pauseMenu implements Screen
                 countPush = 0;
             }
         }
-        //Area where Save the file
+        //Area where you resume the game
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
                 Gdx.input.getY() >= (y * 2) - 610 && Gdx.input.getY() <= (y * 2) - 555) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
-                    System.out.println("Save game");
+                    game.changeScreen(game.currentScreenNum);
                 }
                 countPush = 0;
             }
         }
-        //Area where you resume the game
+        //Area where Save the file
         if(Gdx.input.getX() >= x - 200 && Gdx.input.getX() <= x + 200
                 &&
                 Gdx.input.getY() >= (y * 2) - 535 && Gdx.input.getY() <= (y * 2) - 480) {
             if (Gdx.input.isTouched() == true) {
                 countPush++;
                 if (countPush == 1) {
-                    game.changeScreen(game.currentScreenNum);
+                    File tempfile = new File("core/assets/" + game.getGameName());
+                    if(tempfile.exists())
+                    {
+                        System.out.println("File exists");
+                        try
+                        {
+                            if(tempfile.delete())
+                            {
+                                System.out.println("File deleted");
+                                tempfile.createNewFile();
+
+                                FileWriter fw = new FileWriter(tempfile);
+                                fw.write(game.getBossIndex() + "");
+                                fw.close();
+                            }
+                        }
+                        catch(Exception e)
+                        {
+                            System.out.println("Could not make file");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("File does not exists");
+                        //Create the file.
+                        try
+                        {
+                            tempfile.createNewFile();
+
+                            FileWriter fw = new FileWriter(tempfile);
+                            fw.write(game.getBossIndex() + "");
+                            fw.close();
+                        }
+                        catch(Exception e)
+                        {
+                            System.out.println("Could not make file");
+                        }
+                    }
                 }
                 countPush = 0;
             }

@@ -19,8 +19,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import java.io.File;
 import java.text.Bidi;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Playground implements Screen , ApplicationListener {
 	private NetworkingGame game;
@@ -155,8 +157,6 @@ public class Playground implements Screen , ApplicationListener {
 			x = x * platformingLayer.getTileWidth();
 			y = y * platformingLayer.getTileHeight();
 
-			bossIndex = 0;
-
 			showOnce = true;
 		}
 		player = new Player(new Sprite(prevTexture), platformingLayer, charSelect);
@@ -210,6 +210,8 @@ public class Playground implements Screen , ApplicationListener {
 
 	@Override
 	public void render (float delta) {
+
+		System.out.println(game.getBossIndex());
 
 		pressingEnter = Gdx.input.isKeyPressed(Input.Keys.ENTER);
 
@@ -452,5 +454,27 @@ public class Playground implements Screen , ApplicationListener {
 	public int getDiagSoFar()
 	{
 		return boss.getDiagSoFar();
+	}
+	public void loadFile(String file)
+	{
+		File tempfile = new File("core/assets/" + file);
+		if(tempfile.exists())
+		{
+			System.out.println("Loading file");
+			try
+			{
+				Scanner scan = new Scanner(new File("core/assets/" + file));
+
+				bossIndex = scan.nextInt();
+			}
+			catch(Exception e)
+			{
+				System.out.println("File not found, not loaded");
+			}
+		}
+		else
+		{
+			System.out.println("File not found");
+		}
 	}
 }

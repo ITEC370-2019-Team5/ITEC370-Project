@@ -58,6 +58,7 @@ public class NetworkingGame extends Game implements ApplicationListener {
         }
         else if(screen == 1) //Playground
         {
+
             currentScreenNum = 1;
             setScreen(playground);
             if(Gdx.input.isKeyPressed(Input.Keys.L))
@@ -233,5 +234,13 @@ public class NetworkingGame extends Game implements ApplicationListener {
     public void setIndex(int index)
     {
         playground.setIndex(index);
+    }
+    public void loadFile(String file)
+    {
+        playground.loadFile(file);
+    }
+    public String getGameName()
+    {
+        return gameName;
     }
 }
