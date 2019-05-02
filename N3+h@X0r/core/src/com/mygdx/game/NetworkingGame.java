@@ -38,8 +38,6 @@ public class NetworkingGame extends Game implements ApplicationListener {
         screen = setting;
     }
 
-    //Look for button press
-
     @Override
     public void render () {
         super.render();
@@ -207,6 +205,10 @@ public class NetworkingGame extends Game implements ApplicationListener {
     {
         return playground.getNextDiagType();
     }
+    public int getBossIndex()
+    {
+        return playground.getDiagSoFar();
+    }
     public String getAnswer()
     {
         return playground.getAnswer();
@@ -227,5 +229,9 @@ public class NetworkingGame extends Game implements ApplicationListener {
         {
             return false;
         }
+    }
+    public void setIndex(int index)
+    {
+        playground.setIndex(index);
     }
 }

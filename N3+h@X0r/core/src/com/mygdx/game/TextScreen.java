@@ -46,16 +46,15 @@ public class TextScreen implements Screen{
             {
                 if(game.getNextDiagType() == 'd')
                 {
-                    System.out.println("test");
                     displayThis = game.getNextDialogue();
+                    game.setIndex(game.getBossIndex());
                 }
                 else if(game.getNextDiagType() == 'q')
                 {
-                    System.out.println("Checking for completion");
                     if(game.questionDone())
                     {
-                        System.out.println("COMPLETE");
                         displayThis = game.getNextDialogue();
+                        game.setIndex(game.getBossIndex());
                     }
                 }
                 else
@@ -77,6 +76,7 @@ public class TextScreen implements Screen{
                 {
                     game.incAnsIndex();
                     displayThis = game.getNextDialogue();
+                    game.setIndex(game.getBossIndex());
                 }
                 else
                 {
@@ -93,6 +93,7 @@ public class TextScreen implements Screen{
                 {
                     game.incAnsIndex();
                     displayThis = game.getNextDialogue();
+                    game.setIndex(game.getBossIndex());
                 }
                 else
                 {
@@ -109,6 +110,7 @@ public class TextScreen implements Screen{
                 {
                     game.incAnsIndex();
                     displayThis = game.getNextDialogue();
+                    game.setIndex(game.getBossIndex());
                 }
                 else
                 {

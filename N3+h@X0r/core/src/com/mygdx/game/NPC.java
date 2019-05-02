@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
+import java.util.Random;
+
 public class NPC extends Sprite{
     private TiledMapTileLayer collisionLayer;
     private String[] dialogue;
@@ -12,6 +14,8 @@ public class NPC extends Sprite{
     private String[] answer, ip, mask;
     private int diagSoFar, ipSoFar, maskSoFar;
     private int answerIndex = 0;
+    Random rand = new Random();
+    private int rando = rand.nextInt(1000);
 
     NPC(Sprite sprite, TiledMapTileLayer collisionLayer, String[] dialogue, char[] type, String[] answer, String[] ip, String[] mask){
         super(sprite);
@@ -41,6 +45,7 @@ public class NPC extends Sprite{
     }
 
     public String getDialogue(int num) {
+
         if(num < dialogue.length)
         {
             return dialogue[num];
@@ -51,13 +56,15 @@ public class NPC extends Sprite{
         }
     }
 
-    public void setDialogue(String[] dialogue) {
-        this.dialogue = dialogue;
+    public void setDialogue(int index) {
+        diagSoFar = index;
     }
 
-    public int getDiagSoFar(){return diagSoFar;}
+    public int getDiagSoFar(){
+        return diagSoFar;}
     public void setdiagSoFar()
     {
+        System.out.println(diagSoFar);
         if(diagSoFar == (dialogue.length - 1))
         {
             diagSoFar = 0;

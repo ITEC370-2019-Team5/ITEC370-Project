@@ -42,6 +42,8 @@ public class Playground implements Screen , ApplicationListener {
 	private Texture prevTexture;
 	private Inventory inventory = new Inventory(game);
 
+	private int bossIndex = 0;
+
 	private BitmapFont hungerThirst;
 	int thirstCount = 60;
 	int hungerCount = 60;
@@ -153,6 +155,8 @@ public class Playground implements Screen , ApplicationListener {
 			x = x * platformingLayer.getTileWidth();
 			y = y * platformingLayer.getTileHeight();
 
+			bossIndex = 0;
+
 			showOnce = true;
 		}
 		player = new Player(new Sprite(prevTexture), platformingLayer, charSelect);
@@ -181,6 +185,9 @@ public class Playground implements Screen , ApplicationListener {
 		boss.setBounds(0,0,16,16);
 		boss.setPosition(3 * 16, 2 * 16);
 
+
+		boss.setDialogue(bossIndex);
+
 		//sets all items to 16x16 pixels to fit the boundaries of the map
 		for(int i = 0;i < itemList.size(); i++) {
 			itemList.get(i).setBounds(itemList.get(i).updateCoordX(), itemList.get(i).updateCoordY(), 16, 16);
@@ -203,6 +210,7 @@ public class Playground implements Screen , ApplicationListener {
 
 	@Override
 	public void render (float delta) {
+
 		pressingEnter = Gdx.input.isKeyPressed(Input.Keys.ENTER);
 
 		Gdx.gl.glClearColor(0,0,0,1);
@@ -291,6 +299,7 @@ public class Playground implements Screen , ApplicationListener {
 			//Boss Dialogue
 			if(player.getX() > (boss.getX() - 20) && player.getX() < (boss.getX() + 4) &&
 					player.getY() > (boss.getY() - 20) && player.getY() < (boss.getY() + 4)){
+
 				game.changeStr(boss.getDialogue(boss.getDiagSoFar()), 'b');
 				game.changeScreen(6);
 			}
@@ -435,5 +444,13 @@ public class Playground implements Screen , ApplicationListener {
 	public String getIP()
 	{
 		return boss.getIP();
+	}
+	public void setIndex(int index)
+	{
+		bossIndex = index;
+	}
+	public int getDiagSoFar()
+	{
+		return boss.getDiagSoFar();
 	}
 }
